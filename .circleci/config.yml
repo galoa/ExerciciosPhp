@@ -1,0 +1,30 @@
+version: 2
+
+workflows:
+  version: 2
+  phpunit:
+    jobs:
+      - phpunit
+
+jobs:
+  phpunit:
+    working_directory: ~/exercicios
+    docker:
+      - image: chuva/circle-php:0.3.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+      - run:
+          name: Install Composer dependencies
+          command: composer install -n --prefer-dist
+      - run:
+          name: Disable Xdebug
+          command: sudo rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - run:
+          name: Run PHPUnit tests with coverage enabled
+          command: vendor/bin/phpunit --coverage-html tests-results
+      - store_artifacts:
+          path: ~/exercicios/tests-results
+          destination: phpunit

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit colors="true" bootstrap="vendor/autoload.php"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutChangesToGlobalState="true"
+         beStrictAboutCoversAnnotation="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true">
+  <testsuites>
+      <testsuite name="testes">
+          <directory>tests</directory>
+      </testsuite>
+  </testsuites>
+  <!-- Filter for coverage reports. -->
+  <filter>
+    <whitelist>
+      <directory>src/</directory>
+    </whitelist>
+  </filter>
+</phpunit>
