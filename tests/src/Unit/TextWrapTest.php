@@ -1,7 +1,6 @@
 <?php
 
 namespace Galoa\ExerciciosPhp\Tests\TextWrap;
-
 use Galoa\ExerciciosPhp\TextWrap\Resolucao;
 use PHPUnit\Framework\TestCase;
 
@@ -10,6 +9,8 @@ use PHPUnit\Framework\TestCase;
  *
  * @codeCoverageIgnore
  */
+
+ 
 class TextWrapTest extends TestCase {
 
   /**
@@ -49,6 +50,7 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("ombros", $ret[7]);
     $this->assertEquals("de", $ret[8]);
     $this->assertEquals("gigantes", $ret[9]);
+
   }
 
   /**
@@ -65,6 +67,29 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("pé sobre", $ret[3]);
     $this->assertEquals("ombros de", $ret[4]);
     $this->assertEquals("gigantes", $ret[5]);
+
+  }
+  
+ /**
+  * Testa a quebra de linha para palavras maiores que o limite 
+  *	de caracteres
+  */
+   public function testForSmallWords3() {
+    $ret = $this->resolucao->textWrap("Se vi mais longe foi por estar de pé sobre ombros de gigantes no Paralelepipedo", 8);
+    $this->assertCount(13, $ret);
+	$this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
+    $this->assertEquals("longe", $ret[2]);
+    $this->assertEquals("foi por", $ret[3]);
+    $this->assertEquals("estar de", $ret[4]);
+    $this->assertEquals("pé", $ret[5]);
+    $this->assertEquals("sobre", $ret[6]);
+    $this->assertEquals("ombros", $ret[7]);
+    $this->assertEquals("de", $ret[8]);
+    $this->assertEquals("gigantes", $ret[9]);
+	$this->assertEquals("no", $ret[10]);
+    $this->assertEquals("Paralele", $ret[11]);
+    $this->assertEquals("pipedo", $ret[12]);
   }
 
 }
