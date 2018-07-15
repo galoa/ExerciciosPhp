@@ -1,7 +1,7 @@
 <?php
 
 namespace Galoa\ExerciciosPhp\Tests\TextWrap;
-
+require '../../../vendor/autoload.php';
 use Galoa\ExerciciosPhp\TextWrap\Resolucao;
 use PHPUnit\Framework\TestCase;
 
@@ -71,10 +71,14 @@ class TextWrapTest extends TestCase {
 
   }
   
+ /**
+  * Testa a quebra de linha para palavras maiores que o limite 
+  *	de caracteres
+  */
    public function testForSmallWords3() {
     $ret = $this->resolucao->textWrap("Se vi mais longe foi por estar de pé sobre ombros de gigantes no Paralelepipedo", 8);
     $this->assertCount(13, $ret);
-	  $this->assertEquals("Se vi", $ret[0]);
+	$this->assertEquals("Se vi", $ret[0]);
     $this->assertEquals("mais", $ret[1]);
     $this->assertEquals("longe", $ret[2]);
     $this->assertEquals("foi por", $ret[3]);
