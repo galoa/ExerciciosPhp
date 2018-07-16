@@ -1,4 +1,5 @@
 <?php
+
 namespace Galoa\ExerciciosPhp\TextWrap;
 
 /**
@@ -16,19 +17,28 @@ class Resolucao implements TextWrapInterface {
 		$string = "";
 		$limite = $length; // limite de caracter 
 		$linha = 0;//linha do array
-		for($i = 0; $i < count($palavras); $i++){
+		for($i = 0; $i < count($palavras); $i++)
+		{
 			$string = $palavras[$i].' ';
-			if(( strlen($palavras[$i]) > $length)){
+				
+			if(( strlen($palavras[$i]) > $length))
+			{
 				//corta a palavra e o resto vai para proximo indice do array
 				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);
 			}else
-				if( $limite >= strlen($string)){	
+				if( $limite >= strlen(trim($string)))
+				{	
+					
 					//adiciona a palavra na linha do array
 					$vetor[$linha] = (array_key_exists($linha,$vetor) )? $vetor[$linha].$string : $string;
 				    //subtrai o limite com a quantidade de caracteres da string
 					$limite -= strlen($string);
+					
+					
+						
 				}else 
-					if($limite < strlen($string)){
+					if($limite < strlen($string))
+					{										
 						//incrementa o valor de linha para a string ser adicionado no outro indice do array
 						$linha++;
 						//limite recebe o valor de inicio
@@ -37,30 +47,43 @@ class Resolucao implements TextWrapInterface {
 						$vetor[$linha] = $string;
 						 //subtrai o limite com a quantidade de caracteres da string
 						$limite -= strlen($string);
+				
 					}
-		}
+				
+		}	
+		$this->trim_array($vetor);
     return $vetor;
   }
   
+  private function trim_array(&$array){
+	  for($i = 0; $i < count($array); $i++){
+		  $array[$i] = trim($array[$i]);
+	  }
+  }
+  
   private function cutWord(&$array,$palavra,&$limite,$length,$indice){
-	
-	  for($i = 0; $i < strlen($palavra); $i++){ 
 	  
-		//verifica se o indice está zerado de palavras
-		if( ($limite != $length) && ($i == 0) ){
+	 
+	  for($i = 0; $i < strlen($palavra); $i++)
+	  { 
+		if( ($limite != $length) && ($i == 0) )//verifica se o indice está zerado de palavras
+		{
 			$indice++; // pula de linha no array
 			$limite = $length;	//limite recebe o valor de inicio	
 		}
-		//verifica se o limite é maior que 0
-		if($limite <= 0) {
+		
+		if($limite <= 0) //verifica se o limite é maior que 0
+		{
 			//incrementa o valor de linha 
 			$indice++;
 			$limite = $length;	//limite recebe o valor de inicio	
 		}
+		
 		//adiciona a letra no indice do array concatenando com os valores anteriores	
 		$array[$indice] = ( array_key_exists($indice,$array) )? $array[$indice].$palavra[$i] : $palavra[$i];
 		$limite--;
 	  }
 	  $array[$indice] = $array[$indice].' ';
   }
+  
 }
