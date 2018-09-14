@@ -42,11 +42,8 @@ interface TextWrapInterface {
     $i=0;
     $line=0;
     
-    for($i=0; $i<count($words); $i++){
-      $string= $words[$i];
-      if(strlen($words[$i]<$length){
-        $
-    
+    foreach($words as $auxtext =>$value){
+      if(strlen($value)<
     
 
 }
