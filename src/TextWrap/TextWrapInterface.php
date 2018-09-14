@@ -34,6 +34,19 @@ interface TextWrapInterface {
    *   Um array de strings equivalente ao texto recebido por parâmetro porém
    *   respeitando o comprimento de linha e as regras especificadas acima.
    */
-  public function textWrap(string $text, int $length): array;
+  public function textWrap(string $text, int $length): array;{
+    $words= explode(' ', $text); //explodi o texto em diferentes arrays
+    $auxtext= "";
+    $limitwords= $length; //limitei o número de caracteres por linha com base no length
+    $arrayreturn= array(); //vetor de retorno
+    $i=0;
+    $line=0;
+    
+    for($i=0; $i<count($words); $i++){
+      $string= $words[$i];
+      if(strlen($words[$i]<$length){
+        $
+    
+    
 
 }
