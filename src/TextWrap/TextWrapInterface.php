@@ -34,6 +34,6 @@ interface TextWrapInterface {
    *   Um array de strings equivalente ao texto recebido por parâmetro porém
    *   respeitando o comprimento de linha e as regras especificadas acima.
    */
-  public function textWrap(string $text, int $length): array;{
+  public function textWrap(string $text, int $length): array;
 
 }
