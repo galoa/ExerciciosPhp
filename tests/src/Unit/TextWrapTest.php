@@ -1,7 +1,6 @@
 <?php
 
 namespace Galoa\ExerciciosPhp\Tests\TextWrap;
-require '../../../vendor/autoload.php';
 
 use Galoa\ExerciciosPhp\TextWrap\Resolucao;
 use PHPUnit\Framework\TestCase;
