@@ -19,6 +19,10 @@ jobs:
       - run:
           name: Install Composer dependencies
           command: composer install -n --prefer-dist
+          
+      - run:
+          name: Disable Xdebug
+          command: sudo rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
       - run:
           name: Run PHPUnit tests with coverage enabled
