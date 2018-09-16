@@ -19,13 +19,13 @@ class Resolucao implements TextWrapInterface {
 				//corta a palavra e o resto vai para proximo indice do array
 				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);
 			}else
-				if( $limite > strlen($string)){	
+				if( $length > strlen($string)){	
 					//adiciona a palavra na linha do array
 					$vetor[$linha] = (array_key_exists($linha,$vetor) )? $vetor[$linha].$string : $string;
 				    //subtrai o limite com a quantidade de caracteres da string
 					$limite -= strlen($string);
 				}else 
-					if($limite < strlen($string)){
+					if($length < strlen($string)){
 						//incrementa o valor de linha para a string ser adicionado no outro indice do array
 						$linha++;
 						//limite recebe o valor de inicio
