@@ -1,17 +1,13 @@
 <?php
-
 namespace Galoa\ExerciciosPhp\Tests\TextWrap;
-
 use Galoa\ExerciciosPhp\TextWrap\Resolucao;
 use PHPUnit\Framework\TestCase;
-
 /**
  * Tests for Galoa\ExerciciosPhp\TextWrap\Resolucao.
  *
  * @codeCoverageIgnore
  */
 class TextWrapTest extends TestCase {
-
   /**
    * Test Setup.
    */
@@ -19,7 +15,6 @@ class TextWrapTest extends TestCase {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
   }
-
   /**
    * Checa o retorno para strings vazias.
    *
@@ -30,7 +25,6 @@ class TextWrapTest extends TestCase {
     $this->assertCount(1, $ret);
     $this->assertEmpty($ret[0]);
   }
-
   /**
    * Testa a quebra de linha para palavras curtas.
    *
@@ -50,7 +44,6 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("de", $ret[8]);
     $this->assertEquals("gigantes", $ret[9]);
   }
-
   /**
    * Testa a quebra de linha para palavras curtas.
    *
@@ -66,5 +59,4 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("ombros de", $ret[4]);
     $this->assertEquals("gigantes", $ret[5]);
   }
-
 }
