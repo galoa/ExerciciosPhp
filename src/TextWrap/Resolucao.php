@@ -6,30 +6,49 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 class Resolucao implements TextWrapInterface {
 	public function textWrap(string $text, int $length):array{
 
-  $words=explode(" ", $text); 
-    $limite=$length; 
-    $arrayreturn=array(); 
-	$string=$words;
-
-
-foreach($words as $word){
-	$limite-=strlen($word);
-	
-	if($limite>=0){
-		echo $word." ";
-		$limite--;
-	}else {
-		if(strlen($word)>$length){
-			echo substr($word,0,$length-1)."-";
-			echo "<br>";
-			$limite=$length;
-			echo substr($word, $length-1, -1);
-			$limite-=strlen(substr($word, $length-1, -1));
-	}else{
-			echo"<br>$word";
-			$limite=$length;}
-		
-	}
-}
-	}
-}
+ $palavras = explode(' ',$text);//separa o texto em um array de palavras
+ 		$vetor = array();//array que será retornado 
+ 		$string = "";
+ 		$limite = $length; // limite de caracter 
+ 		$linha = 0;//linha do array
+ 		for($i = 0; $i < count($palavras); $i++){
+ 			$string = $palavras[$i].' ';
+ 			if(( strlen($palavras[$i]) > $length)){
+ 				//corta a palavra e o resto vai para proximo indice do array
+ 				 for($i = 0; $i < strlen($palavra); $i++){ 
+ 	  
+ 		//verifica se o indice está zerado de palavras
+ 		if( ($limite != $length) && ($i == 0) ){
+ 			$indice++; // pula de linha no array
+ 			$limite = $length;	//limite recebe o valor de inicio	
+ 		}
+ 		//verifica se o limite é maior que 0
+ 		if($limite <= 0) {
+ 			//incrementa o valor de linha 
+ 			$indice++;
+ 			$limite = $length;	//limite recebe o valor de inicio	
+ 		}
+ 		//adiciona a letra no indice do array concatenando com os valores anteriores	
+ 		$array[$indice] = ( array_key_exists($indice,$array) )? $array[$indice].$palavra[$i] : $palavra[$i];
+ 		$limite--;
+ 	  }
+ 	  $array[$indice] = $array[$indice].' ';
+   
+ 			}else
+ 				if( $limite >= strlen($string)){	
+ 					//adiciona a palavra na linha do array
+ 					$vetor[$linha] = (array_key_exists($linha,$vetor) )? $vetor[$linha].$string : $string;
+ 				    //subtrai o limite com a quantidade de caracteres da string
+ 					$limite -= strlen($string);
+ 				}else 
+ 					if($limite < strlen($string)){
+ 						//incrementa o valor de linha para a string ser adicionado no outro indice do array
+ 						$linha++;
+ 						//limite recebe o valor de inicio
+ 						$limite = $length;
+ 						//adiciona a palavra na linha do array
+ 						$vetor[$linha] = $string;
+ 						 //subtrai o limite com a quantidade de caracteres da string
+ 						$limite -= strlen($string);
+ 					}
+ 		}
