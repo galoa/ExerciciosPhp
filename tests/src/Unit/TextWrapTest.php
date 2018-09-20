@@ -53,11 +53,11 @@ class TextWrapTest extends TestCase {
     $ret = $this->resolucao->textWrap($this->baseString, 12);
     $this->assertCount(5, $ret);
     $this->assertEquals("Sevimais", $ret[0]);
-    /*$this->assertEquals("longe foi ", $ret[1]);
-    $this->assertEquals("por estar ", $ret[2]);
-    $this->assertEquals("de pé ", $ret[3]);
-    $this->assertEquals("sobre ", $ret[4]);
-    $this->assertEquals("ombros de ", $ret[5]);
+    $this->assertEquals("longefoipor", $ret[1]);
+    $this->assertEquals("estardepé", $ret[2]);
+    $this->assertEquals("sobreombros", $ret[3]);
+    $this->assertEquals("degigantes", $ret[4]);
+   /* $this->assertEquals("ombros de ", $ret[5]);
     $this->assertEquals("gigantes ", $ret[6]);*/
   }
 }
