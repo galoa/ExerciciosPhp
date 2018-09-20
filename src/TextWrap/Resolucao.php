@@ -4,7 +4,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  * Implemente sua resolução aqui.
  */
 class Resolucao implements TextWrapInterface {
-	public function textWrap(string $text, int $length){
+	public function textWrap(string $text, int $length):array{
 
   $words=explode(" ", $text); 
     $limite=$length; 
