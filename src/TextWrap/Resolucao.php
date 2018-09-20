@@ -13,11 +13,11 @@
  		//variaveis locais
  		$palavras=explode(" ",$text);//separa o texto em um array de palavras
  		$vetor=array();//array que será retornado 
- 		$string=" ";
+ 		$string="";
  		$limite=$length; // limite de caracter 
  		$linha=0;//linha do array
  		for($i = 0; $i < count($palavras); $i++){
- 			$string = $palavras[$i]."";
+ 			$string = $palavras[$i]." ";
  			if((strlen($palavras[$i])>$length)){
  				//corta a palavra e o resto vai para proximo indice do array
  				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);
