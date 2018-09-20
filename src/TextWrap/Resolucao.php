@@ -1,5 +1,4 @@
-
- <?php
+<?php
  namespace Galoa\ExerciciosPhp\TextWrap;
 
  /**
@@ -10,9 +9,9 @@
    /**
     * {@inheritdoc}
     */
-   public function textWrap(string $text, int $length): array {
+   public function textWrap(string $text,int $length): array {
  		//variaveis locais
- 		$palavras = explode(' ',$text);//separa o texto em um array de palavras
+ 		$palavras=explode(' ',$text);//separa o texto em um array de palavras
  		$vetor = array();//array que será retornado 
  		$string = "";
  		$limite = $length; // limite de caracter 
