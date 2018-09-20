@@ -51,12 +51,13 @@ class TextWrapTest extends TestCase {
    */
   public function testForSmallWords2() {
     $ret = $this->resolucao->textWrap($this->baseString, 12);
-    $this->assertCount(6, $ret);
+    $this->assertCount(7, $ret);
     $this->assertEquals("Se vi mais", $ret[0]);
     $this->assertEquals("longe foi", $ret[1]);
-    $this->assertEquals("por estar de", $ret[2]);
-    $this->assertEquals("pé sobre", $ret[3]);
-    $this->assertEquals("ombros de", $ret[4]);
-    $this->assertEquals("gigantes", $ret[5]);
+    $this->assertEquals("por estar", $ret[2]);
+    $this->assertEquals("de pé", $ret[3]);
+    $this->assertEquals("sobre", $ret[4]);
+    $this->assertEquals("ombros de", $ret[5]);
+    $this->assertEquals("gigantes", $ret[6];
   }
 }
