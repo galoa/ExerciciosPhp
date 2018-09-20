@@ -52,3 +52,4 @@ class Resolucao implements TextWrapInterface {
  						$limite -= strlen($string);
  					}
  		}
+	}}
