@@ -39,7 +39,7 @@
  						$limite-=strlen($string);
  					}
  		}
-     return $vetor;
+     print_r($vetor);
    }
    
    private function cutWord(&$array,$palavra,&$limite,$length,$indice){
