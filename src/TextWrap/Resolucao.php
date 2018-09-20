@@ -1,7 +1,7 @@
-@@ -0,0 +1,66 @@
+
  <?php
  namespace Galoa\ExerciciosPhp\TextWrap;
-
+@@ -0,0 +1,66 @@
  /**
   * Implemente sua resolução aqui.
   */
