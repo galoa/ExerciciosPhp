@@ -58,6 +58,6 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("de pé", $ret[3]);
     $this->assertEquals("sobre", $ret[4]);
     $this->assertEquals("ombros de", $ret[5]);
-    $this->assertEquals("gigantes", $ret[6];
+    $this->assertEquals("gigantes", $ret[6]);
   }
 }
