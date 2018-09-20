@@ -40,6 +40,7 @@
  					}
  		}
      print_r($vetor);
+    return $vetor;
    }
    
    private function cutWord(&$array,$palavra,&$limite,$length,$indice){
