@@ -80,6 +80,6 @@ class Resolucao implements TextWrapInterface {
 		    }
 
 		    return $ret;
-	  	}else return $ret[0];
+	  	}else return $ret;
 	}
 }
