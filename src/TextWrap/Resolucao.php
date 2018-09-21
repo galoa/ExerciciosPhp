@@ -18,12 +18,9 @@
  		$linha=0;//linha do array
  		for($i = 0; $i < count($palavras); $i++){
  			$string = $palavras[$i]." ";
-   // $this->tiraesp($vetor,$linha);
  			if((strlen($palavras[$i])>$length)){
  				//corta a palavra e o resto vai para proximo indice do array
- 				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);
-     strlen($palavras[$i])-1;
-     
+ 				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);  
  			}else
  				if($limite>=strlen($string)){	
  					//adiciona a palavra na linha do array
@@ -43,18 +40,8 @@
  						$limite-=strlen($string);
  					}
  		}
-//function array_trim_end($vetor){
-$vetor;
-$num=count($vetor);
-$num=$num-1;
-unset($vetor[$num]);
 
-return $vetor;
-
-
-
-    
-
+    return $vetor;
      print_r($vetor);
 
    }
@@ -81,10 +68,4 @@ return $vetor;
  	  $array[$indice]=$array[$indice]." ";
    }
  
-
-/* private function tiraesp($vetor, $linha){
-  for($i=0; $i<$linha; $i++){
-   $esp=array(" ");
-   $return=str_replace($esp, "",$vetor);
-   return $return;}*/
  }
