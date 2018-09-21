@@ -43,10 +43,10 @@
  						$limite-=strlen($string);
  					}
  		}
-   end($vetor);
-$key = key($vetor);
+$ultimo = count($vetor) - 1; //3 elementos
+$vetor[$ultimo] = substr($vetor[$ultimo],0, -1); //remove o último caracter
 
-$vetor[$key] = substr($vetor[$key], 0, -1);
+echo $vetor[$ultimo];
     
 
      print_r($vetor);
