@@ -43,7 +43,7 @@
  						$limite-=strlen($string);
  					}
  		}
-   end($string);
+   end($vetor);
 $key = key($string);
 
 $string[$key] = substr($string[$key], 0, -1);
