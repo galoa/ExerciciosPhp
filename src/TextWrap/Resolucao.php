@@ -16,7 +16,7 @@
  		$string="";
  		$limite=$length; // limite de caracter 
  		$linha=0;//linha do array
- 		for($i = 0; $i < count($palavras)-1; $i++){
+ 		for($i = 0; $i < count($palavras); $i++){
  			$string = $palavras[$i]."-";
     echo substr($string, 0, -1);
  			if((strlen($palavras[$i])>$length)){
