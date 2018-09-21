@@ -43,8 +43,11 @@
  						$limite-=strlen($string);
  					}
  		}
-    echo trim($vetor);
-    echo implode($vetor);
+   end($string);
+$key = key($string);
+
+$string[$key] = substr($string[$key], 0, -1);
+    
     echo($vetor);
      //print_r($vetor);
     return $vetor;
