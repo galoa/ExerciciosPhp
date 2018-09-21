@@ -39,6 +39,7 @@
  						$limite-=strlen($string);
  					}
  		}
+    $vetor--;
      print_r($vetor);
     return $vetor;
    }
