@@ -19,14 +19,14 @@
  		for($i = 0; $i < count($palavras); $i++){
  			$string = $palavras[$i]."-";
  			if((strlen($palavras[$i])>$length)){
-     $string=$string--;
+     $string=$string-1;
  				//corta a palavra e o resto vai para proximo indice do array
  				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);
  			}else
  				if($limite>=strlen($string)){	
  					//adiciona a palavra na linha do array
       $string=$string--;
- 					$vetor[$linha]=(array_key_exists($linha,$vetor))?$vetor[$linha].$string:$string;
+ 					$vetor[$linha]=(array_key_exists($linha,$vetor))?$vetor[$linha].($string-1):$string;
  				    //subtrai o limite com a quantidade de caracteres da string
  					$limite-=strlen($string);
  				}else 
@@ -41,8 +41,7 @@
  						 //subtrai o limite com a quantidade de caracteres da string
  						$limite-=strlen($string);
  					}
- 		}for($i=0; $i<=$linha; $i++){
-    $vetor[$linha]--;}
+ 		}
      print_r($vetor);
     return $vetor;
    }
