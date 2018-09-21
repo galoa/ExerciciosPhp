@@ -43,14 +43,20 @@
  						$limite-=strlen($string);
  					}
  		}
-$ultimo = count($vetor) - 1; //3 elementos
-$vetor[$ultimo] = substr($vetor[$ultimo],0, -1); //remove o último caracter
+//function array_trim_end($vetor){
+$vetor;
+$num=count($vetor);
+$num=$num-1;
+unset($vetor[$num]);
 
-echo $vetor[$ultimo];
+return $vetor;
+
+
+
     
 
      print_r($vetor);
-    return $vetor;
+
    }
    
    private function cutWord(&$array,$palavra,&$limite,$length,$indice){
