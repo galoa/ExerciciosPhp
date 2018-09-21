@@ -18,7 +18,7 @@
  		$linha=0;//linha do array
  		for($i = 0; $i < count($palavras); $i++){
  			$string = $palavras[$i]."-";
-    echo substr($string, 0, -1);
+    $this->tiraesp($vetor,$linha);
  			if((strlen($palavras[$i])>$length)){
  				//corta a palavra e o resto vai para proximo indice do array
  				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);
@@ -66,3 +66,9 @@
  	  $array[$indice]=$array[$indice]." ";
    }
  }
+
+ private function tiraesp($vetor, $linha){
+  for($i=0; $i<$linha; $i++){
+   $esp=array(" ");
+   $return=str_replace($esp, "",$vetor);
+   return $return;}
