@@ -43,7 +43,9 @@
  						$limite-=strlen($string);
  					}
  		}
-     print_r($vetor);
+    echo implode($vetor);
+    echo($vetor);
+     //print_r($vetor);
     return $vetor;
    }
    
