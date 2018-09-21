@@ -17,7 +17,7 @@
  		$limite=$length; // limite de caracter 
  		$linha=0;//linha do array
  		for($i = 0; $i < count($palavras); $i++){
- 			$string = $palavras[$i]."-";
+ 			$string = $palavras[$i]." ";
    // $this->tiraesp($vetor,$linha);
  			if((strlen($palavras[$i])>$length)){
  				//corta a palavra e o resto vai para proximo indice do array
@@ -43,6 +43,7 @@
  						$limite-=strlen($string);
  					}
  		}
+    echo trim($vetor);
     echo implode($vetor);
     echo($vetor);
      //print_r($vetor);
