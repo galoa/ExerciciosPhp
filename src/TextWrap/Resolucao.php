@@ -11,14 +11,12 @@ class Resolucao implements TextWrapInterface {
   /**
    * {@inheritdoc}
    */
-
   	public function textWrap(string $text, int $length): array {
 
 	  	$maximo = strlen($text);
 	  	// Contador de caracteres na linha, varia de 1 até tamanho 
 		$contador = 1;
-
-
+		
 	  	// Linha e coluna do array de retono
 		$linha = 0;
 		$coluna = 0;
@@ -35,7 +33,7 @@ class Resolucao implements TextWrapInterface {
 		       	 	// Guardar o espaço na variavel
 		       		$ultimo_espaco = $key;
 		     	}
-		      
+
 		     	// Se o número de caracteres contados for igual ao tamanho
 		     	if ($contador == $length){
 		    		// Se o caractere seguinte ao caractere em questão for igual a " "
