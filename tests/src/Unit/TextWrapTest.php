@@ -32,17 +32,17 @@ class TextWrapTest extends TestCase {
    */
   public function testForSmallWords() {
     $ret = $this->resolucao->textWrap($this->baseString, 8);
-    $this->assertCount(7, $ret);
-    $this->assertEquals("Sevimais", $ret[0]);
-    $this->assertEquals("longefoi", $ret[1]);
-    $this->assertEquals("porestar", $ret[2]);
-    $this->assertEquals("depé", $ret[3]);
-    $this->assertEquals("sobre", $ret[4]);
-    $this->assertEquals("ombrosde", $ret[5]);
-    $this->assertEquals("gigantes", $ret[6]);
-    /*$this->assertEquals("ombros ", $ret[7]);
-    $this->assertEquals("de ", $ret[8]);
-    $this->assertEquals("gigantes ", $ret[9]);*/
+    $this->assertCount(10, $ret);
+    $this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
+    $this->assertEquals("longe", $ret[2]);
+    $this->assertEquals("foi por", $ret[3]);
+    $this->assertEquals("estar de", $ret[4]);
+    $this->assertEquals("pé", $ret[5]);
+    $this->assertEquals("sobre", $ret[6]);
+    $this->assertEquals("ombros", $ret[7]);
+    $this->assertEquals("de", $ret[8]);
+    $this->assertEquals("gigantes", $ret[9]);
   }
   /**
    * Testa a quebra de linha para palavras curtas.
@@ -51,13 +51,12 @@ class TextWrapTest extends TestCase {
    */
   public function testForSmallWords2() {
     $ret = $this->resolucao->textWrap($this->baseString, 12);
-    $this->assertCount(5, $ret);
-    $this->assertEquals("Sevimais", $ret[0]);
-    $this->assertEquals("longefoipor", $ret[1]);
-    $this->assertEquals("estardepé", $ret[2]);
-    $this->assertEquals("sobreombros", $ret[3]);
-    $this->assertEquals("degigantes", $ret[4]);
-   /* $this->assertEquals("ombros de ", $ret[5]);
-    $this->assertEquals("gigantes ", $ret[6]);*/
+    $this->assertCount(6, $ret);
+    $this->assertEquals("Se vi mais", $ret[0]);
+    $this->assertEquals("longe foi", $ret[1]);
+    $this->assertEquals("por estar de", $ret[2]);
+    $this->assertEquals("pé sobre", $ret[3]);
+    $this->assertEquals("ombros de", $ret[4]);
+    $this->assertEquals("gigantes", $ret[5]);
   }
 }
