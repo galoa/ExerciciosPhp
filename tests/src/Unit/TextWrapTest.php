@@ -94,20 +94,20 @@ class TextWrapTest extends TestCase {
 
   public function testForSplitWords1() {
     $ret = $this->resolucao->textWrap($this->baseString, 5);
-    $this->assertCount(14, $ret);
+    $this->assertCount(13, $ret);
     $this->assertEquals("Se vi", $ret[0]);
     $this->assertEquals("mais", $ret[1]);
     $this->assertEquals("longe", $ret[2]);
     $this->assertEquals("foi", $ret[3]);
-    $this->assertEquals("por", $ret[5]);
-    $this->assertEquals("estar", $ret[6]);
-    $this->assertEquals("de", $ret[7]);
-    $this->assertEquals("pé", $ret[8]);
-    $this->assertEquals("sobre", $ret[9]);
-    $this->assertEquals("ombro", $ret[10]);
-    $this->assertEquals("s de", $ret[11]);
-    $this->assertEquals("gigan", $ret[12]);
-    $this->assertEquals("tes", $ret[13]);
+    $this->assertEquals("por", $ret[4]);
+    $this->assertEquals("estar", $ret[5]);
+    $this->assertEquals("de", $ret[6]);
+    $this->assertEquals("pé", $ret[7]);
+    $this->assertEquals("sobre", $ret[8]);
+    $this->assertEquals("ombro", $ret[9]);
+    $this->assertEquals("s de", $ret[10]);
+    $this->assertEquals("gigan", $ret[11]);
+    $this->assertEquals("tes", $ret[12]);
   }
 
 
