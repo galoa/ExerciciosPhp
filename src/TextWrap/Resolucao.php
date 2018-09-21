@@ -38,7 +38,7 @@
  						 //subtrai o limite com a quantidade de caracteres da string
  						$limite-=strlen($string);
  					}
- 		}for(i=0; i<=$linha; i++){
+ 		}for($i=0; $i<=$linha; $i++){
     $vetor[$linha]--;}
      print_r($vetor);
     return $vetor;
