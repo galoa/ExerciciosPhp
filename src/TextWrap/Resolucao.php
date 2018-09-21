@@ -44,12 +44,12 @@
  					}
  		}
    end($vetor);
-$key = key($string);
+$key = key($vetor);
 
-$string[$key] = substr($string[$key], 0, -1);
+$vetor[$key] = substr($vetor[$key], 0, -1);
     
-    echo($vetor);
-     //print_r($vetor);
+
+     print_r($vetor);
     return $vetor;
    }
    
