@@ -18,10 +18,12 @@
  		$linha=0;//linha do array
  		for($i = 0; $i < count($palavras); $i++){
  			$string = $palavras[$i]."-";
-    $this->tiraesp($vetor,$linha);
+   // $this->tiraesp($vetor,$linha);
  			if((strlen($palavras[$i])>$length)){
  				//corta a palavra e o resto vai para proximo indice do array
  				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);
+     strlen($palavras[$i])-1;
+     
  			}else
  				if($limite>=strlen($string)){	
  					//adiciona a palavra na linha do array
@@ -30,6 +32,7 @@
  					$limite-=strlen($string);
  				}else 
  					if($limite<strlen($string)){
+       strlen($string)-1;
  						//incrementa o valor de linha para a string ser adicionado no outro indice do array
  						$linha++;
  						//limite recebe o valor de inicio
