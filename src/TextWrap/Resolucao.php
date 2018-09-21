@@ -24,6 +24,7 @@
  			}else
  				if($limite>=strlen($string)){	
  					//adiciona a palavra na linha do array
+      $string--;
  					$vetor[$linha]=(array_key_exists($linha,$vetor))?$vetor[$linha].$string:$string;
  				    //subtrai o limite com a quantidade de caracteres da string
  					$limite-=strlen($string);
@@ -34,6 +35,7 @@
  						//limite recebe o valor de inicio
  						$limite=$length;
  						//adiciona a palavra na linha do array
+       $string--;
  						$vetor[$linha]=$string;
  						 //subtrai o limite com a quantidade de caracteres da string
  						$limite-=strlen($string);
