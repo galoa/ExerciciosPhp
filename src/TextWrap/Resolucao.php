@@ -16,18 +16,17 @@
  		$string="";
  		$limite=$length; // limite de caracter 
  		$linha=0;//linha do array
- 		for($i = 0; $i < count($palavras); $i++){
+ 		for($i = 0; $i < count($palavras)-1; $i++){
  			$string = $palavras[$i]."-";
+    echo substr($string, 0, -1);
  			if((strlen($palavras[$i])>$length)){
  				//corta a palavra e o resto vai para proximo indice do array
-     echo substr($string, 0, -1);
  				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);
  			}else
  				if($limite>=strlen($string)){	
  					//adiciona a palavra na linha do array
  					$vetor[$linha]=(array_key_exists($linha,$vetor))?$vetor[$linha].$string:$string;
  				    //subtrai o limite com a quantidade de caracteres da string
-      echo substr($string, 0, -1);
  					$limite-=strlen($string);
  				}else 
  					if($limite<strlen($string)){
@@ -36,7 +35,6 @@
  						//limite recebe o valor de inicio
  						$limite=$length;
  						//adiciona a palavra na linha do array
-        echo substr($string, 0, -1);
  						$vetor[$linha]=$string;
  						 //subtrai o limite com a quantidade de caracteres da string
  						$limite-=strlen($string);
