@@ -14,7 +14,7 @@ class Resolucao implements TextWrapInterface {
 
   	public function textWrap(string $text, int $length): array {
 
-	  	$maximo = strlen($string);
+	  	$maximo = strlen($text);
 	  	// Contador de caracteres na linha, varia de 1 até tamanho 
 		$contador = 1;
 
@@ -26,12 +26,12 @@ class Resolucao implements TextWrapInterface {
 	 	$ret[0] = '';
 
 	  	// Se a string não for uma string vazia...
-	  	if ($string != "") {
+	  	if ($text != "") {
 
 	    // Verificação de todos os caracteres da string
 		    for ($key = 0; $key < $maximo; $key++) {
 		      	// Se o caractere em questão for igual a ' '
-		     	if ($string[$key] == ' ') {
+		     	if ($text[$key] == ' ') {
 		       	 	// Guardar o espaço na variavel
 		       		$ultimo_espaco = $key;
 		     	}
@@ -39,14 +39,14 @@ class Resolucao implements TextWrapInterface {
 		     	// Se o número de caracteres contados for igual ao tamanho
 		     	if ($contador == $length){
 		    		// Se o caractere seguinte ao caractere em questão for igual a " "
-		        	if ($string[$contador] == ' ') {
+		        	if ($text[$contador] == ' ') {
 			         	// Avançar o cursor
 			         	$key++;
 			         	// Atribuo o caractere | no local
-			         	$string[$contador] = '|';
+			         	$text[$contador] = '|';
 		        	}else {       // Senao
 			         	// Atribuo | ao ultimo espaco
-			          	$string[$ultimo_espaco] = '|';
+			          	$text[$ultimo_espaco] = '|';
 			          	// O cursor é movido para o prox caractere apos o local do |
 			          	if($key - $ultimo_espaco < $length) $key = $ultimo_espaco + 1;
 		        	}	
@@ -60,7 +60,7 @@ class Resolucao implements TextWrapInterface {
 		    // Percorrer a string para passar ao array de retorno
 		    for ($key = 0; $key < $maximo ; $key++) { 
 		      	// quando o caractere for |, deverá quebrar a linha
-		      	if ($texto[$key] == '|') {
+		      	if ($text[$key] == '|') {
 			        $linha++;
 			        $coluna = 0;
 			        $key++;
@@ -68,7 +68,7 @@ class Resolucao implements TextWrapInterface {
 			        $linha++;								//		deverá quebrar a linha no meio da palavra
 			        $coluna = 0;
 			    }
-		      	$resposta[$linha][$coluna] = $string[$key];
+		      	$resposta[$linha][$coluna] = $text[$key];
 		      	$coluna++;      
 		    }
 
@@ -77,10 +77,9 @@ class Resolucao implements TextWrapInterface {
 		    // Transformando o array de duas dimensões em um array de uma dimensão
 		    for ($key = 0; $key < count($resposta) ; $key++) {
 		        $ret[$linha] = implode("", $resposta[$linha++]);
-		        return $ret[$linha];
 		    }
 
-		    //return $ret;
+		    return $ret;
 	  	}else return $ret;
 	}
 }
