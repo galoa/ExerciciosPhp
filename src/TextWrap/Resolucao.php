@@ -76,7 +76,8 @@ class Resolucao implements TextWrapInterface {
 
 		    // Transformando o array de duas dimensões em um array de uma dimensão
 		    for ($key = 0; $key < count($resposta) ; $key++) {
-		        $ret[$linha] = implode("", $resposta[$linha++]);
+		        $ret[$linha] = implode("", $resposta[$linha]);
+		        $linha++;
 		    }
 
 		    return $ret;
