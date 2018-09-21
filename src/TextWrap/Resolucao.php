@@ -65,10 +65,11 @@
  	  }
  	  $array[$indice]=$array[$indice]." ";
    }
- }
+ 
 
  private function tiraesp($vetor, $linha){
   for($i=0; $i<$linha; $i++){
    $esp=array(" ");
    $return=str_replace($esp, "",$vetor);
    return $return;}
+ }
