@@ -29,7 +29,6 @@
  					$limite-=strlen($string);
  				}else 
  					if($limite<strlen($string)){
-       strlen($string)-1;
  						//incrementa o valor de linha para a string ser adicionado no outro indice do array
  						$linha++;
  						//limite recebe o valor de inicio
