@@ -61,7 +61,7 @@
  			$limite=$length;	//limite recebe o valor de inicio	
  		}
  		//adiciona a letra no indice do array concatenando com os valores anteriores	
- 		$array[$indice]=(array_key_exists($indice,$array))?$array[$indice].$palavra[$i]:$palavra[$i];
+ 		$array[$indice]=(array_key_exists($indice,$array))?rtrim($array[$indice].$palavra[$i]):rtrim($palavra[$i]);
  		$limite--;
  	  }
  	  $array[$indice]=$array[$indice]." ";
