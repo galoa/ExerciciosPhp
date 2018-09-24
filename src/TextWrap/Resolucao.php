@@ -31,6 +31,7 @@
  				}else 
  					if($limite<strlen($string)){
  						//incrementa o valor de linha para a string ser adicionado no outro indice do array
+       $vetor[$linha] = rtrim($vetor[$linha]);
  						$linha++;
  						//limite recebe o valor de inicio
  						$limite=$length;
@@ -62,7 +63,7 @@
  			$limite=$length;	//limite recebe o valor de inicio	
  		}
  		//adiciona a letra no indice do array concatenando com os valores anteriores	
- 		$array[$indice]=(array_key_exists($indice,$array))?rtrim($array[$indice].$palavra[$i]):rtrim($palavra[$i]);
+ 		$array[$indice]=(array_key_exists($indice,$array))?$array[$indice].$palavra[$i]:$palavra[$i];
  		$limite--;
  	  }
  	  $array[$indice]=$array[$indice]." ";
