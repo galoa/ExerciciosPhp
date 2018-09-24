@@ -56,7 +56,7 @@
  			$limite=$length;	//limite recebe o valor de inicio	
  		}
  		//verifica se o limite é maior que 0
- 		if($limite<=0) {
+ 		if($limite<0) {
  			//incrementa o valor de linha 
  			$indice++;
  			$limite=$length;	//limite recebe o valor de inicio	
