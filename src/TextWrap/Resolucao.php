@@ -18,7 +18,7 @@
  		$linha=0;//linha do array
  		for($i = 0; $i < count($palavras); $i++){
  			$string = $palavras[$i]." ";
- 			if((strlen($palavras[$i])>$length)){
+ 			if((strlen($palavras[$i])>=$length)){
  				//corta a palavra e o resto vai para proximo indice do array
  				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);  
  			}else
@@ -56,7 +56,7 @@
  			$limite=$length;	//limite recebe o valor de inicio	
  		}
  		//verifica se o limite é maior que 0
- 		if($limite<1) {
+ 		if($limite<0) {
  			//incrementa o valor de linha 
  			$indice++;
  			$limite=$length;	//limite recebe o valor de inicio	
