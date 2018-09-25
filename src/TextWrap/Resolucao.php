@@ -40,7 +40,7 @@
  						$limite-=strlen($string);
  					}
  		}
-    $remover= array_pop($vetor);
+    $remover=array_pop($vetor);
     print_r($vetor);
     return $vetor;
 
