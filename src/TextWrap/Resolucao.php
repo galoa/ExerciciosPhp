@@ -4,7 +4,7 @@
  /**
   * Implemente sua resolução aqui.
   */
-class Resolution implements TextWrapInterface {
+class Resolucao implements TextWrapInterface {
 
 public function textWrap(string $text,int $length):array {
     //local variables
