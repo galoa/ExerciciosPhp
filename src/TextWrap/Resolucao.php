@@ -38,6 +38,7 @@ for($i = 0; $i < count($words); $i++){
             }
 }
      $arr[$line] = rtrim($arr[$line]);
+ //print_r($arr);
    return $arr;
  
 
