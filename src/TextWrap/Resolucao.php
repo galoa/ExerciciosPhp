@@ -4,69 +4,63 @@
  /**
   * Implemente sua resolução aqui.
   */
- class Resolucao implements TextWrapInterface {
+class Resolution implements TextWrapInterface {
 
-   /**
-    * {@inheritdoc}
-    */
-   public function textWrap(string $text,int $length):array {
- 		//variaveis locais
- 		$palavras=explode(" ",$text);//separa o texto em um array de palavras
- 		$vetor=array();//array que será retornado 
- 		$string="";
- 		$limite=$length; // limite de caracter 
- 		$linha=0;//linha do array
- 		for($i = 0; $i < count($palavras); $i++){
- 			$string = $palavras[$i]." ";
- 			if((strlen($palavras[$i])>=$length)){
- 				//corta a palavra e o resto vai para proximo indice do array
- 				$this->cutWord($vetor,$palavras[$i],$limite,$length,$linha);  
- 			}else
- 				if($limite>=strlen($string)){	
- 					//adiciona a palavra na linha do array
- 					$vetor[$linha] = array_key_exists($linha, $vetor) ? $vetor[$linha].$string:$string;
- 				    //subtrai o limite com a quantidade de caracteres da string
- 					$limite-=strlen($string);
- 				}else 
- 					if($limite<strlen($string)){
- 						//incrementa o valor de linha para a string ser adicionado no outro indice do array
-       $vetor[$linha] = rtrim($vetor[$linha]);
- 						$linha++;
- 						//limite recebe o valor de inicio
- 						$limite=$length;
- 						//adiciona a palavra na linha do array
- 						$vetor[$linha]=$string;
- 						 //subtrai o limite com a quantidade de caracteres da string
- 						$limite-=strlen($string);
- 					}
- 		}
-   $vetor[$linha] = rtrim($vetor[$linha]);
-    print_r($vetor);
-    return $vetor;
+public function textWrap(string $text,int $length):array {
+    //local variables
+$words=explode(" ",$text); //separate the text into words
+$arr=array();              //array used for return
+$string=" ";
+$limit=$length; //limit of characters per line
+$line=0;//array line
 
+for($i = 0; $i < count($words); $i++){
+    $string = $words[$i]." ";
+    if((strlen($words[$i])>$length)){
+        //cut the world and print the remaining letters on the next line
+        $this->cutWord($arr,$words[$i],$limit,$length,$line);  
+    }else
+        if($limit>=strlen($string)){    
+            //add the word in array line
+            $arr[$line]=(array_key_exists($line,$arr))?$arr[$line].$string:$string;
+            //subtract the limit with the quantity of characters
+            $limit-=strlen($string);
+        }else 
+            if($limit<strlen($string)){
+                  $arr[$line] = rtrim($arr[$line]);
+                //line++ for inserting the string on a next index
+                $line++;
+                $limit=$length;
+                //add the word on array line
+                $arr[$line]=$string;
+                //subtract the limit with the quantity of characters
+                $limit-=strlen($string);
+            }
+}
+     $arr[$line] = rtrim($arr[$line]);
+   return $arr;
+   print_r($arr);
 
-   }
-   
-   private function cutWord(&$array,$palavra,&$limite,$length,$indice){
- 	
- 	  for($i = 0; $i < strlen($palavra); $i++){ 
- 	  
- 		//verifica se o indice está zerado de palavras
- 		if(($limite!=$length)&&($i==0)){
- 			$indice++; // pula de linha no array
- 			$limite=$length;	//limite recebe o valor de inicio	
- 		}
- 		//verifica se o limite é maior que 0
- 		if($limite<0) {
- 			//incrementa o valor de linha 
- 			$indice++;
- 			$limite=$length;	//limite recebe o valor de inicio	
- 		}
- 		//adiciona a letra no indice do array concatenando com os valores anteriores	
- 		$array[$indice]=(array_key_exists($indice,$array))?$array[$indice].$palavra[$i]:$palavra[$i];
- 		$limite--;
- 	  }
- 	  $array[$indice]=$array[$indice]." ";
-   }
- 
  }
+
+ //and then I've got a cutWord function
+ private function cutWord(&$array,$word,&$limit,$length,$index){
+
+  for($i = 0; $i < strlen($word); $i++){ 
+
+//verify if the index doesn't have any words in
+if(($limit!=$length)&&($i==0)){
+    $index++; // jump an array line
+    $limit=$length; //limit receives starting value
+}
+//verify if the limit is > 0
+if($limit<=0) {
+    $index++;
+    $limit=$length; //limit receives starting value
+}
+//add the letter in the array index concatenating with the previous
+$array[$index]=(array_key_exists($index,$array))?$array[$index].$word[$i]:$word[$i];
+$limit--;
+ }
+   $array[$index]=$array[$index]." ";
+}
