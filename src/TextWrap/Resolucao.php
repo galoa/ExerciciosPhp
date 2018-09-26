@@ -8,6 +8,7 @@ class Resolucao implements TextWrapInterface {
 
 public function textWrap(string $text,int $length):array {
     //local variables
+$length=$length+1;
 $words=explode(" ",$text); //separate the text into words
 $arr=array();              //array used for return
 $string=" ";
