@@ -18,6 +18,7 @@ class TextWrapTest extends TestCase {
   public function setUp() {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+    $this->baseBigString = "A palavra Pneumoultramicroscopicossilicovulcanoconiótico é a maior palavra do português";
   }
 
   /**
@@ -65,6 +66,24 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("pé sobre", $ret[3]);
     $this->assertEquals("ombros de", $ret[4]);
     $this->assertEquals("gigantes", $ret[5]);
+  }
+
+  /**
+   * Testa a quebra de linha para palavras longas.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForBigWords() {
+    $ret = $this->resolucao->textWrap($this->baseBigString, 12);
+    $this->assertCount(8, $ret);
+    $this->assertEquals("A palavra", $ret[0]);
+    $this->assertEquals("Pneumoultram", $ret[1]);
+    $this->assertEquals("icroscopicos", $ret[2]);
+    $this->assertEquals("silicovulcan", $ret[3]);
+    $this->assertEquals("oconiótico", $ret[4]);
+    $this->assertEquals("é a maior", $ret[5]);
+    $this->assertEquals("palavra do", $ret[6]);
+    $this->assertEquals("português", $ret[7]);
   }
 
 }
