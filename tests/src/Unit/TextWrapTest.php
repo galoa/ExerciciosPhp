@@ -67,4 +67,30 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("gigantes", $ret[5]);
   }
 
+  public function testForSmallLines() {
+    $customString = "Extreme positions are not succeeded by moderate ones, but by contrary extreme positions.";
+    $ret = $this->resolucao->textWrap($customString, 5);
+    $this->assertCount(19, $ret);
+    $this->assertEquals("Extre", $ret[0]);
+    $this->assertEquals("me po", $ret[1]);
+    $this->assertEquals("sitio", $ret[2]);
+    $this->assertEquals("ns", $ret[3]);
+    $this->assertEquals("are", $ret[4]);
+    $this->assertEquals("not s", $ret[5]);
+    $this->assertEquals("uccee", $ret[6]);
+    $this->assertEquals("ded", $ret[7]);
+    $this->assertEquals("by mo", $ret[8]);
+    $this->assertEquals("derat", $ret[9]);
+    $this->assertEquals("e", $ret[10]);
+    $this->assertEquals("ones,", $ret[11]);
+    $this->assertEquals("but", $ret[12]);
+    $this->assertEquals("by co", $ret[13]);
+    $this->assertEquals("ntrar", $ret[14]);
+    $this->assertEquals("y ext", $ret[15]);
+    $this->assertEquals("reme", $ret[16]);
+    $this->assertEquals("posit", $ret[17]);
+    $this->assertEquals("ions.", $ret[18]);
+
+  }
+
 }
