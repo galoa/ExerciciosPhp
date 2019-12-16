@@ -11,60 +11,34 @@ use PHPUnit\Framework\TestCase;
  * @codeCoverageIgnore
  */
 class TextWrapTest extends TestCase {
+   
+      /**
+       * Test Setup.
+       */
+      public function setUp() {
+      $this->resolucao = new Resolucao();
+      $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+      }
 
-  /**
-   * Test Setup.
-   */
-  public function setUp() {
-    $this->resolucao = new Resolucao();
-    $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
-  }
+ function bigtext(){
+      //Textos muito longos
+      $b = new BigTest();
+      $textopuro = " Eu quero muito estar atuando na Galoa, pois desde o principio e uma empresa que se mostrou muito atenciosa aos detalhes e me tratou muito bem, e inclusive me perguntou se eu tinha duvidas, isso me deixou muito feliz, pois mostra que realmente os valores que li no site existem na cultura da empresa, desde ja meu muito obrigado";
+      $returntext =  $b->textWrap($textopuro, 15);
+      foreach ($returntext as $key => $value) {
+        $this->assertInternalType('string',$value);
+      }
 
-  /**
-   * Checa o retorno para strings vazias.
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForEmptyStrings() {
-    $ret = $this->resolucao->textWrap("", 2018);
-    $this->assertCount(1, $ret);
-    $this->assertEmpty($ret[0]);
-  }
-
-  /**
-   * Testa a quebra de linha para palavras curtas.
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForSmallWords() {
-    $ret = $this->resolucao->textWrap($this->baseString, 8);
-    $this->assertCount(10, $ret);
-    $this->assertEquals("Se vi", $ret[0]);
-    $this->assertEquals("mais", $ret[1]);
-    $this->assertEquals("longe", $ret[2]);
-    $this->assertEquals("foi por", $ret[3]);
-    $this->assertEquals("estar de", $ret[4]);
-    $this->assertEquals("pé", $ret[5]);
-    $this->assertEquals("sobre", $ret[6]);
-    $this->assertEquals("ombros", $ret[7]);
-    $this->assertEquals("de", $ret[8]);
-    $this->assertEquals("gigantes", $ret[9]);
-  }
-
-  /**
-   * Testa a quebra de linha para palavras curtas.
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForSmallWords2() {
-    $ret = $this->resolucao->textWrap($this->baseString, 12);
-    $this->assertCount(6, $ret);
-    $this->assertEquals("Se vi mais", $ret[0]);
-    $this->assertEquals("longe foi", $ret[1]);
-    $this->assertEquals("por estar de", $ret[2]);
-    $this->assertEquals("pé sobre", $ret[3]);
-    $this->assertEquals("ombros de", $ret[4]);
-    $this->assertEquals("gigantes", $ret[5]);
-  }
-
+function valueerror(){
+      //Verifica se Retorna valor inválido com tamanho inválido
+      $c = new ValueError();
+      $textopuro = "Ola eu sou o Carlos Henrique, tudo bem com voce?";
+      $returntext =  $c->textWrap($textopuro, 0);
+      $this->assertEquals("Por favor entre com algum limite válido", $retornoTeste[0]);
+    }
+ function smalltext(){
+      //Textos muito curtos
+      $d = new SmallTest();
+      $this->assertEquals("a chuva", $ret[4]);
+      $this->assertEquals("e refrescante", $ret[7]);
 }
