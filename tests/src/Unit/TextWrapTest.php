@@ -27,8 +27,8 @@ class TextWrapTest extends TestCase {
    */
   public function testForEmptyStrings() {
     $ret = $this->resolucao->textWrap("", 2018);
-    $this->assertCount(1, $ret);
     $this->assertEmpty($ret[0]);
+    $this->assertCount(1, $ret);
   }
 
   /**
@@ -38,7 +38,6 @@ class TextWrapTest extends TestCase {
    */
   public function testForSmallWords() {
     $ret = $this->resolucao->textWrap($this->baseString, 8);
-    $this->assertCount(10, $ret);
     $this->assertEquals("Se vi", $ret[0]);
     $this->assertEquals("mais", $ret[1]);
     $this->assertEquals("longe", $ret[2]);
@@ -49,6 +48,7 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("ombros", $ret[7]);
     $this->assertEquals("de", $ret[8]);
     $this->assertEquals("gigantes", $ret[9]);
+    $this->assertCount(10, $ret);
   }
 
   /**
@@ -58,13 +58,13 @@ class TextWrapTest extends TestCase {
    */
   public function testForSmallWords2() {
     $ret = $this->resolucao->textWrap($this->baseString, 12);
-    $this->assertCount(6, $ret);
     $this->assertEquals("Se vi mais", $ret[0]);
     $this->assertEquals("longe foi", $ret[1]);
     $this->assertEquals("por estar de", $ret[2]);
     $this->assertEquals("pé sobre", $ret[3]);
     $this->assertEquals("ombros de", $ret[4]);
     $this->assertEquals("gigantes", $ret[5]);
+    $this->assertCount(6, $ret);
   }
 
 }
