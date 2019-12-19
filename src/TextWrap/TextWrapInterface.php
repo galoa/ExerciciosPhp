@@ -15,7 +15,7 @@ interface TextWrapInterface {
    * caracteres por linha.
    *
    * Alguns pontos que você deve ter em mente:
-   * - Retorne o todo o texto, com o máximo de palavras por linha, mas sem
+   * - Retorne todo o texto, com o máximo de palavras por linha, mas sem
    *   nunca extrapolar o limite de caracteres.
    * - Se uma palavra não couber na linha e o comprimento dela for menor que o
    *   limite de caracteres, ela não deve ser cortada, e sim jogada para a
