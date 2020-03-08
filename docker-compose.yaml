@@ -7,4 +7,3 @@ services:
       - 8081:80
     volumes:
       - ./src:/app/src
-      - ./phpunit.xml:/app/phpunit.xml
