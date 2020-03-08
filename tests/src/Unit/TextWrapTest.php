@@ -18,6 +18,7 @@ class TextWrapTest extends TestCase {
   public function setUp() {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+    $this->baseString2 = "Frases impactantes sobre tecnologia";
   }
 
   /**
@@ -43,12 +44,11 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("longe", $ret[2]);
     $this->assertEquals("foi por", $ret[3]);
     $this->assertEquals("estar de", $ret[4]);
-    $this->assertEquals("pé", $ret[5]);
-    $this->assertEquals("sobre", $ret[6]);
-    $this->assertEquals("ombros", $ret[7]);
-    $this->assertEquals("de", $ret[8]);
-    $this->assertEquals("gigantes", $ret[9]);
-    $this->assertCount(10, $ret);
+    $this->assertEquals("pé sobre", $ret[5]);
+    $this->assertEquals("ombros", $ret[6]);
+    $this->assertEquals("de", $ret[7]);
+    $this->assertEquals("gigantes", $ret[8]);
+    $this->assertCount(9, $ret);
   }
 
   /**
@@ -67,4 +67,24 @@ class TextWrapTest extends TestCase {
     $this->assertCount(6, $ret);
   }
 
+  /**
+   * Testa a quebra de palavras.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForWrapWords() {
+    $ret = $this->resolucao->textWrap($this->baseString, 7);
+    $this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
+    $this->assertEquals("longe", $ret[2]);
+    $this->assertEquals("foi por", $ret[3]);
+    $this->assertEquals("estar", $ret[4]);
+    $this->assertEquals("de pé", $ret[5]);
+    $this->assertEquals("sobre", $ret[6]);
+    $this->assertEquals("ombros", $ret[7]);
+    $this->assertEquals("de", $ret[8]);
+    $this->assertEquals("gigante", $ret[9]);
+    $this->assertEquals("s", $ret[10]);
+    $this->assertCount(11, $ret);
+  }
 }
