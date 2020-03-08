@@ -4,6 +4,7 @@ services:
   php:
     build: .
     ports:
-    - 8081:80 
+      - 8081:80
     volumes:
-    - ./src:/app/src
+      - ./src:/app/src
+      - ./phpunit.xml:/app/phpunit.xml
