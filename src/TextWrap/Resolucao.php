@@ -65,7 +65,7 @@ class Resolucao implements TextWrapInterface
                         // Se a palavra for maior que o tamanho disponivel, adiciona-lá na proxima linha
                     } else if ($wordLength > $freeSpaceOnLine) {
                         self::jumpLine($line);
-                        $return[$line] .= $word;
+                        $return[$line] = $word;
                         $freeSpaceOnLine = $length;
                         $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
 
