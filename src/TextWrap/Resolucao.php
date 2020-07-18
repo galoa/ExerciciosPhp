@@ -22,8 +22,6 @@ class Resolucao implements TextWrapInterface
 
     public function textWrap(string $text, int $length): array
     {
-
-
         //Variaveis gerais
         $return = array(); // Array que retorna uma linha por posição
         $line = 0; //Essa variavel representa a linha do Array
@@ -38,6 +36,16 @@ class Resolucao implements TextWrapInterface
         $characterCounter = 0;
         $updatesTheCharacterArray = 0;
         $requiredLines = 0;
+
+        /**
+         * Essa função pula uma linha, adicionando 1 ao contador e inicializando a nova posição do array
+         * @param int $line
+         */
+        function jumpLine(int &$line)
+        {
+            $line++;
+            $return[$line] = "";
+        }
 
 
         if ($length > 0) {
@@ -66,8 +74,7 @@ class Resolucao implements TextWrapInterface
 
                         // Se a palavra for maior que o tamanho disponivel, adiciona-lá na proxima linha
                     } else if ($wordLength > $freeSpaceOnLine) {
-                        $line++;
-                        $return[$line] = "";
+                        jumpLine($line);
                         $return[$line] .= $word;
                         $freeSpaceOnLine = $length;
                         $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
@@ -76,8 +83,7 @@ class Resolucao implements TextWrapInterface
                     //Se a palavra for maior que o limite de caracteres por linha, corta a
                     //palavra e continua a imprimi-la na linha seguinte.
                 } else if ($wordLength > $length) {
-                    $line++;// passa para a proxima linha
-                    $return[$line] = "";
+                    jumpLine($line);
                     $freeSpaceOnLine = $length;// Atualizando o espaço disponivel na linha
 
                     $characters = str_split($word);// criando um array com 1 caracter por posição
@@ -109,8 +115,7 @@ class Resolucao implements TextWrapInterface
                                 $lastArrayPosition = $newArrayPosition;
                                 // se preencher totalmente a linha, quebrar linha atraves do contador $line
                                 if ($characterCounter == $length) {
-                                    $line++;
-                                    $return[$line] = "";
+                                    jumpLine($line);
                                     $characterCounter = 0;
 
                                 }
