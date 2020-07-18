@@ -43,7 +43,7 @@ class TextWrapTest extends TestCase
      */
     public function testForEmptyParameters()
     {
-        $ret = $this->resolucao->textWrap(baseString, -1);
+        $ret = $this->resolucao->textWrap($this->baseString, -1);
         $this->assertEquals("Por favor, forneça um comprimento válido!", $ret[0]);
         $this->assertCount(1, $ret);
     }
