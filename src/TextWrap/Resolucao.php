@@ -37,16 +37,6 @@ class Resolucao implements TextWrapInterface
         $updatesTheCharacterArray = 0;
         $requiredLines = 0;
 
-        /**
-         * Essa função pula uma linha, adicionando 1 ao contador e inicializando a nova posição do array
-         * @param int $line
-         */
-        function jumpLine(int &$line)
-        {
-            $line++;
-            $return[$line] = "";
-        }
-
 
         if ($length > 0) {
 
@@ -74,7 +64,7 @@ class Resolucao implements TextWrapInterface
 
                         // Se a palavra for maior que o tamanho disponivel, adiciona-lá na proxima linha
                     } else if ($wordLength > $freeSpaceOnLine) {
-                        jumpLine($line);
+                        self::jumpLine($line);
                         $return[$line] .= $word;
                         $freeSpaceOnLine = $length;
                         $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
@@ -83,7 +73,7 @@ class Resolucao implements TextWrapInterface
                     //Se a palavra for maior que o limite de caracteres por linha, corta a
                     //palavra e continua a imprimi-la na linha seguinte.
                 } else if ($wordLength > $length) {
-                    jumpLine($line);
+                    self::jumpLine($line);
                     $freeSpaceOnLine = $length;// Atualizando o espaço disponivel na linha
 
                     $characters = str_split($word);// criando um array com 1 caracter por posição
@@ -115,7 +105,7 @@ class Resolucao implements TextWrapInterface
                                 $lastArrayPosition = $newArrayPosition;
                                 // se preencher totalmente a linha, quebrar linha atraves do contador $line
                                 if ($characterCounter == $length) {
-                                    jumpLine($line);
+                                    self::jumpLine($line);
                                     $characterCounter = 0;
 
                                 }
@@ -151,4 +141,14 @@ class Resolucao implements TextWrapInterface
         return $return;// retorna o Array
 
     }
+
+    /**
+     * Essa função pula uma linha, adicionando 1 ao contador e inicializando a nova posição do array
+     * @param int $line
+     */
+    public static function jumpLine(int &$line){
+        $line++;
+        $return[$line] = "";
+    }
+
 }
