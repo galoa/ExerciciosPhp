@@ -20,7 +20,7 @@ class TextWrapTest extends TestCase
     {
         $this->resolucao = new Resolucao();
         $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
-        $this->baseString2 = "A maior palavra da língua portuguesa é pneumoultramicroscopicossilicovulcanoconiótico com 46 letras";
+        $this->baseString2 = "A maior palavra da lingua portuguesa é pneumoultramicroscopicossilicovulcanoconiótico com 46 letras";
     }
 
     /**
@@ -106,7 +106,7 @@ class TextWrapTest extends TestCase
         $ret = $this->resolucao->textWrap($this->baseString2, 12);
         $this->assertEquals("A maior", $ret[0]);
         $this->assertEquals("palavra da", $ret[1]);
-        $this->assertEquals("língua", $ret[2]);
+        $this->assertEquals("lingua", $ret[2]);
         $this->assertEquals("portuguesa", $ret[3]);
         $this->assertEquals("é", $ret[4]);
         $this->assertEquals("pneumoultram", $ret[5]);
