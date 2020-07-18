@@ -21,6 +21,7 @@ class TextWrapTest extends TestCase
         $this->resolucao = new Resolucao();
         $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
         $this->baseString2 = "A maior palavra da lingua portuguesa é pneumoultramicroscopicossilicovulcanoconiótico com 46 letras";
+
     }
 
     /**
@@ -42,7 +43,7 @@ class TextWrapTest extends TestCase
      */
     public function testForEmptyParameters()
     {
-        $ret = $this->resolucao->textWrap($this->baseString, 2018);
+        $ret = $this->resolucao->textWrap("", -1);
         $this->assertEquals("Por favor, forneça um comprimento válido!", $ret[0]);
         $this->assertCount(1, $ret);
     }
@@ -90,7 +91,8 @@ class TextWrapTest extends TestCase
      *
      * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
      */
-    public function  testForBigWords() {
+    public function testForBigWords()
+    {
         $ret = $this->resolucao->textWrap($this->baseString2, 8);
         $this->assertEquals("A maior", $ret[0]);
         $this->assertEquals("palavra", $ret[1]);
@@ -114,7 +116,8 @@ class TextWrapTest extends TestCase
      *
      * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
      */
-    public function  testForBigWords2() {
+    public function testForBigWords2()
+    {
         $ret = $this->resolucao->textWrap($this->baseString2, 12);
         $this->assertEquals("A maior", $ret[0]);
         $this->assertEquals("palavra da", $ret[1]);
