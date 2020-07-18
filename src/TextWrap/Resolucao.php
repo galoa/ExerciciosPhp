@@ -52,13 +52,14 @@ class Resolucao implements TextWrapInterface
             foreach ($text as $word) {
                 $wordLength = strlen($word);
 
+                // Se o comprimento da palavra for menor ou igual ao comprimento limite da linha
                 if ($wordLength <= $length) {
 
                     if ($wordLength < $freeSpaceOnLine) {
                         $return[$line] .= " " . $word;
                         $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
 
-                        // Se a palavra for exatamente igual ao tamanho disponivel na linha, adiciona-la
+                        // Se o comprimento palavra for exatamente igual ao comprimento disponivel na linha, adiciona-la
                     } else if ($wordLength == $freeSpaceOnLine) {
                         $return[$line] .= " " . $word;
                         $freeSpaceOnLine -= $wordLength;
@@ -72,10 +73,10 @@ class Resolucao implements TextWrapInterface
                         $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
 
                     }
-//			* - Se a palavra for maior que o limite de caracteres por linha, corte a
-//			*   palavra e continue a imprimi-la na linha seguinte.
+                    //Se a palavra for maior que o limite de caracteres por linha, corta a
+                    //palavra e continua a imprimi-la na linha seguinte.
                 } else if ($wordLength > $length) {
-                    $line++;// passa para a proxima
+                    $line++;// passa para a proxima linha
                     $return[$line] = "";
                     $freeSpaceOnLine = $length;// Atualizando o espaço disponivel na linha
 
@@ -106,7 +107,7 @@ class Resolucao implements TextWrapInterface
                             } else {
                                 $updatesTheCharacterArray += $length;
                                 $lastArrayPosition = $newArrayPosition;
-                                // se preencher totalmente a linha, acrescentar ";" para quebrar linha
+                                // se preencher totalmente a linha, quebrar linha atraves do contador $line
                                 if ($characterCounter == $length) {
                                     $line++;
                                     $return[$line] = "";
@@ -116,10 +117,10 @@ class Resolucao implements TextWrapInterface
                                 break; // se já preencher a linha, parar execução e continua na proxima iteração
                             }
 
-                        }
+                        }// fim do for de caracteres
                         $newArrayPosition += $length; // recebe a nova posição
 
-                    } // fim do for
+                    } // fim do for de linhas
 
                     // se não preencheu totalmente o ultima iteração, adicionar quantidade de
                     // caracteres preenchido mais 1 espaço
@@ -128,7 +129,7 @@ class Resolucao implements TextWrapInterface
                     }
 
                 }
-            }// fim do for
+            }// fim do for de palavras
 
 
             // O ArrayList de retorno recebe cada linha sem os espacos no inicio e no fim
