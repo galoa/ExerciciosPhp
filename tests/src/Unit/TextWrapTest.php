@@ -36,6 +36,18 @@ class TextWrapTest extends TestCase
     }
 
     /**
+     * Checa o retorno para parametros vazio.
+     *
+     * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+     */
+    public function testForEmptyParameters()
+    {
+        $ret = $this->resolucao->textWrap($this->baseString, 2018);
+        $this->assertEquals("Por favor, forneça um comprimento válido!", $ret[0]);
+        $this->assertCount(1, $ret);
+    }
+
+    /**
      * Testa a quebra de linha para palavras curtas.
      *
      * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
