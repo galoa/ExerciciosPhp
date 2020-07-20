@@ -43,9 +43,10 @@ class Resolucao implements TextWrapInterface {
 
 
   				else if ($sizeWords > $length){//Caso o contrário vai cortar a palavra e adicionar na proxima linha
-  					$wrapText = str_split($text,$length);
+  					
             
   					foreach ($wrapText as $wrapChar) {
+              $wrapText = str_split($text,$length);
   						$sizeWrapChar = strlen($wrapChar);
 
 
@@ -53,11 +54,10 @@ class Resolucao implements TextWrapInterface {
   							array_push($wrap, $wrapChar);
 
 
-  						else//aqui
-                if($sizeAux == 0)//Se o tamanho do auxiliar for zero, vai receber a palavra
+  						else
+                if($sizeAux == 0)
   					        $aux = $wrapChar;
-  				      else
-  					        //$aux = $aux.' '.$words;
+  				      else 					        
   							    $aux = $aux.' '.$wrapChar;
   					}
   				}
