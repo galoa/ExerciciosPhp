@@ -36,7 +36,7 @@ class Resolucao implements TextWrapInterface {
   			else{//Se o tamanho passado acima for maior que o Parametro
 
 
-  				if($aux+$sizeWords <= $length){//Se o tamanho da palavra for menor que o parametro, vai inserir o texto no array AQUII
+  				if($sizeWords <= $length){//Se o tamanho da palavra for menor que o parametro, vai inserir o texto no array 
   					array_push($wrap,$aux);
   					$aux = $words;
   				}
