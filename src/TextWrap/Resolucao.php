@@ -53,8 +53,12 @@ class Resolucao implements TextWrapInterface {
   							array_push($wrap, $wrapChar);
 
 
-  						else
-  							$aux = $aux.$wrapChar;
+  						else//aqui
+                if($sizeAux == 0)//Se o tamanho do auxiliar for zero, vai receber a palavra
+  					        $aux = $wrapChar;
+  				      else
+  					        //$aux = $aux.' '.$words;
+  							    $aux = $aux.' '.$wrapChar;
   					}
   				}
   			}
