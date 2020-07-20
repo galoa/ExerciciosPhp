@@ -28,7 +28,7 @@ class Resolucao implements TextWrapInterface {
   				if($sizeAux == 0)
   					$aux = $words;
   				else
-  					$aux += ' '.$words;
+  					$aux .= ' '.$words;
   			}else{
   				if($sizeWords <= $length){
   					$aux = $words;
@@ -40,7 +40,7 @@ class Resolucao implements TextWrapInterface {
   						if($sizeWrapChar == $length)
   							array_push($wrap, $wrapChar);
   						else
-  							$aux += $wrapChar;
+  							$aux .= $wrapChar;
   					}
   				}
   			}
