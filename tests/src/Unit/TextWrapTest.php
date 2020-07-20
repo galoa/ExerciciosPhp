@@ -18,6 +18,7 @@ class TextWrapTest extends TestCase {
   public function setUp() {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+    $this->baseString2 = "Paralelepipedo";
   }
 
   /**
@@ -70,7 +71,7 @@ class TextWrapTest extends TestCase {
   
   //Testa a quebra de linha para palavra grande.
   public function testForBigWord(){
-	  $ret =$this->resolucao->textWrap($this->"Paralelepipedo ",9);
+	  $ret =$this->resolucao->textWrap($this->baseString2,9);
 	  $this->assertEquals("Paralelep", $ret[0]);
 	  $this->assertEquals("ipedo", $ret[1]);
 	  $this->assertCount(2, $ret);	
