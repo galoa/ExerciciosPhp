@@ -13,17 +13,16 @@ class Resolucao implements TextWrapInterface {
 
 
   public function textWrap(string $text, int $length): array {
- 
- $wrap = array();//Array onde vai ficar armazenado as palavras ja formatadas
-  		$aux = "";//Variável auxiliar para alocar as palavras que ja foram utilizadas
-  		$sizeAux = strlen($aux);//Tamnho total de caracteres da variável auxiliar
-  		$literalArray = explode( ' ',$text);//Texto transformado em array
+ $wrap = array();
+  		$aux = "";
+  		$sizeAux = strlen($aux);
+  		$literalArray = explode( ' ',$text);
 
   		if($text == "")//Se o texto for vazio retorna vazio
   			return [""];
 
-  		foreach ($literalArray as $words) {//Para cada valor do array vai ser criada uma variavel chamada words
-  			$sizeWords = strlen($words);//Tamanho de cada palavra
+  		foreach ($literalArray as $words) {
+  			$sizeWords = strlen($words);
 
 
   			if($sizeWords + $sizeAux + 1 <= $length){//Se o tamanho da palavra mais o tamanho das palavras no auxiliar e o espaço for menor que o parametro passado
@@ -66,6 +65,6 @@ class Resolucao implements TextWrapInterface {
   		array_push($wrap, $aux);
   	
 
-  		return $wrap;  		
+  		return $wrap;  	
   }
 }
