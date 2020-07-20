@@ -81,7 +81,7 @@ class TextWrapTest extends TestCase {
 }
 	
 	  //Testa a quebra de linha para frase com palavras grandes.
-  public function testForBigWord(){
+  public function testForBigWord2(){
 	  $ret =$this->resolucao->textWrap($this->baseString3,6);
 	  $this->assertEquals("Na", $ret[0]);
 	  $this->assertEquals("aula", $ret[1]);
