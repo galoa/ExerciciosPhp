@@ -15,7 +15,7 @@ class Resolucao implements TextWrapInterface {
   public function textWrap(string $text, int $length): array {
  $wrap = array();
   		$aux = "";
-  		$sizeAux = strlen($aux);
+  		
   		$literalArray = explode( ' ',$text);
 
   		if($text == "")//Se o texto for vazio retorna vazio
@@ -23,6 +23,7 @@ class Resolucao implements TextWrapInterface {
 
   		foreach ($literalArray as $words) {
   			$sizeWords = strlen($words);
+        $sizeAux = strlen($aux);
 
 
   			if($sizeWords + $sizeAux + 1 <= $length){//Se o tamanho da palavra mais o tamanho das palavras no auxiliar e o espaço for menor que o parametro passado
