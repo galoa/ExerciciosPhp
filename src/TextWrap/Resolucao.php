@@ -32,7 +32,7 @@ class Resolucao implements TextWrapInterface {
   			}else{
   				if($sizeWords <= $length){
   					array_push($wrap,$aux);
-            $aux = $words;
+            //$aux = $words;AQUI
   				}else{
   					$wrapText = str_split($text,$length);
   					foreach ($wrapText as $wrapChar) {
