@@ -19,8 +19,8 @@ class Resolucao implements TextWrapInterface {
   		$sizeAux = strlen($aux);
   		$literalArray = explode( ' ',$text);
 
-  		if($text == null)
-  			return $wrap;
+  		if($text == "")
+  			return [""];
 
   		foreach ($literalArray as $words) {
   			$sizeWords = strlen($words);
@@ -45,6 +45,9 @@ class Resolucao implements TextWrapInterface {
   				}
   			}
   		}
+    if(strlen($aux)!=0)
+  		array_push($wrap, $aux);
+  	
 
   		return $wrap;  	
 
