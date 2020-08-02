@@ -39,7 +39,7 @@ jobs:
         update: true
 
     - name: Roda os testes unitários com PHPUnit
-      run: vendor/bin/phpunit --coverage-html textwrap-coverage-html --coverage-clover textwrap-coverage-clover
+      run: vendor/bin/phpunit --coverage-html textwrap-coverage-html --coverage-clover coverage.xml
 
     - name: Sobre os resultados para o codecov
       run: bash <(curl -s https://codecov.io/bash) || echo "Codecov failed :("
