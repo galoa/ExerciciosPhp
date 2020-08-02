@@ -26,7 +26,7 @@ class TextWrapTest extends TestCase {
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForEmptyStrings() {
-    $ret = $this->resolucao->textWrap("", 2018);
+    $ret = $this->resolucao->textWrap("", 2021);
     $this->assertEmpty($ret[0]);
     $this->assertCount(1, $ret);
   }
