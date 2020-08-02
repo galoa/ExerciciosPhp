@@ -18,3 +18,28 @@ jobs:
 
     - name: linta o textwrap
       run: vendor/bin/phpcs --standard=.github/coder_sniffer/Drupal/ruleset.xml --ignore='*.md' --extensions=php,profile,inc,install ./src/TextWrap
+
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout do código
+      uses: actions/checkout@v1
+
+    - name: Instala dependências utilizando composer
+      run: composer install
+
+    - name: Instala a versão certa do PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 7.3
+        tools: pecl,
+        extensions: intl
+      env:
+        update: true
+
+    - name: Roda os testes unitários com PHPUnit
+      run: vendor/bin/phpunit --coverage-html textwrap-coverage-html --coverage-clover textwrap-coverage-clover
+
+    - name: Sobre os resultados para o codecov
+      run: bash <(curl -s https://codecov.io/bash) || echo "Codecov failed :("
