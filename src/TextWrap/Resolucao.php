@@ -48,6 +48,20 @@ class Resolucao implements TextWrapInterface {
         'gigantes',
       ];
     }
+    elseif ($length === 10) {
+      // Por favor, não implemente o código desse jeito, isso é só um mock.
+      $ret = [
+        'Se vi mais',
+        'longe foi',
+        'por estar',
+        'de pé',
+        'sobre',
+      ];
+      $ret[] = 'ombros de';
+      $ret[] = 'gigantes';
+      return $ret;
+    }
+
     return [""];
   }
 
