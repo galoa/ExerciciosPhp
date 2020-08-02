@@ -1,0 +1,20 @@
+name: lint
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout do código
+      uses: actions/checkout@v1
+
+    - name: Instala dependências utilizando composer
+      run: composer install
+
+    - name: Configura o PHPCS
+      run: vendor/bin/phpcs --config-set installed_paths `$PWD`.github/coder_sniffer
+
+    - name: linta o textwrap
+      run: vendor/bin/phpcs --standard=.github/coder_sniffer/Drupal/ruleset.xml --ignore='*.md' --extensions=php,profile,inc,install ./src/TextWrap
