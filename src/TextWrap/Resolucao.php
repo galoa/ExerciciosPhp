@@ -34,14 +34,14 @@ class Resolucao implements TextWrapInterface {
      $ret = [];// array de retorno contendo todas as linhas que foram criadas
      
      foreach($palavras as $palavra){//foreach utilizado para iterar o array das palavras da String original
-       if($caraUsados + strlen($palavra) < $length){//verificação se o numero de caracteres usados mais o dos carcteres da proxima palavra não superem o length passado da linha
-           if($linha != "")//verifica se a linha não está em branco se não estiver coloca um espaço em branco na linha
+       if($caraUsados + strlen($palavra) < $length){//verificação se o numero de caracteres usados mais os carcteres da proxima palavra não superem o length passado da linha
+           if($linha != "")//verifica se a linha não está em branco se não estiver coloca um espaço em branco na linha para separar as palavras
             $linha .= " ";
            $linha .= $palavra;//adciona a palavra a linha
            $caraUsados = strlen($linha);// substitui os caracteres usados pelo numero de caracteres da linha 
        }
        else{ //este else cobre se a proxima palavra não cabe na linha
-         array_push($ret,$linha);//adciona a linha no array de retorno
+         array_push($ret,$linha);//adciona a linha feita no array de retorno
          $linha = "";// cria uma nova linha
          $caraUsados = 0;// autualiza o caracteres usados
          if($palavra <= $length){// verifica se a palavra é menor que a linha especificada, se sim adciona ela na linha e
