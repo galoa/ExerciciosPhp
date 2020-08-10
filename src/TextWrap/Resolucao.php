@@ -24,45 +24,41 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé',
-        'sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
-    }
+    if(strlen($text) == 0) 
+      return [""];
+     
+     
+     $linha = "";
+     $caraUsados = 0;
+     $palavras = explode(" ",$text);
+     $ret = [];
 
-    return [""];
+     foreach($palavras as $palavra){
+       if($caraUsados + strlen($palavra) < $length){
+           if($linha != "")
+            $linha .= " ";
+           $linha .= $palavra;
+           $caraUsados = strlen($linha);
+       }
+       else{
+         array_push($ret,$linha);
+         $linha = "";
+         $caraUsados = 0;
+         if($palavra <= $length){
+           $linha .= $palavra;
+           $caraUsados = strlen($palavra);
+         }
+         else{
+           array_push($ret,substr($linha,0,$length));
+           $corte = strlen($palavra) - $length;
+           $linha = substr($palavra,-1,$corte);
+           $caraUsados = strlen($linha);
+         }
+       }
+     }
+     if($linha != "")
+     array_push($ret,$linha);
+     return $ret;
   }
 
 }
