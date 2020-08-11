@@ -24,45 +24,68 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé',
-        'sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
+    $palavras = explode (" ", $text);
+     $array = array();
+     $limite = $length;
+     $string = " ";
+     $linha = 0;
+     $contador = count($palavras);
+     
+      for($i = 0; $i < $contador ; ++$i){
+
+        $string = $palavras[$i]. " ";
+        /*cortando a palavra a partir de uma nova função e continuando na proxima linha:*/
+        if(strlen($palavras[$i])> $length){
+          $this-> corte($array, $palavras[$i], $limite, $length, $linha);
+        } else
+            
+          if($limite>=strlen($string)){
+            /*colocando a palavra na linha de array */
+            $array[$linha]= (array_key_exists($linha, $array))?$array[$linha].$string.$string;
+            /* subtraindo o limite á partir da quantidade de caracteres */
+            $limite -= strlen($string);
+        } else
+
+          if($limite<strlen($string)){
+            $linha++;
+            $limite=$length;
+
+            $array[$linha]= $string;
+            $limite -= strlen($string);
+          }
+      }
+      return $array;
+      print_r($array);
     }
 
-    return [""];
-  }
+    /*adicionando uma função para realizar o corte da palavra, quando necessário*/
+
+    public function corte(&$arrays, $palavra, &$limite,$index){
+      /*utilizando o & para mostrar que o objeto está instanciado como uma referência de classe*/
+      for($i=0; $i<strlen($palavra); $i++){
+        if(($limite != $length) && ($i== 0)){
+          $index++; 
+          //pulando linha do array 
+          $limite = $length;
+          //dando novo valor inicial para limite
+        }
+
+        if($limite < 0=){
+
+          $index++;
+          $limite = $length;  
+        }
+
+        $arrays[$index]=(array_key_exists($index, $arrays)) ? $arrays[$index]. $palavra.[$i]:$palavra$i];
+        $limite--;
+      }
+       $arrays[$index]=$arrays[$index]." ";
+    }
+    
+
+
+
+
+
 
 }
