@@ -67,4 +67,40 @@ class TextWrapTest extends TestCase {
     $this->assertCount(6, $ret);
   }
 
+  /*
+    Teste para o retorno de uma única linha usando a baseString
+  */ 
+  public function testForOneLine(){
+    $ret = $this->resolucao->textWrap($this->baseString,25000);
+    $this->assertEquals($ret[0],"Se vi mais longe foi por estar de pé sobre ombros de gigantes");
+    $this->assertCount(1,$ret);
+  }
+
+  /*
+    Teste para linha com 4 caracteres usando a baseString
+   */
+
+   public function testForBigWords(){
+     $ret = $this->resolucao->textWrap($this->baseString,4);
+     $this->assertEquals($ret[0],"Se");
+     $this->assertEquals($ret[1],"vi");
+     $this->assertEquals($ret[2],"mais");
+     $this->assertEquals($ret[3],"long");
+     $this->assertEquals($ret[4],"e");
+     $this->assertEquals($ret[5],"foi");
+     $this->assertEquals($ret[6],"por");
+     $this->assertEquals($ret[7],"esta");
+     $this->assertEquals($ret[8],"r de");
+     $this->assertEquals($ret[9],"pé");
+     $this->assertEquals($ret[10],"sobr");
+     $this->assertEquals($ret[11],"e");
+     $this->assertEquals($ret[12],"ombr");
+     $this->assertEquals($ret[13],"os");
+     $this->assertEquals($ret[14],"de");
+     $this->assertEquals($ret[15],"giga");
+     $this->assertEquals($ret[16],"ntes");
+     $this->assertCount(17,$ret);
+   }
+
+
 }
