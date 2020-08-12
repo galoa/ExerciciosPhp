@@ -66,5 +66,21 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("gigantes", $ret[5]);
     $this->assertCount(6, $ret);
   }
+  
+  /**
+   * Testa a quebra de linha para palavras muito longas (mais de 2 linhas).
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+    
+  public function testForVeryLongWord(){
+	  $ret =$this->resolucao->textWrap($this->"então eu disse AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",10);
+	  $this->assertEquals("Então eu", $ret[0]);
+	  $this->assertEquals("disse", $ret[1]);
+    $this->assertEquals("AAAAAAAAAA", $ret[2]);
+    $this->assertEquals("AAAAAAAAAA", $ret[3]);
+    $this->assertEquals("AAAAAAAAAA", $ret[4]);
+	  $this->assertCount(5, $ret);
+  }
 
 }
