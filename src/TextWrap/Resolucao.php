@@ -2,12 +2,16 @@
 
 namespace Galoa\ExerciciosPhp\TextWrap;
 
-
 class Resolucao implements TextWrapInterface {
 
-
+  /**
+   * {@inheritdoc}
+   *
+   * Apague o conteúdo do método abaixo e escreva sua própria implementação,
+   * nós colocamos esse mock para poder rodar a análise de cobertura dos
+   * testes unitários.
+   */
   public function textWrap(string $text, int $length): array {
-    
 	/*
 	A lógica dessa função é sempre armazenar a primeira posição das novas palavras e os espaços
 	à medida que o laço percorre o texto. À partir deles, temos as posições de corte das palavras,
