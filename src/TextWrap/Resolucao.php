@@ -35,7 +35,7 @@ class Resolucao implements TextWrapInterface {
     for ($i = 0; $i < count($words); $i++) {
       // Observar cada palavra do array.
       if (strlen($words[$i]) <= $length) {
-        if (strlen($words[$i]) < $l) {
+        if (strlen($words[$i]) <= $l) {
           // Ao adicionar uma palavra, já adicionamos o espaçamento.
           // (Exceto para a primeira palavra do texto).
           if ($i == 0) {
