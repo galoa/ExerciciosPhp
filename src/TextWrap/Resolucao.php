@@ -24,44 +24,37 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé',
-        'sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
-    }
+       //Dividindo a string em string menores
+        $texto = explode(' ', $text);
+    
+    //Armazenando a quantidade maxima de caracteres que foi passada
+    $max = $length;
 
+    $novoTexto = "";
+    
+    $totalLength = 0;
+    
+    //Adicionando os Espacos que foram removidos no explode
+
+    foreach($texto as $string) {
+      $string .= " ";
+    
+      if ($totalLength + strlen($string) <= $max) {
+        $totalLength += strlen($string);
+    
+        $novoTexto .= $string;
+      } else {
+        $novoTexto .= "<br/>" . $string;
+    
+        $totalLength = strlen($string);
+      }
+    }
+    /*basicamente ele verifica o tamanho da linha a cada iteração
+     se exceder ele adiciona uma quebra de linha ao texto e reseta essa variável q guarda o tamanho da linha
+     */
+    echo $novoTexto;
+    
+    
     return [""];
   }
 
