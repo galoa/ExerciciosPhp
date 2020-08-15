@@ -45,15 +45,12 @@ class Resolucao implements TextWrapInterface {
     // Basicamente ele verifica o tamanho da linha a cada iteração,se exceder.
     // Ele adiciona uma quebra de linha ao texto e reseta essa.
     // Variável que guarda o tamanho da linha.
-    // Echo $novoTexto;
     $novoTexto = ltrim($novoTexto);
-    $a = explode("\n",$novoTexto);    
+    $a = explode("\n",$novoTexto); 
     $c = implode("", $a);
-
     $r = rtrim($c);
-     
-     $x = explode(" ",$r);
-     
+    $x = explode(" ",$r);
+    
     return $x;
   }
 
