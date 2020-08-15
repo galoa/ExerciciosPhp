@@ -24,6 +24,7 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
+
     /*
      * A lógica dessa função é sempre armazenar a primeira posição das
      * novas palavras e os espaços à medida que o laço percorre o texTo.
