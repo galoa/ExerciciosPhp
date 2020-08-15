@@ -26,6 +26,10 @@ class Resolucao implements TextWrapInterface {
   public  function textWrap(string $text, int $length): array {
     // Armazenando a quantidade maxima de caracteres que foi passada.
     $max = $length;
+    $i = 0;
+    $x = array();
+    $x[$i] = "";
+    
     $novoTexto = " ";
     $totalLength = 0;
     // Dividindo a string em string menores.
@@ -38,15 +42,15 @@ class Resolucao implements TextWrapInterface {
         $novoTexto .= $string;
       }
       else {
-        $novoTexto .= "\n" . $string;
+        $novoTexto .= "<br/>" . $string;
         $totalLength = strlen($string);
+        $x[$i] .= $novoTexto;
       }
     }
     // Basicamente ele verifica o tamanho da linha a cada iteração,se exceder.
     // Ele adiciona uma quebra de linha ao texto e reseta essa.
     // Variável que guarda o tamanho da linha.
-    // Echo $novoTexto;
-    return [" "];
+    return $x;
   }
 
 }
