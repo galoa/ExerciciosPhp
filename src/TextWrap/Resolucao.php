@@ -119,7 +119,7 @@ class Resolucao implements TextWrapInterface {
       $tmp = '';
       $cont = $length;
     }
-    
+
     return $vetor;
   }
 
