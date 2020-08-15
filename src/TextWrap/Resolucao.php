@@ -24,9 +24,7 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public  function textWrap(string $text, int $length): array {
-    
     // Armazenando a quantidade maxima de caracteres que foi passada.
-
     $max = $length;
     $novoTexto = "";
     $totalLength = 0;
