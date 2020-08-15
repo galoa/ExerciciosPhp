@@ -85,8 +85,8 @@ class Resolucao implements TextWrapInterface {
         $i++;
       }
       // Se tiver um caracter especial, acrescenta o ultimo char.
-      if (strlen($tmp) != mb_strlen($tmp,'UTF-8')) {
-		    $tmp .= $text[$i];
+      if (strlen($tmp) != mb_strlen($tmp, 'UTF-8')) {
+        $tmp .= $text[$i];
         $i++;
       }
       /*
