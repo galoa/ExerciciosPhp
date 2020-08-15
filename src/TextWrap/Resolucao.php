@@ -45,7 +45,7 @@ class Resolucao implements TextWrapInterface {
     // Basicamente ele verifica o tamanho da linha a cada iteração,se exceder.
     // Ele adiciona uma quebra de linha ao texto e reseta essa.
     // Variável que guarda o tamanho da linha.
-    echo $novoTexto;
+    // Echo $novoTexto;
     return [" "];
   }
 
