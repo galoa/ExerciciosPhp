@@ -47,8 +47,14 @@ class Resolucao implements TextWrapInterface {
     // Variável que guarda o tamanho da linha.
     // Echo $novoTexto;
     $novoTexto = ltrim($novoTexto);
-    $a = explode("\n",$novoTexto);
-    return $a;
+    $a = explode("\n",$novoTexto);    
+    $c = implode("", $a);
+
+    $r = rtrim($c);
+     
+     $x = explode(" ",$r);
+     
+    return $x;
   }
 
 }
