@@ -42,7 +42,7 @@ class Resolucao implements TextWrapInterface {
         $novoTexto .= $string;
       }
       else {
-        $novoTexto .= "<br/>" . $string;
+        $novoTexto .= "\n" . $string;
         $totalLength = strlen($string);
         $x[$i] .= $novoTexto;
       }
