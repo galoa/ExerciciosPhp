@@ -65,6 +65,9 @@ class Resolucao implements TextWrapInterface {
     $tmp = $novo = '';
     $cont = $length;
     $nText = strlen($text);
+    if (strlen($text) == 0) {
+      $vetor[] = "";
+    }
     // Cria um laço para percorrer todo o texto.
     while ($i < $nText) {
       $prim = $i;
