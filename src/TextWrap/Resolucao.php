@@ -26,7 +26,7 @@ class Resolucao implements TextWrapInterface {
   public function textWrap($text, $length): array {
 
     $cut = "";
-    // String para vazio que será preenchido.
+    // String vazio que será preenchido.
     $words = explode(" ", $text);
     // Separar as palavras do string de entrada em um array de palavras.
     // Preenchendo o string de saída:
@@ -35,7 +35,7 @@ class Resolucao implements TextWrapInterface {
     for ($i = 0; $i < count($words); $i++) {
       // Observar cada palavra do array.
       if (mb_strlen($words[$i], 'utf8') < $length) {
-        if (strlen($words[$i]) <= $l) {
+        if (strlen($words[$i]) < $l) {
           // Ao adicionar uma palavra, já adicionamos o espaçamento.
           // (Exceto para a primeira palavra do texto).
           if ($i == 0) {
@@ -52,7 +52,7 @@ class Resolucao implements TextWrapInterface {
           $l = $length - mb_strlen($words[$i], 'utf8');
         }
       }
-      // Caso extremo: palavra maior que a linha:
+      // Casos extremos: palavra do tamanho ou maior que a linha:
       else {
         if ($l < $length) {
           $cut .= "\n";
