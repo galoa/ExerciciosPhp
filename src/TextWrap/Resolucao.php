@@ -26,7 +26,7 @@ class Resolucao implements TextWrapInterface {
   public  function textWrap(string $text, int $length): array {
     // Armazenando a quantidade maxima de caracteres que foi passada.
     $max = $length;
-    $novoTexto = "";
+    $novoTexto = " ";
     $totalLength = 0;
     // Dividindo a string em string menores.
     $texto = explode(" ", $text);
