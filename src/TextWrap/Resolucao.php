@@ -37,8 +37,8 @@ class Resolucao implements TextWrapInterface {
       if (mb_strlen($words[$i], 'utf8') < $length) {
         if (strlen($words[$i]) < $l) {
           // Ao adicionar uma palavra, já adicionamos o espaçamento.
-          // (Exceto para a primeira palavra do texto).
-          if ($i == 0) {
+          // (Exceto para a primeira palavra de cada linha.)
+          if ($l == $length) {
             $cut .= $words[0];
             $l -= mb_strlen($words[0], 'utf8');
           }
