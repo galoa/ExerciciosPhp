@@ -48,4 +48,5 @@ class Resolucao implements TextWrapInterface {
     echo $novoTexto;
     return [""];
   }
+  
 }
