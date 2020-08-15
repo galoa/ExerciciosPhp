@@ -71,7 +71,9 @@ class Resolucao implements TextWrapInterface {
         // A palavra em questão pode ser mais extensa que 2 linhas...
         // Solução: retornar o resto da palavra para a análise.
         $words[$i] = $parte2;
-        $i--;
+        if (mb_strlen($parte2) > 0) {
+          $i--;
+        }
       }
     }
     $lista = explode("\n", $cut);
