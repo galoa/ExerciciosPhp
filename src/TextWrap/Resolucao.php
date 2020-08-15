@@ -30,13 +30,11 @@ class Resolucao implements TextWrapInterface {
     $totalLength = 0;
     // Dividindo a string em string menores.
     $texto = explode(" ", $text);
-    foreach($texto as $string){
+    foreach ($texto as $string) {
       // Adicionando os Espacos que foram removidos no explode.
       $string .= " ";
-      if ($totalLength + strlen($string) <= $max) {
-            
+      if ($totalLength + strlen($string) <= $max) { 
             $totalLength += strlen($string);
-    
             $novoTexto .= $string;
 
         } else {
