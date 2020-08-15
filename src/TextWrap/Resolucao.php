@@ -66,12 +66,7 @@ class Resolucao implements TextWrapInterface {
         for ($k = $length; $k < mb_strlen($words[$i], 'utf8'); $k++) {
           $parte2 .= $words[$i][$k];
         }
-        if ($i == 0) {
-          $cut .= $parte1;
-        }
-        else {
-          $cut .= " " . $parte1;
-        }
+        $cut .= $parte1;
         $l = 0;
         // A palavra em questão pode ser mais extensa que 2 linhas...
         // Solução: retornar o resto da palavra para a análise.
