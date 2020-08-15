@@ -40,14 +40,14 @@ class Resolucao implements TextWrapInterface {
      *      $espaco
      *      ↓
      *    Se eu vi mais longe...
-     *     ↑     ↑
+     *    ↑     ↑
      *   $prim   Fim do contador(cont = 0)
      *-----------------------------------------------------------------
      *         $espaco
      *            ↓
      *    Se eu vi mais longe...
-     *    ↑     ↑
-     *   $prim  Fim do contador
+     *          ↑     ↑
+     *        $prim  Fim do contador
      *-----------------------------------------------------------------
      *             $espaco
      *                 ↓
@@ -93,7 +93,7 @@ class Resolucao implements TextWrapInterface {
        * Caso o contador tenha terminado dentro de alguma palavra,
        * verifica se existe alguma espaço antes da palavra cortada.
        * Caso haja, cria um novo vetor para armazenar a nova sentença até
-       * o espaço. 
+       * o espaço.
        */
       else {
         // Se $espaco não for nulo, então tem pelo menos 2 palavras.
@@ -109,7 +109,7 @@ class Resolucao implements TextWrapInterface {
           $espaco = NULL;
         }
       }
-      /**
+      /*
        * Caso não haja um espaço e o contador termine no meio da palavra,
        * significa que a palavra
        * precisa ser cortada, então a lógica permanece a mesma.
@@ -119,7 +119,8 @@ class Resolucao implements TextWrapInterface {
       $tmp = '';
       $cont = $length;
     }
+    
     return $vetor;
   }
-  
+
 }
