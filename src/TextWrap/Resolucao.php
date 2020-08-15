@@ -46,12 +46,8 @@ class Resolucao implements TextWrapInterface {
     // Ele adiciona uma quebra de linha ao texto e reseta essa.
     // Variável que guarda o tamanho da linha.
     // Echo $novoTexto;
-    $a = explode("<br/>",$novoTexto);
-     function retiraEspacos(&$value) 
-     { 
-         $value = trim($value); 
-     }
-     array_walk($a, 'retiraEspacos');
+    $novoTexto = ltrim($novoTexto);
+    $a = explode("\n",$novoTexto);
     return $a;
   }
 
