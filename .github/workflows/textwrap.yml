@@ -1,6 +1,6 @@
 name: TextWrap
 
-on: [push]
+on: [push, pull_request, fork]
 
 jobs:
   lint:
