@@ -48,7 +48,7 @@ class Resolucao implements TextWrapInterface {
     $novoTexto = ltrim($novoTexto);
     $a = explode("\n", $novoTexto);
     $c = implode("", $a);
-    $r = rtrim ($c);
+    $r = rtrim($c);
     $x = explode(" ", $r);
 
     return $x;
