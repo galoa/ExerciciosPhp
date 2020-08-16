@@ -24,34 +24,67 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public  function textWrap(string $text, int $length): array {
-    // Armazenando a quantidade maxima de caracteres que foi passada.
-    $max = $length;
-    $novoTexto = " ";
-    $totalLength = 0;
-    // Dividindo a string em string menores.
-    $texto = explode(" ", $text);
-    foreach ($texto as $string) {
-      $string .= " ";
-      // Adicionando os Espacos que foram removidos no explode.
-      if ($totalLength + strlen($string) <= $max) {
-        $totalLength += strlen($string);
-        $novoTexto .= $string;
+    $array = explode(' ', $text);
+    $characterLimit = $length;
+    $newText = "";
+    $rowLength = 0;
+    $x = array();
+
+
+    foreach ($array as $string) {
+        if (strlen($string) + $rowLength <= $characterLimit) {
+            $string .= " ";
+
+            $newText .= $string;
+            $rowLength += strlen($string);
+
+            continue;
+        }
+
+        if (strlen($string) <= $characterLimit) {
+            $string .= " ";
+
+            $newText .= "\n" . $string;
+            $rowLength = strlen($string);
+
+            continue;
+        }
+
+    $rowLength = $rowLength > $characterLimit ? $characterLimit : $rowLength;
+
+        $firstCroppedString = substr($string, 0, $characterLimit - $rowLength);
+        $secondCroppedString = substr($string, $characterLimit - $rowLength);
+
+        $newText .= $firstCroppedString;
+
+        if (strlen($secondCroppedString) <= $characterLimit) {
+            $secondCroppedString .= " ";
+
+            $newText .= "\n" . $secondCroppedString;
+            $rowLength = strlen($secondCroppedString);
+
+            continue;
+        }
+
+    $stringCropped = substr($secondCroppedString, 0, $characterLimit);
+
+        while (true) {
+            $stringCropped = substr($secondCroppedString, 0, $characterLimit);
+
+      if (!strlen($stringCropped)) {
+        break;
       }
-      else {
-        $novoTexto .= $string;
-        $totalLength = strlen($string);
-      }
+
+            $newText .= "\n" . $stringCropped;
+
+            $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));
+          
+            
+        }
     }
-    // Basicamente ele verifica o tamanho da linha a cada iteração,se exceder.
-    // Ele adiciona uma quebra de linha ao texto e reseta essa.
-    // Variável que guarda o tamanho da linha.
-    $novoTexto = ltrim($novoTexto);
-    $a = explode("\n", $novoTexto);
-    $c = implode("", $a);
-    $r = rtrim($c);
-    $x = explode(" ", $r);
+   
+   
 
-    return $x;
-  }
-
+    return [$newText];
+}
 }
