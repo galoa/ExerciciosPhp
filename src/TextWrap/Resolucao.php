@@ -87,7 +87,7 @@ class Resolucao implements TextWrapInterface {
 
     $trimmed = trim($newText," ");
 
-    var_dump($trimmed);
+    
     return [$trimmed];
 }
 }
