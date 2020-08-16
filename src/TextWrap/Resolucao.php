@@ -75,7 +75,7 @@ class Resolucao implements TextWrapInterface {
         break;
       }
 
-            $newText .= "\n" . $stringCropped;
+            $newText .= "" . $stringCropped;
 
             $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));
           
