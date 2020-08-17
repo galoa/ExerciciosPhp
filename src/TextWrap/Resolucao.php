@@ -58,11 +58,11 @@ class Resolucao implements TextWrapInterface {
           break;
         }
         $newText .= "\n" . $stringCropped;
-        $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));            
+        $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));
       }
-    }  
-    $trimmed = trim ($newText," ");
-    $x = explode ("\n",$trimmed);
+    }
+    $trimmed = trim($newText," ");
+    $x = explode("\n", $trimmed);
 
     return $x;
   }
