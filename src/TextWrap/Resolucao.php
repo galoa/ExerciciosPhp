@@ -40,7 +40,7 @@ class Resolucao implements TextWrapInterface {
         $newText .= "\n" . $string;
         $rowLength = strlen($string);
         continue;
-       }
+      }
       $rowLength = $rowLength > $characterLimit ? $characterLimit : $rowLength;
       $firstCroppedString = substr($string, 0, $characterLimit - $rowLength);
       $secondCroppedString = substr($string, $characterLimit - $rowLength);
@@ -50,20 +50,21 @@ class Resolucao implements TextWrapInterface {
         $newText .= "\n" . $secondCroppedString;
         $rowLength = strlen($secondCroppedString);
         continue;
-       }
-      $stringCropped = substr($secondCroppedString, 0, $characterLimit);
-    while (true) {
-            $stringCropped = substr($secondCroppedString, 0, $characterLimit);
-      if (!strlen($stringCropped)) {
-        break;
       }
-            $newText .= "\n" . $stringCropped;
-            $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));            
+      $stringCropped = substr($secondCroppedString, 0, $characterLimit);
+      while (TRUE) {
+        $stringCropped = substr($secondCroppedString, 0, $characterLimit);
+        if (!strlen($stringCropped)) {
+          break;
         }
-    }   
+        $newText .= "\n" . $stringCropped;
+        $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));            
+      }
+    }  
     $trimmed = trim ($newText," ");
     $x = explode ("\n",$trimmed);
-   
+
     return $x;
-}
+  }
+
 }
