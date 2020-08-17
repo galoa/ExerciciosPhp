@@ -29,30 +29,30 @@ class Resolucao implements TextWrapInterface {
     $newText = "";
     $rowLength = 0;
     foreach ($array as $string) {
-        if (strlen($string) + $rowLength <= $characterLimit) {
-            $string .= " ";
-            $newText .= $string;
-          $rowLength += strlen($string);
+      if (strlen($string) + $rowLength <= $characterLimit) {
+        $string .= " ";
+        $newText .= $string;
+        $rowLength += strlen($string);
         continue;
-        }
-        if (strlen($string) <= $characterLimit) {
-            $string .= " ";
-            $newText .= "\n" . $string;
-          $rowLength = strlen($string);
+      }
+      if (strlen($string) <= $characterLimit) {
+        $string .= " ";
+        $newText .= "\n" . $string;
+        $rowLength = strlen($string);
         continue;
-        }
-    $rowLength = $rowLength > $characterLimit ? $characterLimit : $rowLength;
-        $firstCroppedString = substr($string, 0, $characterLimit - $rowLength);
-        $secondCroppedString = substr($string, $characterLimit - $rowLength);
-        $newText .= $firstCroppedString;
-        if (strlen($secondCroppedString) <= $characterLimit) {
-            $secondCroppedString .= " ";
-            $newText .= "\n" . $secondCroppedString;
-            $rowLength = strlen($secondCroppedString);
-            continue;
-        }
-    $stringCropped = substr($secondCroppedString, 0, $characterLimit);
-        while (true) {
+       }
+      $rowLength = $rowLength > $characterLimit ? $characterLimit : $rowLength;
+      $firstCroppedString = substr($string, 0, $characterLimit - $rowLength);
+      $secondCroppedString = substr($string, $characterLimit - $rowLength);
+      $newText .= $firstCroppedString;
+      if (strlen($secondCroppedString) <= $characterLimit) {
+        $secondCroppedString .= " ";
+        $newText .= "\n" . $secondCroppedString;
+        $rowLength = strlen($secondCroppedString);
+        continue;
+       }
+      $stringCropped = substr($secondCroppedString, 0, $characterLimit);
+    while (true) {
             $stringCropped = substr($secondCroppedString, 0, $characterLimit);
       if (!strlen($stringCropped)) {
         break;
@@ -61,8 +61,8 @@ class Resolucao implements TextWrapInterface {
             $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));            
         }
     }   
-    $trimmed = trim($newText," ");
-    $x = explode("\n ",$trimmed);
+    $trimmed = trim ($newText," ");
+    $x = explode ("\n",$trimmed);
    
     return $x;
 }
