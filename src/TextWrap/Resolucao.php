@@ -61,7 +61,7 @@ class Resolucao implements TextWrapInterface {
         $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));
       }
     }
-    $trimmed = trim($newText," ");
+    $trimmed = trim($newText, " ");
     $x = explode("\n", $trimmed);
 
     return $x;
