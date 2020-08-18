@@ -66,7 +66,7 @@ class Resolucao implements TextWrapInterface {
      function exibir_mensagem()
 {
     echo "Olá\n";
-    echo "Seja Bem Vindo(a)!"
+    echo "Seja Bem Vindo(a)!";
 }
 
     return $x;
