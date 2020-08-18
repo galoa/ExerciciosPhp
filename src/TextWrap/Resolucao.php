@@ -63,12 +63,11 @@ class Resolucao implements TextWrapInterface {
     }
     $trimmed = trim($newText, " ");
     $x = explode("\n", $trimmed);
-    function apaga(&$value)
-    {
-        $value = trim($value);
-        return;
-    }
-    array_walk($x, 'apaga');
+     function exibir_mensagem()
+{
+    echo "Olá\n";
+    echo "Seja Bem Vindo(a)!"
+}
 
     return $x;
   }
