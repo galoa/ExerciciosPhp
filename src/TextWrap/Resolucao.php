@@ -37,7 +37,7 @@ class Resolucao implements TextWrapInterface {
       else {
         $string .= " ";
         $rowLength = mb_strlen($string, 'UTF-8');
-        $newText .="\n". $string;
+        $newText .= "\n".$string;
         continue;
       }
 
