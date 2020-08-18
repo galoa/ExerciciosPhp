@@ -25,20 +25,19 @@ class Resolucao implements TextWrapInterface {
    */
   public  function textWrap(string $text, int $length): array {
     $array = explode(' ', $text);
-    $characterLimit = $length;
     $newText = "";
     $rowLength = 0;
     foreach ($array as $string) {
-      if (strlen($string) + $rowLength <= $characterLimit) {
+      if (mb_strlen($string,'UTF-8') + $rowLength <= $length) {
         $string .= " ";
+        $rowLength += mb_strlen($string,'UTF-8');
         $newText .= $string;
-        $rowLength += strlen($string);
         continue;
       }
       else {
         $string .= " ";
-        $newText .= "\n".$string;
-        $rowLength = strlen($string)+1;
+        $newText .= "<br/>".$string;
+        $rowLength = mb_strlen($string,'UTF-8');
         continue;
       }
     
