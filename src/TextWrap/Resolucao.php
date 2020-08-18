@@ -5,7 +5,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
     /**
      * @author Gilmar A S Trindade
      */
-class Resolucao implements TextWrapExerciseInterface
+class Resolucao implements TextWrapInterface 
 {
     /**
      * @param string $text
