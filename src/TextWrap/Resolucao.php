@@ -35,31 +35,13 @@ class Resolucao implements TextWrapInterface {
         $rowLength += strlen($string);
         continue;
       }
-      if (strlen($string) <= $characterLimit) {
+      else {
         $string .= " ";
-        $newText .= "\n" . $string;
-        $rowLength = strlen($string);
+        $newText .= "<br/>".$string;
+        $rowLength = strlen($string)+1;
         continue;
       }
-      $rowLength = $rowLength > $characterLimit ? $characterLimit : $rowLength;
-      $firstCroppedString = substr($string, 0, $characterLimit - $rowLength);
-      $secondCroppedString = substr($string, $characterLimit - $rowLength);
-      $newText .= $firstCroppedString;
-      if (strlen($secondCroppedString) <= $characterLimit) {
-        $secondCroppedString .= " ";
-        $newText .= "\n" . $secondCroppedString;
-        $rowLength = strlen($secondCroppedString);
-        continue;
-      }
-      $stringCropped = substr($secondCroppedString, 0, $characterLimit);
-      while (TRUE) {
-        $stringCropped = substr($secondCroppedString, 0, $characterLimit);
-        if (!strlen($stringCropped)) {
-          break;
-        }
-        $newText .= "\n" . $stringCropped;
-        $secondCroppedString = substr($secondCroppedString, $characterLimit, strlen($secondCroppedString));
-      }
+    
     }
     $trimmed = trim($newText, " ");
     $x = explode("\n", $trimmed);
