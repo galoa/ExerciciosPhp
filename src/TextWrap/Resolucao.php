@@ -23,7 +23,7 @@ class Resolucao implements TextWrapInterface {
    * nós colocamos esse mock para poder rodar a análise de cobertura dos
    * testes unitários.
    */
-    public  function textWrap(string $text, int $length): array {
+   public  function textWrap(string $text, int $length): array {
     // Variaveis que serao usadas no programa.
     $array = explode(' ', $text);
     // Divide o texto base em texto menores. 
