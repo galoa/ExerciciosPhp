@@ -84,7 +84,7 @@ class TextWrapTest extends TestCase {
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
    public function  testForBigWords() {
-    $ret = $this->resolucao->textWrap($this->baseString, 8);
+    $ret = $this->resolucao->textWrap($this->baseString2, 8);
     $this->assertEquals("A maior", $ret[0]);
     $this->assertEquals("palavra", $ret[1]);
     $this->assertEquals("da", $ret[2]);
@@ -108,7 +108,7 @@ class TextWrapTest extends TestCase {
      * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
      */
    public function  testForBigWords2() {
-    $ret = $this->resolucao->textWrap($this->baseString, 12);
+    $ret = $this->resolucao->textWrap($this->baseString2, 12);
     $this->assertEquals("A maior", $ret[0]);
     $this->assertEquals("palavra da", $ret[1]);
     $this->assertEquals("língua", $ret[2]);

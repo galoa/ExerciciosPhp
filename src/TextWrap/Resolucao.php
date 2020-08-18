@@ -17,7 +17,7 @@ class Resolucao implements TextWrapInterface
      *   Um array de strings equivalente ao texto recebido por parâmetro porém
      *   respeitando o comprimento de linha e as regras especificadas acima.
      */
-    public static function textWrap(string $text, int $length): array
+    public function textWrap(string $text, int $length): array
     {
         //Variaveis gerais
         $return = array(); // Array que retorna uma linha por posição
