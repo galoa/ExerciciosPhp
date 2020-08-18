@@ -28,19 +28,19 @@ class Resolucao implements TextWrapInterface {
     $newText = "";
     $rowLength = 0;
     foreach ($array as $string) {
-      if (mb_strlen($string,'UTF-8') + $rowLength <= $length) {
+      if (mb_strlen($string, 'UTF-8') + $rowLength <= $length) {
         $string .= " ";
-        $rowLength += mb_strlen($string,'UTF-8');
+        $rowLength += mb_strlen($string, 'UTF-8');
         $newText .= $string;
         continue;
       }
       else {
         $string .= " ";
-        $newText .= "\n".$string;
-        $rowLength = mb_strlen($string,'UTF-8');
+        $rowLength = mb_strlen($string, 'UTF-8');
+        $newText .="\n". $string;
         continue;
       }
-    
+
     }
     $trimmed = trim($newText, " ");
     $x = explode("\n", $trimmed);
