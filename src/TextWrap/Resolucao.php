@@ -54,8 +54,7 @@ class Resolucao implements TextWrapInterface {
     // Retirando as quebras de linha.
     $clean = array_map('trim', $x);
     // Remove os espaços em branco de  todos os elementos do array.
-
     return $clean;
-   }
+  }
 
 }
