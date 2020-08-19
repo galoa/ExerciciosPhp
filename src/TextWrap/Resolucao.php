@@ -8,6 +8,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  */
 class Resolucao implements TextWrapInterface {
   /**
+   * Está função recebe um texto e o comrpimento que deve conter cada linha e devolve um array se acordo com os paramentro especificados.
    * @param string $text
    *   O texto que será utilizado como entrada.
    * @param int $length
@@ -16,6 +17,7 @@ class Resolucao implements TextWrapInterface {
    *   Um array de strings equivalente ao texto recebido por parâmetro porém
    *   respeitando o comprimento de linha e as regras especificadas acima.
    */
+
     public function textWrap(string $text, int $length): array {
         $return = array(); // Array que retorna uma linha por posição.
         $line = 0; //Essa variavel representa a linha do Array.
