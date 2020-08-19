@@ -111,7 +111,7 @@ class TextWrapTest extends TestCase {
     $ret = $this->resolucao->textWrap($this->baseString2, 12);
     $this->assertEquals("A maior", $ret[0]);
     $this->assertEquals("palavra da", $ret[1]);
-    $this->assertEquals("língua", $ret[2]);
+    $this->assertEquals("lingua", $ret[2]);
     $this->assertEquals("portuguesa é", $ret[3]);
     $this->assertEquals("pneumoultram", $ret[4]);
     $this->assertEquals("icroscopicos", $ret[5]);
