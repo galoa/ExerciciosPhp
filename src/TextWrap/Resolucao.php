@@ -5,7 +5,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
     /**
      * @author Gilmar A S Trindade
      */
-class Resolucao implements TextWrapInterface 
+class Resolucao implements TextWrapInterface
 {
     /**
      * @param string $text
@@ -19,7 +19,7 @@ class Resolucao implements TextWrapInterface
      */
     public function textWrap(string $text, int $length): array
     {
-         //Variaveis gerais
+        //Variaveis gerais
         $return = array(); // Array que retorna uma linha por posição
         $line = 0; //Essa variavel representa a linha do Array
         $return[$line] = ""; //Inicializando o array para não dar erro
@@ -27,62 +27,50 @@ class Resolucao implements TextWrapInterface
 
         if ($length > 0) {
 
-            $espacoLivre = $length;
+            $freeSpaceOnLine = $length;
 
             //Utilizando explode para separar as palavras no array $text
             $text = explode(" ", $text);
 
 
             //Verificando palavra por palavra
-            foreach ($text as $palavra) {
+            foreach ($text as $word) {
+                $wordLength = mb_strlen($word);
 
-                $tamanhoDaPalavra = mb_strlen($palavra); // contando tamanho da palavra
+                if ($wordLength <= $length) {
 
+                    if ($wordLength < $freeSpaceOnLine) {
+                        $return[$line] .= " " . $word;
+                        $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
 
-                $palavra .= " "; // adicionando novamente os espacos
-
-
-
-                // Se o comprimento da palavra for menor ou igual ao comprimento limite da linha
-                if ($tamanhoDaPalavra < $length) {
-
-                    if ($tamanhoDaPalavra < $espacoLivre + 1) {
-                        $return[$line] .= $palavra;
-                        $espacoLivre -= ($tamanhoDaPalavra + 1);
+                        // Se a palavra for exatamente igual ao tamanho disponivel na linha, adiciona-la
+                    } else if ($wordLength == $freeSpaceOnLine) {
+                        $return[$line] .= " " . $word;
+                        $freeSpaceOnLine -= $wordLength;
 
                         // Se a palavra for maior que o tamanho disponivel, adiciona-lá na proxima linha
-                    } else if ($tamanhoDaPalavra > $espacoLivre) {
-                        $line++;// pulando linha
+                    } else if ($wordLength > $freeSpaceOnLine) {
+                        $line++;
                         $return[$line] = "";
-                        $return[$line] = $palavra;
-                        $espacoLivre = $length;
-                        $espacoLivre = $espacoLivre - ($tamanhoDaPalavra + 1);
+                        $return[$line] .= $word;
+                        $freeSpaceOnLine = $length;
+                        $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
 
                     }
-
-                }
-
-
-                // Se o comprimento palavra for exatamente igual ao comprimento disponivel na linha, adiciona-la
-            else if ($tamanhoDaPalavra == $espacoLivre) {
-                $return[$line] .= $palavra;
-                $espacoLivre -= $tamanhoDaPalavra;
-
-
-                //Se a palavra for maior que o limite de caracteres por linha, corta a
-                //palavra e continua a imprimi-la na linha seguinte.
-            } else{
-                    $line++;
+//			* - Se a palavra for maior que o limite de caracteres por linha, corte a
+//			*   palavra e continue a imprimi-la na linha seguinte.
+                } else if ($wordLength > $length) {
+                    $line++;// passa para a proxima
                     $return[$line] = "";
-                    $espacoLivre = $length;// Atualizando o espaço disponivel na linha
+                    $freeSpaceOnLine = $length;// Atualizando o espaço disponivel na linha
 
-                    $characters = str_split($palavra);// criando um array com 1 caracter por posição
+                    $characters = str_split($word);// criando um array com 1 caracter por posição
 
 
                     // recebe o número de linhas necessarias
-                    $requiredLines = (strlen($palavra) - 1) / $length;
+                    $requiredLines = (strlen($word) - 1) / $length;
 
-                    $updatesTheCharacterArray = $espacoLivre;
+                    $updatesTheCharacterArray = $freeSpaceOnLine;
 
                     // zerando as duas variaveis, pois pode haver varias palavras maiores que o
                     // tamanho maximo
@@ -103,43 +91,40 @@ class Resolucao implements TextWrapInterface
                             } else {
                                 $updatesTheCharacterArray += $length;
                                 $lastArrayPosition = $newArrayPosition;
-                                // se preencher totalmente a linha, quebrar linha atraves do contador $line
+                                // se preencher totalmente a linha, acrescentar ";" para quebrar linha
                                 if ($characterCounter == $length) {
                                     $line++;
                                     $return[$line] = "";
                                     $characterCounter = 0;
+
                                 }
-                                break; // se já preencher a linha, parar execução e continuar na proxima iteração
+                                break; // se já preencher a linha, parar execução e continua na proxima iteração
                             }
 
-                        }// fim do for de caracteres
+                        }
                         $newArrayPosition += $length; // recebe a nova posição
 
-                    } // fim do for de linhas
+                    } // fim do for
 
                     // se não preencheu totalmente o ultima iteração, adicionar quantidade de
                     // caracteres preenchido mais 1 espaço
                     if ($characterCounter != $length) {
-                        $espacoLivre = $espacoLivre - ($characterCounter + 1);
+                        $freeSpaceOnLine = $freeSpaceOnLine - ($characterCounter + 1);
                     }
 
-                    if ($espacoLivre == 0){
-                        $line++;
-                        $return[$line] = "";
-                        $espacoLivre=$length;
-                    }
                 }
-            }// fim do for de palavras
+            }// fim do for
 
 
             // O ArrayList de retorno recebe cada linha sem os espacos no inicio e no fim
             for ($i = 0; $i < count($return); $i++) {
                 $return[$i] = trim($return[$i]);
             }
+
+
         } else {
             $return[$line] .= "Por favor, forneça um comprimento válido!";
         }
-
 
         return $return;// retorna o Array
 
