@@ -3,19 +3,19 @@
 namespace Galoa\ExerciciosPhp\TextWrap;
 
 /**
- * Exercicio para vaga de estagio Galoa
+ * Exercicio para vaga de estagio Galoa.
  * @author Gilmar A S Trindade
  */
 class Resolucao implements TextWrapInterface {
-    /**
-     * @param string $text
-     *   O texto que será utilizado como entrada.
-     * @param int $length
-     *   Em quantos caracteres a linha deverá ser quebrada.
-     * @return array
-     *   Um array de strings equivalente ao texto recebido por parâmetro porém
-     *   respeitando o comprimento de linha e as regras especificadas acima.
-     */
+  /**
+   * @param string $text
+   *   O texto que será utilizado como entrada.
+   * @param int $length
+   *   Em quantos caracteres a linha deverá ser quebrada.
+   * @return array
+   *   Um array de strings equivalente ao texto recebido por parâmetro porém
+   *   respeitando o comprimento de linha e as regras especificadas acima.
+   */
     public function textWrap(string $text, int $length): array {
         $return = array(); // Array que retorna uma linha por posição.
         $line = 0; //Essa variavel representa a linha do Array.
