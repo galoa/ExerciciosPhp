@@ -18,6 +18,7 @@ class TextWrapTest extends TestCase {
   public function setUp() {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+    $this->baseString2 = "A maior palavra da lingua portuguesa é pneumoultramicroscopicossilicovulcanoconiótico com 46 letras";
   }
 
   /**
@@ -30,6 +31,17 @@ class TextWrapTest extends TestCase {
     $this->assertEmpty($ret[0]);
     $this->assertCount(1, $ret);
   }
+
+  /**
+   * Checa o retorno de parametros menores que 1.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForEmptyParameters() {
+        $ret = $this->resolucao->textWrap($this->baseString, -1);
+        $this->assertEquals("Por favor, forneça um comprimento válido!", $ret[0]);
+        $this->assertCount(1, $ret);
+ }
 
   /**
    * Testa a quebra de linha para palavras curtas.
@@ -64,6 +76,50 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("ombros de", $ret[4]);
     $this->assertEquals("gigantes", $ret[5]);
     $this->assertCount(6, $ret);
+  }
+
+  /**
+   * Testa a quebra de linha para palavras grandes.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+   public function  testForBigWords() {
+    $ret = $this->resolucao->textWrap($this->baseString2, 8);
+    $this->assertEquals("A maior", $ret[0]);
+    $this->assertEquals("palavra", $ret[1]);
+    $this->assertEquals("da", $ret[2]);
+    $this->assertEquals("lingua", $ret[3]);
+    $this->assertEquals("portugue", $ret[4]);
+    $this->assertEquals("sa é", $ret[5]);
+    $this->assertEquals("pneumoul", $ret[6]);
+    $this->assertEquals("tramicro", $ret[7]);
+    $this->assertEquals("scopicos", $ret[8]);
+    $this->assertEquals("silicovu", $ret[9]);
+    $this->assertEquals("lcanocon", $ret[10]);
+    $this->assertEquals("iótico", $ret[11]);
+    $this->assertEquals("com 46", $ret[12]);
+    $this->assertEquals("letras", $ret[13]);
+    $this->assertCount(14, $ret);
+  }
+
+    /**
+     * Testa a quebra de linha para palavras grandes.
+     *
+     * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+     */
+   public function  testForBigWords2() {
+    $ret = $this->resolucao->textWrap($this->baseString2, 12);
+    $this->assertEquals("A maior", $ret[0]);
+    $this->assertEquals("palavra da", $ret[1]);
+    $this->assertEquals("lingua", $ret[2]);
+    $this->assertEquals("portuguesa é", $ret[3]);
+    $this->assertEquals("pneumoultram", $ret[4]);
+    $this->assertEquals("icroscopicos", $ret[5]);
+    $this->assertEquals("silicovulcan", $ret[6]);
+    $this->assertEquals("oconiótico", $ret[7]);
+    $this->assertEquals("com 46", $ret[8]);
+    $this->assertEquals("letras", $ret[9]);
+    $this->assertCount(10, $ret);
   }
 
 }
