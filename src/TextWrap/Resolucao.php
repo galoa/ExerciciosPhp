@@ -4,71 +4,68 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 
 /**
  * Exercicio para vaga de estagio Galoa.
+ *
  * @author Gilmar A S Trindade
  */
 class Resolucao implements TextWrapInterface {
+
   /**
-   * Está função recebe um texto e o comrpimento que deve conter cada linha e devolve um array se acordo com os paramentro especificados.
+   * Está função recebe um texto e o comrpimento que deve conter cada linha e devolve um
+   * array se acordo com os paramentro especificados.
    * @param string $text
    *   O texto que será utilizado como entrada.
    * @param int $length
    *   Em quantos caracteres a linha deverá ser quebrada.
+   *
    * @return array
    *   Um array de strings equivalente ao texto recebido por parâmetro porém
    *   respeitando o comprimento de linha e as regras especificadas acima.
    */
-
     public function textWrap(string $text, int $length): array {
-        $return = array(); // Array que retorna uma linha por posição.
-        $line = 0; //Essa variavel representa a linha do Array.
-        $return[$line] = ""; //Inicializando o array para não dar erro.
-
+        // Array que retorna uma linha por posição.
+        $return = array();
+        //Essa variavel representa a linha do Array.
+        $line = 0;
+        //Inicializando o array para não dar erro.
+        $return[$line] = "";
         if ($length > 0) {
-
             $freeSpaceOnLine = $length;
-
             //Utilizando explode para separar as palavras no array $text.
             $text = explode(" ", $text);
-
             //Verificando palavra por palavra
             foreach ($text as $word) {
                 $wordLength = mb_strlen($word);
-
                 if ($wordLength <= $length) {
-
                     if ($wordLength < $freeSpaceOnLine) {
                         $return[$line] .= " " . $word;
                         $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
-
                         // Se a palavra for exatamente igual ao tamanho disponivel na linha, adiciona-la.
-                    } else if ($wordLength == $freeSpaceOnLine) {
+                    }
+                    else if ($wordLength == $freeSpaceOnLine) {
                         $return[$line] .= " " . $word;
                         $freeSpaceOnLine -= $wordLength;
-
                         // Se a palavra for maior que o tamanho disponivel, adiciona-lá na proxima linha.
-                    } else if ($wordLength > $freeSpaceOnLine) {
+                    }
+                    else if ($wordLength > $freeSpaceOnLine) {
                         $line++;
                         $return[$line] = "";
                         $return[$line] .= $word;
                         $freeSpaceOnLine = $length;
                         $freeSpaceOnLine = $freeSpaceOnLine - ($wordLength + 1);
-
                     }
-                    //	Se a palavra for maior que o limite de caracteres por linha.
-                } else if ($wordLength > $length) {
-                    $line++;// passa para a proxima.
+                }
+                //	Se a palavra for maior que o limite de caracteres por linha.
+                else if ($wordLength > $length) {
+                    $line++;
                     $return[$line] = "";
-                    $freeSpaceOnLine = $length;// Atualizando o espaço disponivel na linha.
-
-                    $characters = str_split($word);// criando um array com 1 caracter por posição.
-
+                    // Atualizando o espaço disponivel na linha.
+                    $freeSpaceOnLine = $length;
+                    // criando um array com 1 caracter por posição.
+                    $characters = str_split($word);
                     // recebe o número de linhas necessarias.
                     $requiredLines = (strlen($word) - 1) / $length;
-
                     $updatesTheCharacterArray = $freeSpaceOnLine;
-
-                    // zerando as duas variaveis, pois pode haver varias palavras maiores que o
-                    // tamanho maximo.
+                    // zerando as duas variaveis, pois pode haver varias palavras maiores que o tamanho maximo.
                     $lastArrayPosition = 0;
                     $characterCounter = 0;
 
@@ -96,23 +93,20 @@ class Resolucao implements TextWrapInterface {
                             }
                         }
                         $newArrayPosition += $length; // recebe a nova posição.
-
-                    } // fim do for.
-
+                    }
                     // se não preencheu totalmente o ultima iteração, adicionar quantidade de
                     // caracteres preenchido mais 1 espaço.
                     if ($characterCounter != $length) {
                         $freeSpaceOnLine = $freeSpaceOnLine - ($characterCounter + 1);
                     }
                 }
-            }// fim do for.
-
+            }
             // O ArrayList de retorno recebe cada linha sem os espacos no inicio e no fim.
             for ($i = 0; $i < count($return); $i++) {
                 $return[$i] = trim($return[$i]);
             }
-
-        } else {
+        }
+        else {
             $return[$line] .= "Por favor, forneça um comprimento válido!";
         }
         return $return;// retorna o Array.
