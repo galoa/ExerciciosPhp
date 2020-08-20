@@ -11,11 +11,10 @@ class Resolucao implements TextWrapInterface {
 
   /**
    * Está função recebe um texto e o comprimento que deve conter cada linha e
-   * devolve um array se acordo com os paramentro especificados.
+   * devolve um array se acordo com os paramentro especificados.// aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
    *
    * @param string $text
    *   O texto que será utilizado como entrada.
-   *
    * @param int $length
    *   Em quantos caracteres a linha deverá ser quebrada.
    *
@@ -23,13 +22,13 @@ class Resolucao implements TextWrapInterface {
    *   Um array de strings equivalente ao texto recebido por parâmetro porém
    *   respeitando o comprimento de linha e as regras especificadas acima.
    */
-  public function textWrap(string $text, int $length): array {
-      // Array que retorna uma linha por posição.
-      $return = array();
-      //Essa variavel representa a linha do Array.
-      $line = 0;
-      //Inicializando o array para não dar erro.
-      $return[$line] = "";
+    public function textWrap(string $text, int $length): array {
+    // Array que retorna uma linha por posição.
+    $return = array();
+    //Essa variavel representa a linha do Array.
+    $line = 0;
+    //Inicializando o array para não dar erro.
+    $return[$line] = "";
       if ($length > 0) {
           $freeSpaceOnLine = $length;
           //Utilizando explode para separar as palavras no array $text.
