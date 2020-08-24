@@ -88,4 +88,15 @@ class TextWrapTest extends TestCase {
     $this->assertCount(12, $ret);
   }
 
+  /**
+   * Checa o retorno para tamanho inválido.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForEmptyStrings() {
+    $ret = $this->resolucao->textWrap("$this->baseString", 0);
+    $this->assertEmpty($ret[0]);
+    $this->assertCount(1, $ret);
+  }
+
 }

@@ -24,7 +24,7 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    if (empty($text)) {
+    if (empty($text) || $length < 1) {
       return [""];
     }
 
