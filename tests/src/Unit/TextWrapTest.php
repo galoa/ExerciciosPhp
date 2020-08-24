@@ -93,7 +93,7 @@ class TextWrapTest extends TestCase {
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
-  public function testForEmptyStrings() {
+  public function testForInvalidLength() {
     $ret = $this->resolucao->textWrap("$this->baseString", 0);
     $this->assertEmpty($ret[0]);
     $this->assertCount(1, $ret);
