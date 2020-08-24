@@ -27,7 +27,7 @@ class Resolucao implements TextWrapInterface {
     if (empty($text)) {
       return [""];
     }
-    
+
     $retorno = [];
     $palavras = explode(" ", $text);
 
