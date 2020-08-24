@@ -33,22 +33,23 @@ class Resolucao implements TextWrapInterface {
 
     foreach ($palavras as $palavra) {
       if (mb_strlen($palavra, "UTF-8") <= $length) {
-        if (empty($retorno)) { 
+        if (empty($retorno)) {
           array_push($retorno, $palavra);
-        } 
+        }
         else {
           $contador = count($retorno) - 1;
           $textoNovo = $retorno[$contador] . " " . $palavra;
 
           if (mb_strlen($textoNovo, "UTF-8") <= $length) {
             $retorno[$contador] = $textoNovo;
-          } else {
+          }
+          else {
             array_push($retorno, $palavra);
           }
         }
       }
       else {
-        while (mb_strlen ($palavra, "UTF-8") > $length) {
+        while (mb_strlen($palavra, "UTF-8") > $length) {
           $palavraQuebrada = substr($palavra, 0, $length);
           array_push($retorno, $palavraQuebrada);
           $palavra = substr($palavra, $length);
