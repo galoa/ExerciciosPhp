@@ -66,4 +66,37 @@ class TextWrapTest extends TestCase {
     $this->assertCount(6, $ret);
   }
 
+  /**
+   * Testa quebra de linha para palavras maior do que o limite.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForWordsWithSizeGraterThanLimit() {
+    $ret = $this->resolucao->textWrap($this->baseString, 6);
+    $this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
+    $this->assertEquals("longe", $ret[2]);
+    $this->assertEquals("foi", $ret[3]);
+    $this->assertEquals("por", $ret[4]);
+    $this->assertEquals("estar", $ret[5]);
+    $this->assertEquals("de pé", $ret[6]);
+    $this->assertEquals("sobre", $ret[7]);
+    $this->assertEquals("ombros", $ret[8]);
+    $this->assertEquals("de", $ret[9]);
+    $this->assertEquals("gigant", $ret[10]);
+    $this->assertEquals("es", $ret[11]);
+    $this->assertCount(12, $ret);
+  }
+
+  /**
+   * Checa o retorno para tamanho inválido.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForInvalidLength() {
+    $ret = $this->resolucao->textWrap("$this->baseString", 0);
+    $this->assertEmpty($ret[0]);
+    $this->assertCount(1, $ret);
+  }
+
 }

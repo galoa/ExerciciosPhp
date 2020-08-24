@@ -24,44 +24,42 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
+    if (empty($text) || $length < 1) {
+      return [""];
     }
 
-    return [""];
+    $retorno = [];
+    $palavras = explode(" ", $text);
+
+    foreach ($palavras as $palavra) {
+      if (mb_strlen($palavra, "UTF-8") <= $length) {
+        if (empty($retorno)) {
+          array_push($retorno, $palavra);
+        }
+        else {
+          $contador = count($retorno) - 1;
+          $textoNovo = $retorno[$contador] . " " . $palavra;
+
+          if (mb_strlen($textoNovo, "UTF-8") <= $length) {
+            $retorno[$contador] = $textoNovo;
+          }
+          else {
+            array_push($retorno, $palavra);
+          }
+        }
+      }
+      else {
+        while (mb_strlen($palavra, "UTF-8") > $length) {
+          $palavraQuebrada = substr($palavra, 0, $length);
+          array_push($retorno, $palavraQuebrada);
+          $palavra = substr($palavra, $length);
+        }
+
+        array_push($retorno, $palavra);
+      }
+    }
+
+    return $retorno;
   }
 
 }
