@@ -24,25 +24,23 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    $retorno= array();
-    $palavras = explode(" ",$text);
-    $retorno = array();
+    $retorno = [];
+    $palavras = explode(" ", $text);
 
     if (empty($text)) {
       return $retorno;
     }
 
-    foreach($palavras as $palavra){          
-      $textoNovo="";
-
+    foreach ($palavras as $palavra) {
       if (mb_strlen($palavra, "UTF-8") <= $length) {
-        if(empty($retorno)) {
+        if (empty($retorno)) { 
           array_push($retorno, $palavra);
-        } else {
+        } 
+        else {
           $contador = count($retorno) - 1;
           $textoNovo = $retorno[$contador] . " " . $palavra;
 
-          if(mb_strlen($textoNovo, "UTF-8") <= $length) {
+          if (mb_strlen($textoNovo, "UTF-8") <= $length) {
             $retorno[$contador] = $textoNovo;
           } else {
             array_push($retorno, $palavra);
@@ -50,10 +48,10 @@ class Resolucao implements TextWrapInterface {
         }
       }
       else {
-        while(mb_strlen ($palavra, "UTF-8") > $length) {
+        while (mb_strlen ($palavra, "UTF-8") > $length) {
           $palavraQuebrada = substr($palavra, 0, $length);
           array_push($retorno, $palavraQuebrada);
-          $palavra = substr($palavra,$length);
+          $palavra = substr($palavra, $length);
         }
 
         array_push($retorno, $palavra);
