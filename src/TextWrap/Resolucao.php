@@ -51,6 +51,9 @@ class Resolucao implements TextWrapInterface {
                     }
                 }              
             }
+            if ($text[$i + 1] == ' ') {
+                $i += 1;
+            }
             // gera linha
             $resultado[$posicao] = implode($caracter);
             // prepara variáveis para iniciar uma nova linha
@@ -63,5 +66,5 @@ class Resolucao implements TextWrapInterface {
         }
     }
     return $resultado;
-  } 
-}
+  }
+  
