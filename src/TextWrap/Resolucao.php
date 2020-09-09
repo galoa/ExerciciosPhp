@@ -60,10 +60,10 @@ class Resolucao implements TextWrapInterface {
         $caracter = [];
         $posicao++;
         // Construção da última linha.
-      } 
-        elseif ($i == (strlen($text)) - 1) {
-          $resultado[$posicao] = implode($caracter);
       }
+      elseif ($i == (strlen($text)) - 1) {
+        $resultado[$posicao] = implode($caracter);
+        }
     }
     return $resultado;
   }
