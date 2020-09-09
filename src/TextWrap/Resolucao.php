@@ -63,7 +63,7 @@ class Resolucao implements TextWrapInterface {
       }
       elseif ($i == (strlen($text)) - 1) {
         $resultado[$posicao] = implode($caracter);
-        }
+      }
     }
     return $resultado;
   }
