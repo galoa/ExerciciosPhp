@@ -23,12 +23,12 @@ class Resolucao implements TextWrapInterface {
    * nós colocamos esse mock para poder rodar a análise de cobertura dos
    * testes unitários.
    */
-  function textWrap(string $text, int $length): array {
-    $resultado = []; // array com resultado desejado
-    $caracter = []; // array da string de entrada
-    $posicaoCaracter = 1; //posição do caracter na linha
-    $posicao = 0; // posição das linhas do array resultado
-    $resultado[$posicao] = ''; // cada linha do array resultado
+  public function textWrap(string $text, int $length): array {
+    $resultado = [];  // Array com resultado desejado.
+    $caracter = []; // Array da string de entrada.
+    $posicaoCaracter = 1; // Posição do caracter na linha.
+    $posicao = 0; // Posição das linhas do array resultado.
+    $resultado[$posicao] = ''; // Cada linha do array resultado.
     
     // loop para criar o array da string
     for ($i = 0; $i < strlen($text); $i++) {
