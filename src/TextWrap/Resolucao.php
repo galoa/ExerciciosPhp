@@ -28,24 +28,23 @@ class Resolucao implements TextWrapInterface {
     $caracter = []; // Array da string de entrada.
     $posicaoCaracter = 1; // Posição do caracter na linha.
     $posicao = 0; // Posição das linhas do array resultado.
-    $resultado[$posicao] = ''; // Cada linha do array resultado.
-    
-    // loop para criar o array da string
+    $resultado[$posicao] = ''; // Cada linha do array resultado.    
+    // Loop para criar o array da string.
     for ($i = 0; $i < strlen($text); $i++) {
-        $caracter[$posicaoCaracter] = $text[$i];
-        $posicaoCaracter++;      
-        // verifica se a linha já atingiu o tamanho estipulado  
-        if (($posicaoCaracter - 1) == $length) {
-            // verifica se a linha tem espaços entre as palavras
-            if (in_array(' ', $caracter)) {
-                // verifica se o próximo caracter é ' '
-                if (isset($text[$i + 1]) && $text[$i + 1] != ' ') {
-                    // elimina ' ' da linha evitando corte de palavras
-                    for ($e = count($caracter); $e > 0; $e--) {
-                        if ($caracter[$e] == ' ') {
-                            $i -= $length - $e;
-                            array_pop($caracter);
-                            break;
+      $caracter[$posicaoCaracter] = $text[$i];
+      $posicaoCaracter++;      
+      // Verifica se a linha já atingiu o tamanho estipulado.  
+      if (($posicaoCaracter - 1) == $length) {
+          // Verifica se a linha tem espaços entre as palavras.
+          if (in_array(' ', $caracter)) {
+              // Verifica se o próximo caracter é ' '.
+              if (isset($text[$i + 1]) && $text[$i + 1] != ' ') {
+                  // Elimina ' ' da linha evitando corte de palavras.
+                  for ($e = count($caracter); $e > 0; $e--) {
+                      if ($caracter[$e] == ' ') {
+                          $i -= $length - $e;
+                          array_pop($caracter);
+                          break;
                         }    
                         array_pop($caracter);     
                     }
