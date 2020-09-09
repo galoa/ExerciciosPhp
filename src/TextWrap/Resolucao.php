@@ -45,8 +45,8 @@ class Resolucao implements TextWrapInterface {
                 $i -= $length - $e;
                 array_pop($caracter);
                 break;
-                }
-                array_pop($caracter);
+              }
+              array_pop($caracter);
             }
           }
         }
@@ -60,9 +60,10 @@ class Resolucao implements TextWrapInterface {
         $caracter = [];
         $posicao++;
         // Construção da última linha.
-      } elseif ($i == (strlen($text)) - 1) {
+      } 
+        elseif ($i == (strlen($text)) - 1) {
           $resultado[$posicao] = implode($caracter);
-        }
+      }
     }
     return $resultado;
   }
