@@ -15,9 +15,11 @@ class TextWrapTest extends TestCase {
   /**
    * Test Setup.
    */
-  public function setUp() {
+  public function setUp(): void {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+    $this->baseTwoString = "Problemas se dissolvem no mar do infinito Ao se beber da água desse rio colorido";
+    $this->baseThreeString = "Lidando com o passado, viro luz no espaço escuro Projeto os caminhos que se abrem pro futuro";
   }
 
   /**
@@ -66,4 +68,46 @@ class TextWrapTest extends TestCase {
     $this->assertCount(6, $ret);
   }
 
-}
+  /**
+   * Testa a quebra de linha para palavras longas.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForBigWords() {
+    $ret = $this->resolucao->textWrap($this->baseTwoString, 7);
+    $this->assertEquals("Problem", $ret[0]);
+    $this->assertEquals("as se d", $ret[1]);
+    $this->assertEquals("issolve", $ret[2]);
+    $this->assertEquals("m no", $ret[3]);
+    $this->assertEquals("mar do", $ret[4]);
+    $this->assertEquals("infinit", $ret[5]);
+    $this->assertEquals("o Ao se", $ret[6]);
+    $this->assertEquals("beber", $ret[7]);
+    $this->assertEquals("da água", $ret[8]);
+    $this->assertEquals("desse", $ret[9]);
+    $this->assertEquals("rio col", $ret[10]);
+    $this->assertEquals("orido", $ret[11]);
+    $this->assertCount(12, $ret);
+  }
+
+  /**
+   * Testa a quebra de linha para palavras longas.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForBigWords2() {
+    $ret = $this->resolucao->textWrap($this->baseThreeString, 12);
+    $this->assertEquals("Lidando com", $ret[0]);
+    $this->assertEquals("o passado,", $ret[1]);
+    $this->assertEquals("viro luz no", $ret[2]);
+    $this->assertEquals("espaço", $ret[3]);
+    $this->assertEquals("escuro", $ret[4]);
+    $this->assertEquals("Projeto os", $ret[5]);
+    $this->assertEquals("caminhos que", $ret[6]);
+    $this->assertEquals("se abrem pro", $ret[7]);
+    $this->assertEquals("futuro", $ret[8]);
+    $this->assertCount(9, $ret);
+  }
+}   
+
+
