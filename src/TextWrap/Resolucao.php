@@ -17,8 +17,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 class Resolucao implements TextWrapInterface {
 
   /**
-   * A função textWrap quebra uma string em diversas strings com tamanho
-   * especificado.
+   * A função textWrap quebra uma string em outras com tamanho desejado.
    *
    * A função garantirá:
    * - Retorno de todo o texto, com o máximo de palavras por linha, mas sem
@@ -33,15 +32,15 @@ class Resolucao implements TextWrapInterface {
    *   O texto que será utilizado como entrada.
    * @param int $length
    *   Em quantos caracteres a linha deverá ser quebrada.
-   *          
+   *
    * @return array
    *   Um array de strings equivalente ao texto recebido por parâmetro porém
    *   respeitando o comprimento de linha e as regras especificadas acima.
    */
   public function textWrap(string $text, int $length): array {
     $somaCaracteres = -1;
-    $linha = [ ];
-    $vetorLinhas = [ ];
+    $linha = [];
+    $vetorLinhas = [];
     $vetorPalavras = explode(" ", $text);
 
     foreach ($vetorPalavras as $palavra) {
@@ -69,7 +68,7 @@ class Resolucao implements TextWrapInterface {
           $stringLinhaConvertida = implode(" ", $linha);
 
           array_push($vetorLinhas, $stringLinhaConvertida);
-          $linha = [ ];
+          $linha = [];
           $pedacoPalavra = substr($palavra, $posicaoQuebraPalavra, $length);
 
           array_push($linha, $pedacoPalavra);
