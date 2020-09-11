@@ -50,8 +50,9 @@ class Resolucao implements TextWrapInterface {
               }
               array_pop($caracter);
             }
-          } else {
-              $i += 1;
+          } 
+          else {
+            $i += 1;
           }
         }
         // Gera linha.
