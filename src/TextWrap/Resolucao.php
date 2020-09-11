@@ -29,6 +29,8 @@ class Resolucao implements TextWrapInterface {
     $posicaoCaracter = 1;
     $posicao = 0;
     $resultado[$posicao] = '';
+    // Ajustando tamanho da string.
+    $text = utf8_decode($text);
     // Loop para criar o array da string.
     for ($i = 0; $i < strlen($text); $i++) {
       $caracter[$posicaoCaracter] = $text[$i];
@@ -48,13 +50,12 @@ class Resolucao implements TextWrapInterface {
               }
               array_pop($caracter);
             }
+          } else {
+              $i += 1;
           }
         }
-        if ($text[$i + 1] == ' ') {
-          $i += 1;
-        }
         // Gera linha.
-        $resultado[$posicao] = implode($caracter);
+        $resultado[$posicao] = utf8_encode(implode($caracter));
         // Prepara variáveis para iniciar uma nova linha.
         $posicaoCaracter = 1;
         $caracter = [];
