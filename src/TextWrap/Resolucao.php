@@ -50,7 +50,7 @@ class Resolucao implements TextWrapInterface {
               }
               array_pop($caracter);
             }
-          } 
+          }
           else {
             $i += 1;
           }
