@@ -24,7 +24,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 /**
  * Interface para implementar a função textWrap().
  */
-interface ResolucaoInterface {
+interface Resolucao {
 
   /**
    * Função textWrap() que necessita um string e um int como parâmetros e retorna um array.
@@ -39,17 +39,17 @@ interface ResolucaoInterface {
 class Values {
 
   /**
-   * Variável $text que recebe valores string.
+   * @var $text que recebe valores string.
    */
   private $text = "";
 
   /**
-   * Variável $originalLength que recebe valores int.
+   * @var $originalLength que recebe valores int.
    */
   private $originalLength = 0;
 
   /**
-   * Variável $length que recebe valores int.
+   * @var $length que recebe valores int.
    */
   private $length = 0;
 
@@ -98,21 +98,20 @@ class Values {
 }
 
 /**
- * Classe Resolucao que implementa a interface ResolucaoInterface, sendo assim, possível
- * implementar a função abstrata textWrap().
+ * Classe Resolucao que implementa a interface Resolucao, sendo assim, possível implementar a
+ * função abstrata textWrap().
  */
-class Resolucao implements ResolucaoInterface {
+class Resolucao implements Resolucao {
 
   /**
    * Função abstrata textWrap() responsável por, a partir de um número definido de caracteres por
    * linha, separa o texto em palavras divididas por espaços com as seguintes regras:
-   * - Retorne o todo o texto, com o máximo de palavras por linha, mas sem
-   *   nunca extrapolar o limite de caracteres.
-   * - Se uma palavra não couber na linha e o comprimento dela for menor que o
-   *   limite de caracteres, ela não deve ser cortada, e sim jogada para a
-   *   próxima linha.
-   * - Se a palavra for maior que o limite de caracteres por linha, corte a
-   *   palavra e continue a imprimi-la na linha seguinte.
+   * - Retorne o todo o texto, com o máximo de palavras por linha, mas sem nunca extrapolar o
+   * limite de caracteres.
+   * - Se uma palavra não couber na linha e o comprimento dela for menor que o limite de
+   * caracteres, ela não deve ser cortada, e sim jogada para a próxima linha.
+   * - Se a palavra for maior que o limite de caracteres por linha, corte a palavra e continue a
+   * imprimi-la na linha seguinte.
    */
   public function textWrap(string $text, int $length): array {
     $values = new Values();
