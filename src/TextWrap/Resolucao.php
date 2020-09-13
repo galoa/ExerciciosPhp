@@ -115,7 +115,7 @@ class Values {
  *
  * Sendo assim, possível implementar a função abstrata textWrap().
  */
-class TextWrap implements Resolucao {
+class TextWrapResolucao implements Resolucao {
 
   /**
    * A partir de um número definido de caracteres por linha.
