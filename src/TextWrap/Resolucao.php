@@ -22,62 +22,66 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 <?php
 
 /**
- * Interface para implementar a função textWrap
+ * Interface para implementar a função textWrap.
  */
-interface TextWrapInterface { 
+interface Resolucao {
 
   /**
-   * Função textWrap() que necessita um string e um int como parâmetros e retorna um array
+   * Função textWrap() que necessita um string e um int como parâmetros e retorna
+   * um array.
    */
   public function textWrap(string $text, int $length): array; 
 
 }
 
 /**
- * Classe que inicia as variáveis utilizadas no código como: $text, $length e $originalLength
+ * Classe que inicia as variáveis utilizadas no código como: $text, $length 
+ * e $originalLength.
  */
 class Values {
-  private $text = "";
-  private $originalLength = 0;
-  private $length = 0;
+  private $text = ""; //Variável $text que recebe valores string
+  private $originalLength = 0; //Variável $text que recebe valores int
+  private $length = 0; //Variável $text que recebe valores int
 
   /**
-   * Função getText(), para chamar o valor da variável $text
+   * Função getText(), para chamar o valor da variável $text.
    */
   public function getText() {
     return $this->text;
   }
 
   /**
-   * Função setText(), para alterar o valor da variável $text
+   * Função setText(), para alterar o valor da variável $text.
    */
   public function setText(string $text) {
     $this->text = $text;
   }
 
   /**
-   * Função getOriginalLength(), para chamar o valor da variável $originalLength
+   * Função getOriginalLength(), para chamar o valor da variável 
+   * $originalLength.
    */
   public function getOriginalLength() {
     return $this->originalLength;
   }
 
   /**
-   * Função setOriginalLength(), para alterar o valor da variável $originalLength
+   * Função setOriginalLength(), para alterar o valor da variável
+   * $originalLength.
    */
   public function setOriginalLength(int $originalLength) {
     $this->originalLength = $originalLength;
   }
 
   /**
-   * Função getLength(), para chamar o valor da variável $length
+   * Função getLength(), para chamar o valor da variável $length.
    */
   public function getLength() {
     return $this->length;
   }
 
   /**
-   * Função setLength(), para alterar o valor da variável $length
+   * Função setLength(), para alterar o valor da variável $length.
    */
   public function setLength(int $length) {
     $this->length = $length;
@@ -86,14 +90,15 @@ class Values {
 }
 
 /**
- * Classe Resolução que implementa a interface TextWrapInterface sendo assim possível implementar 
- * a função abstrata textWrap()
+ * Classe Resolucao que implementa a interface Resolucao sendo assim
+ * possível implementar a função abstrata textWrap().
  */
-class Resolucao implements TextWrapInterface {
+class Resolucao implements Resolucao {
 
   /**
-   * Função abstrata textWrap() responsável por, a partir de um número definido de caracteres por 
-   * linha, separa o texto em palavras divididas por espaços com as seguintes regras:
+   * Função abstrata textWrap() responsável por, a partir de um número definido 
+   * de caracteres por linha, separa o texto em palavras divididas por espaços 
+   * com as seguintes regras:
    * - Retorne o todo o texto, com o máximo de palavras por linha, mas sem
    *   nunca extrapolar o limite de caracteres.
    * - Se uma palavra não couber na linha e o comprimento dela for menor que o
@@ -121,13 +126,13 @@ class Resolucao implements TextWrapInterface {
       elseif (strlen($array[$i]) > $values->getLength() && strlen($array[$i]) <= $values->getOriginalLength()) {
         $sortedArray = $sortedArray . "<br/>" . $array[$i];
         $values->setLength($values->getOriginalLength() - strlen($array[$i]));
-      } 
+      }
 
       elseif (strlen($array[$i]) > $values->getOriginalLength() && strlen($array[$i]) > $values->getLength()) {
         $bigArray = str_split($array[$i]);
 
-        for ($j = 0; $j < count($bigArray); $j++) { 
-          if (sizeof($bigArray) <= $values->getLength()) {
+        for ($j = 0; $j < count($bigArray); $j++) {
+          if (count($bigArray) <= $values->getLength()) {
             $sortedArray = $sortedArray . $bigArray[$j];
             $values->setLength($values->getLength() - strlen($bigArray[$j]));
           }
@@ -135,7 +140,7 @@ class Resolucao implements TextWrapInterface {
           else {
             $k = 1;
 
-            if ($k <= $values->getLength() && $k <= sizeof($bigArray)) {
+            if ($k <= $values->getLength() && $k <= count($bigArray)) {
               $sortedArray = $sortedArray . $bigArray[$j];
               $values->setLength($values->getLength() - strlen($bigArray[$j]));
 
