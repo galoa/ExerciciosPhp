@@ -39,22 +39,25 @@ interface Resolucao {
 class Values {
 
   /**
-   * Variável:
-   * @var $text
+   * Variável.
+   *
+   * @var text
    *  O texto que será utilizado como entrada.
    */
   private $text = "";
 
   /**
-   * Variável:
-   * @var $originalLength
+   * Variável.
+   *
+   * @var originalLength
    *  O valor original de quantos caracteres a linha deverá ser quebrada.
    */
   private $originalLength = 0;
 
   /**
-   * Variável:
-   * @var $length
+   * Variável.
+   *
+   * @var length
    *  O valor atualizado de quantos caracteres faltam para a linha deverá ser quebrada.
    */
   private $length = 0;
@@ -111,10 +114,8 @@ class Resolucao implements Resolucao {
   /**
    * Função abstrata textWrap() responsável por, a partir de um número definido de caracteres por
    * linha, separa o texto em palavras divididas por espaços com as seguintes regras:
-   * - Retorne o todo o texto, com o máximo de palavras por linha, mas sem nunca extrapolar o
-   * limite de caracteres.
-   * - Se uma palavra não couber na linha e o comprimento dela for menor que o limite de
-   * caracteres, ela não deve ser cortada, e sim jogada para a próxima linha.
+   * - Retorne o todo o texto, com o máximo de palavras por linha, mas sem nunca extrapolar o limite de caracteres.
+   * - Se uma palavra não couber na linha e o comprimento dela for menor que o limite de caracteres, ela não deve ser cortada, e sim jogada para a próxima linha.
    * - Se a palavra for maior que o limite de caracteres por linha, corte a palavra e continue a imprimi-la na linha seguinte.
    */
   public function textWrap(string $text, int $length): array {
