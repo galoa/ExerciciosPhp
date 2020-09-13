@@ -1,5 +1,7 @@
 <?php
-  namespace Galoa\ExerciciosPhp\TextWrap;
+
+namespace Galoa\ExerciciosPhp\TextWrap;
+
 ?>
 
 <!DOCTYPE html>
@@ -18,111 +20,99 @@
 </html>
 
 <?php
-/**
- * Implemente sua resolução nessa classe.
- *
- * Depois disso:
- * - Crie um PR no github com seu código
- * - Veja o resultado da correção automática do seu código
- * - Commit até os testes passarem
- * - Passou tudo, melhore a cobertura dos testes
- * - Ficou satisfeito, envie seu exercício para a gente! <3
- *
- * Boa sorte :D
- */
 
-  interface TextWrapInterface {
-    public function textWrap(string $text, int $length): array;
+interface TextWrapInterface {
+
+  public function textWrap(string $text, int $length): array;
+}
+
+class Values {
+  private $text = "";
+  private $originalLength = 0;
+  private $length = 0;
+
+  public function getText() {
+    return $this->text;
   }
 
-  class Values {
-    private $text = "";
-    private $originalLength = 0;
-    private $length = 0;
-
-    public function getText() {
-      return $this->text;
-    }
-
-    public function setText(string $text) {
-      $this->text = $text;
-    }
-
-    public function getOriginalLength() {
-      return $this->originalLength;
-    }
-
-    public function setOriginalLength(int $originalLength) {
-      $this->originalLength = $originalLength;
-    }
-
-    public function getLength() {
-      return $this->length;
-    }
-
-    public function setLength(int $length) {
-      $this->length = $length;
-    }
+  public function setText(string $text) {
+    $this->text = $text;
   }
 
-  class Resolucao implements TextWrapInterface {
-    public function textWrap(string $text, int $length): array {
-      $values = new Values();
+  public function getOriginalLength() {
+    return $this->originalLength;
+  }
 
-      $values->setText($_GET["text"]);
-      $values->setOriginalLength($_GET["length"]);
-      $values->setLength($values->getOriginalLength());
+  public function setOriginalLength(int $originalLength) {
+    $this->originalLength = $originalLength;
+  }
 
-      $array = explode(" ", $values->getText());
-      $sortedArray = "";
+  public function getLength() {
+    return $this->length;
+  }
 
-      for ($i = 0; $i < sizeof($array); $i++) { 
-        if (strlen($array[$i]) <= $values->getLength()) {
-          $sortedArray = $sortedArray.$array[$i];
-          $values->setLength($values->getLength() - strlen($array[$i]));
+  public function setLength(int $length) {
+    $this->length = $length;
+  }
+}
 
-        } elseif (strlen($array[$i]) > $values->getLength() && 
-           strlen($array[$i]) <= $values->getOriginalLength()) {
-              $sortedArray = $sortedArray."<br/>".$array[$i];
-              $values->setLength($values->getOriginalLength() - strlen($array[$i]));
+class Resolucao implements TextWrapInterface {
+  public function textWrap(string $text, int $length): array {
+    $values = new Values();
 
-        } elseif (strlen($array[$i]) > $values->getOriginalLength() &&
-           strlen($array[$i]) > $values->getLength()) {
-              $bigArray = str_split($array[$i]);
+    $values->setText($_GET["text"]);
+    $values->setOriginalLength($_GET["length"]);
+    $values->setLength($values->getOriginalLength());
 
-              for ($j = 0; $j < sizeof($bigArray); $j++) { 
-                 if (sizeof($bigArray) <= $values->getLength()) {
-                    $sortedArray = $sortedArray.$bigArray[$j];
+    $array = explode(" ", $values->getText());
+    $sortedArray = "";
+
+    for ($i = 0; $i < sizeof($array); $i++) { 
+      if (strlen($array[$i]) <= $values->getLength()) {
+        $sortedArray = $sortedArray . $array[$i];
+        $values->setLength($values->getLength() - strlen($array[$i]));
+
+      } elseif (strlen($array[$i]) > $values->getLength() && 
+         strlen($array[$i]) <= $values->getOriginalLength()) {
+            $sortedArray = $sortedArray . "<br/>" . $array[$i];
+            $values->setLength($values->getOriginalLength() - strlen($array[$i]));
+
+      } elseif (strlen($array[$i]) > $values->getOriginalLength() &&
+         strlen($array[$i]) > $values->getLength()) {
+            $bigArray = str_split($array[$i]);
+
+            for ($j = 0; $j < sizeof($bigArray); $j++) { 
+               if (sizeof($bigArray) <= $values->getLength()) {
+                  $sortedArray = $sortedArray . $bigArray[$j];
+                  $values->setLength($values->getLength() - strlen($bigArray[$j]));
+
+               } else {
+                  $k = 1;
+
+                  if ($k <= $values->getLength() && $k <= sizeof($bigArray)) {
+                    $sortedArray = $sortedArray . $bigArray[$j];
                     $values->setLength($values->getLength() - strlen($bigArray[$j]));
 
-                 } else {
-                    $k = 1;
+                    $k++;
 
-                    if ($k <= $values->getLength() && $k <= sizeof($bigArray)) {
-                      $sortedArray = $sortedArray.$bigArray[$j];
-                      $values->setLength($values->getLength() - strlen($bigArray[$j]));
+                  } else {
+                    $sortedArray = $sortedArray . "<br/>" . $bigArray[$j];
+                    $values->setLength($values->getOriginalLength() - strlen($bigArray[$j]));
+                  }
+               }
+            }
+         }
 
-                      $k++;
-
-                    } else {
-                      $sortedArray = $sortedArray."<br/>".$bigArray[$j];
-                      $values->setLength($values->getOriginalLength() - strlen($bigArray[$j]));
-                    }
-                 }
-              }
-           }
-
-        $sortedArray = $sortedArray." ";
-        $values->setLength($values->getLength() - 1);
-      }
-
-      return str_split($sortedArray);
+      $sortedArray = $sortedArray . " ";
+      $values->setLength($values->getLength() - 1);
     }
-  }
-  
-  $values = new Values();
-  $textWrap = new Resolucao();
 
-  echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
-  printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
-?>
+    return str_split($sortedArray);
+  }
+}
+
+$values = new Values();
+$textWrap = new Resolucao();
+
+echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
+printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
