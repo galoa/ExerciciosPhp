@@ -24,26 +24,33 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 /**
  * Interface para implementar a função textWrap().
  */
-interface InterfaceResolucao {
+interface ResolucaoInterface {
 
   /**
-   * Função textWrap() que necessita um string e um int como
-   * parâmetros e retorna um array.
+   * Função textWrap() que necessita um string e um int como parâmetros e retorna um array.
    */
   public function textWrap(string $text, int $length): array;
 
 }
 
 /**
- * Classe que inicia as variáveis utilizadas no código como:
- * $text, $length e $originalLength.
+ * Classe que inicia as variáveis utilizadas no código como: $text, $length e $originalLength.
  */
 class Values {
-  //Variável $text que recebe valores string.
+
+  /**
+   * Variável $text que recebe valores string.
+   */
   private $text = "";
-  //Variável $originalLength que recebe valores int.
+
+  /**
+   * Variável $originalLength que recebe valores int.
+   */
   private $originalLength = 0;
-  //Variável $length que recebe valores int.
+
+  /**
+   * Variável $length que recebe valores int.
+   */
   private $length = 0;
 
   /**
@@ -61,16 +68,14 @@ class Values {
   }
 
   /**
-   * Função getOriginalLength(), para chamar o valor da
-   * variável $originalLength.
+   * Função getOriginalLength(), para chamar o valor da variável $originalLength.
    */
   public function getOriginalLength() {
     return $this->originalLength;
   }
 
   /**
-   * Função setOriginalLength(), para alterar o valor da
-   * variável $originalLength.
+   * Função setOriginalLength(), para alterar o valor da variável $originalLength.
    */
   public function setOriginalLength(int $originalLength) {
     $this->originalLength = $originalLength;
@@ -93,15 +98,14 @@ class Values {
 }
 
 /**
- * Classe Resolucao que implementa a interface InterfaceResolucao,
- * sendo assim, possível implementar a função abstrata textWrap().
+ * Classe Resolucao que implementa a interface ResolucaoInterface, sendo assim, possível
+ * implementar a função abstrata textWrap().
  */
-class Resolucao implements InterfaceResolucao {
+class Resolucao implements ResolucaoInterface {
 
   /**
-   * Função abstrata textWrap() responsável por, a partir de um número definido
-   * de caracteres por linha, separa o texto em palavras divididas por espaços
-   * com as seguintes regras:
+   * Função abstrata textWrap() responsável por, a partir de um número definido de caracteres por
+   * linha, separa o texto em palavras divididas por espaços com as seguintes regras:
    * - Retorne o todo o texto, com o máximo de palavras por linha, mas sem
    *   nunca extrapolar o limite de caracteres.
    * - Se uma palavra não couber na linha e o comprimento dela for menor que o
