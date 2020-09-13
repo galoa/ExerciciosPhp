@@ -1,5 +1,7 @@
 <?php
-   namespace Galoa\ExerciciosPhp\TextWrap; 
+
+namespace Galoa\ExerciciosPhp\TextWrap;
+
 ?>
 
 <!DOCTYPE html>
@@ -19,131 +21,176 @@
 
 <?php
 
-   /**
-    * Define uma interface para o exercício de quebra de linha.
-    */
+/**
+ * Interface para implementar a função textWrap().
+ */
+interface Resolucao {
 
-   interface TextWrapInterface {
+  /**
+   * Função textWrap() que necessita um string e um int como parâmetros.
+   *
+   * Retornando um array.
+   */
+  public function textWrap(string $text, int $length): array;
 
-     /**
-      * Quebra uma string em diversas strings com tamanho passado por parâmetro.
-      *
-      * Suponha que você tenha uma string com um texto bastante longo. Você quer
-      * imprimir na tela todo o texto, mas garantir um limite máximo de N
-      * caracteres por linha.
-      *
-      * Alguns pontos que você deve ter em mente:
-      * - Retorne o todo o texto, com o máximo de palavras por linha, mas sem
-      *   nunca extrapolar o limite de caracteres.
-      * - Se uma palavra não couber na linha e o comprimento dela for menor que o
-      *   limite de caracteres, ela não deve ser cortada, e sim jogada para a
-      *   próxima linha.
-      * - Se a palavra for maior que o limite de caracteres por linha, corte a
-      *   palavra e continue a imprimi-la na linha seguinte.
-      * - Não utilize funções prontas, como p.ex. o wordwrap do PHP. O objetivo
-      *   deste exercício é que você desenvolva o algoritmo indicado.
-      *
-      * @param string $text
-      *   O texto que será utilizado como entrada.
-      * @param int $length
-      *   Em quantos caracteres a linha deverá ser quebrada.
-      *
-      * @return array
-      *   Um array de strings equivalente ao texto recebido por parâmetro porém
-      *   respeitando o comprimento de linha e as regras especificadas acima.
-      */
+}
 
-      public function textWrap(string $text, int $length): array;
-   }
+/**
+ * Classe que inicia as variáveis utilizadas no código como.
+ *
+ * $text, $length e $originalLength.
+ */
+class Values {
 
-   class Values {
-      private $text = "";
-      private $originalLength = 0;
-      private $length = 0;
+  /**
+   * Variável.
+   *
+   * @var text
+   *  O texto que será utilizado como entrada.
+   */
+  private $text = "";
 
-      public function getText() {
-         return $this->text;
+  /**
+   * Variável.
+   *
+   * @var originalLength
+   *  O valor original de quantos caracteres a linha deverá ser quebrada.
+   */
+  private $originalLength = 0;
+
+  /**
+   * Variável.
+   *
+   * @var length
+   *  O valor atualizado de quantos caracteres faltam para a linha ser quebrada.
+   */
+  private $length = 0;
+
+  /**
+   * Chama o valor da variável $text.
+   */
+  public function getText() {
+    return $this->text;
+  }
+
+  /**
+   * Altera o valor da variável $text.
+   */
+  public function setText(string $text) {
+    $this->text = $text;
+  }
+
+  /**
+   * Chama o valor da variável $originalLength.
+   */
+  public function getOriginalLength() {
+    return $this->originalLength;
+  }
+
+  /**
+   * Altera o valor da variável $originalLength.
+   */
+  public function setOriginalLength(int $originalLength) {
+    $this->originalLength = $originalLength;
+  }
+
+  /**
+   * Chama o valor da variável $length.
+   */
+  public function getLength() {
+    return $this->length;
+  }
+
+  /**
+   * Altera o valor da variável $length.
+   */
+  public function setLength(int $length) {
+    $this->length = $length;
+  }
+
+}
+
+/**
+ * Classe Resolucao que implementa a interface Resolucao.
+ *
+ * Sendo assim, possível implementar a função abstrata textWrap().
+ */
+class Resolucao implements Resolucao {
+
+  /**
+   * A partir de um número definido de caracteres por linha.
+   *
+   * Separa o texto em palavras divididas por espaços com as seguintes regras:
+   * - Retorne o todo o texto, com o máximo de palavras por linha.
+   *
+   * Mas sem nunca extrapolar o limite de caracteres.
+   * - Se uma palavra não couber na linha.
+   * E o comprimento dela for menor que o limite de caracteres.
+   * Ela não deve ser cortada, e sim jogada para a próxima linha.
+   * - Se a palavra for maior que o limite de caracteres por linha.
+   *
+   * Corte a palavra e continue a imprimi-la na linha seguinte.
+   */
+  public function textWrap(string $text, int $length): array {
+    $values = new Values();
+
+    $values->setText($_GET["text"]);
+    $values->setOriginalLength($_GET["length"]);
+    $values->setLength($values->getOriginalLength());
+
+    $array = explode(" ", $values->getText());
+    $sortedArray = "";
+
+    for ($i = 0; $i < count($array); $i++) {
+      if (strlen($array[$i]) <= $values->getLength()) {
+        $sortedArray = $sortedArray . $array[$i];
+        $values->setLength($values->getLength() - strlen($array[$i]));
       }
 
-      public function setText(string $text) {
-         $this->text = $text;
+      elseif (strlen($array[$i]) > $values->getLength() && strlen($array[$i]) <= $values->getOriginalLength()) {
+        $sortedArray = $sortedArray . "<br/>" . $array[$i];
+        $values->setLength($values->getOriginalLength() - strlen($array[$i]));
       }
 
-      public function getOriginalLength() {
-         return $this->originalLength;
+      elseif (strlen($array[$i]) > $values->getOriginalLength() && strlen($array[$i]) > $values->getLength()) {
+        $bigArray = str_split($array[$i]);
+
+        for ($j = 0; $j < count($bigArray); $j++) {
+          if (count($bigArray) <= $values->getLength()) {
+            $sortedArray = $sortedArray . $bigArray[$j];
+            $values->setLength($values->getLength() - strlen($bigArray[$j]));
+          }
+
+          else {
+            $k = 1;
+
+            if ($k <= $values->getLength() && $k <= count($bigArray)) {
+              $sortedArray = $sortedArray . $bigArray[$j];
+              $values->setLength($values->getLength() - strlen($bigArray[$j]));
+
+              $k++;
+            }
+
+            else {
+              $sortedArray = $sortedArray . "<br/>" . $bigArray[$j];
+              $values->setLength($values->getOriginalLength() - strlen($bigArray[$j]));
+            }
+          }
+        }
       }
 
-      public function setOriginalLength(int $originalLength) {
-         $this->originalLength = $originalLength;
-      }
+      $sortedArray = $sortedArray . " ";
+      $values->setLength($values->getLength() - 1);
+    }
 
-      public function getLength() {
-         return $this->length;
-      }
+    return str_split($sortedArray);
 
-      public function setLength(int $length) {
-         $this->length = $length;
-      }
-   }
+  }
 
-   class TextWrap implements TextWrapInterface {
-      public function textWrap(string $text, int $length): array {
-         $values = new Values();
+}
 
-         $values->setText($_GET["text"]);
-         $values->setOriginalLength($_GET["length"]);
-         $values->setLength($values->getOriginalLength());
+$values = new Values();
+$textWrap = new Resolucao();
 
-         $array = explode(" ", $values->getText());
-         $sortedArray = "";
-
-         for ($i = 0; $i < sizeof($array); $i++) { 
-            if (strlen($array[$i]) <= $values->getLength()) {
-               $sortedArray = $sortedArray.$array[$i];
-               $values->setLength($values->getLength() - strlen($array[$i]));
-
-            } elseif (strlen($array[$i]) > $values->getLength() && 
-               strlen($array[$i]) <= $values->getOriginalLength()) {
-                  $sortedArray = $sortedArray."<br/>".$array[$i];
-                  $values->setLength($values->getOriginalLength() - strlen($array[$i]));
-
-            } elseif (strlen($array[$i]) > $values->getOriginalLength() &&
-               strlen($array[$i]) > $values->getLength()) {
-                  $bigArray = str_split($array[$i]);
-
-                  for ($j = 0; $j < sizeof($bigArray); $j++) { 
-                     if (sizeof($bigArray) <= $values->getLength()) {
-                        $sortedArray = $sortedArray.$bigArray[$j];
-                        $values->setLength($values->getLength() - strlen($bigArray[$j]));
-
-                     } else {
-                        $k = 1;
-
-                        if ($k <= $values->getLength() && $k <= sizeof($bigArray)) {
-                           $sortedArray = $sortedArray.$bigArray[$j];
-                           $values->setLength($values->getLength() - strlen($bigArray[$j]));
-
-                           $k++;
-
-                        } else {
-                           $sortedArray = $sortedArray."<br/>".$bigArray[$j];
-                           $values->setLength($values->getOriginalLength() - strlen($bigArray[$j]));
-                        }
-                     }
-                  }
-               }
-
-            $sortedArray = $sortedArray." ";
-            $values->setLength($values->getLength() - 1);
-         }
-
-         return str_split($sortedArray);
-      }
-   }
-
-   $values = new Values();
-   $textWrap = new TextWrap();
-
-   echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
-   printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
-?>
+echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
+printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
