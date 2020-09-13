@@ -39,19 +39,22 @@ interface Resolucao {
 class Values {
 
   /**
-   * @var string $text
+   * Variável:
+   * @var $text
    *  O texto que será utilizado como entrada.
    */
   private $text = "";
 
   /**
-   * @var int $originalLength
+   * Variável:
+   * @var $originalLength
    *  O valor original de quantos caracteres a linha deverá ser quebrada.
    */
   private $originalLength = 0;
 
   /**
-   * @var int $length
+   * Variável:
+   * @var $length
    *  O valor atualizado de quantos caracteres faltam para a linha deverá ser quebrada.
    */
   private $length = 0;
@@ -101,8 +104,7 @@ class Values {
 }
 
 /**
- * Classe Resolucao que implementa a interface Resolucao, sendo assim, possível implementar a
- * função abstrata textWrap().
+ * Classe Resolucao que implementa a interface Resolucao, sendo assim, possível implementar a função abstrata textWrap().
  */
 class Resolucao implements Resolucao {
 
@@ -113,8 +115,7 @@ class Resolucao implements Resolucao {
    * limite de caracteres.
    * - Se uma palavra não couber na linha e o comprimento dela for menor que o limite de
    * caracteres, ela não deve ser cortada, e sim jogada para a próxima linha.
-   * - Se a palavra for maior que o limite de caracteres por linha, corte a palavra e continue a
-   * imprimi-la na linha seguinte.
+   * - Se a palavra for maior que o limite de caracteres por linha, corte a palavra e continue a imprimi-la na linha seguinte.
    */
   public function textWrap(string $text, int $length): array {
     $values = new Values();
