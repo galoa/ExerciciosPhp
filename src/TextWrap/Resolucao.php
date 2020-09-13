@@ -24,7 +24,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 /**
  * Interface para implementar a função textWrap().
  */
-interface Resolucao {
+interface ResolucaoInterface {
 
   /**
    * Função textWrap() que necessita um string e um int como parâmetros.
