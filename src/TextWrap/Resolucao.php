@@ -28,7 +28,7 @@ interface Resolucao {
 
   /**
    * Função textWrap() que necessita um string e um int como parâmetros.
-
+   *
    * Retornando um array.
    */
   public function textWrap(string $text, int $length): array;
@@ -37,7 +37,7 @@ interface Resolucao {
 
 /**
  * Classe que inicia as variáveis utilizadas no código como.
-
+ *
  * $text, $length e $originalLength.
  */
 class Values {
@@ -112,7 +112,7 @@ class Values {
 
 /**
  * Classe Resolucao que implementa a interface Resolucao.
-
+ *
  * Sendo assim, possível implementar a função abstrata textWrap().
  */
 class Resolucao implements Resolucao {
@@ -124,7 +124,9 @@ class Resolucao implements Resolucao {
    * - Retorne o todo o texto, com o máximo de palavras por linha.
    *
    * Mas sem nunca extrapolar o limite de caracteres.
-   * - Se uma palavra não couber na linha e o comprimento dela for menor que o limite de caracteres, ela não deve ser cortada, e sim jogada para a próxima linha.
+   * - Se uma palavra não couber na linha.
+   * E o comprimento dela for menor que o limite de caracteres.
+   * Ela não deve ser cortada, e sim jogada para a próxima linha.
    * - Se a palavra for maior que o limite de caracteres por linha.
    *
    * Corte a palavra e continue a imprimi-la na linha seguinte.
