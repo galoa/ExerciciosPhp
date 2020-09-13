@@ -190,7 +190,7 @@ class TextWrapResolucao implements Resolucao {
 }
 
 $values = new Values();
-$textWrap = new Resolucao();
+$textWrap = new TextWrapResolucao();
 
 echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
 printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
