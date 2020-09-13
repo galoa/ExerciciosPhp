@@ -39,17 +39,20 @@ interface Resolucao {
 class Values {
 
   /**
-   * @var $text que recebe valores string.
+   * @var string $text
+   *  O texto que será utilizado como entrada.
    */
   private $text = "";
 
   /**
-   * @var $originalLength que recebe valores int.
+   * @var int $originalLength
+   *  O valor original de quantos caracteres a linha deverá ser quebrada.
    */
   private $originalLength = 0;
 
   /**
-   * @var $length que recebe valores int.
+   * @var int $length
+   *  O valor atualizado de quantos caracteres faltam para a linha deverá ser quebrada.
    */
   private $length = 0;
 
