@@ -17,7 +17,7 @@ type="submit"> </form> </body> </html>
 /**
  * Interface para implementar a função textWrap().
  */
-interface Resolucao {
+interface ResolucaoInterface {
 
   /**
    * Função textWrap() que necessita um string e um int como parâmetros.
@@ -104,11 +104,11 @@ class Values {
 }
 
 /**
- * Classe TextWrapResolucao que implementa a interface Resolucao.
+ * Classe Resolucao que implementa a interface Resolucao.
  *
  * Sendo assim, possível implementar a função abstrata textWrap().
  */
-class TextWrapResolucao implements Resolucao {
+class Resolucao implements ResolucaoInterface {
 
   /**
    * A partir de um número definido de caracteres por linha.
@@ -185,13 +185,19 @@ class TextWrapResolucao implements Resolucao {
 }
 
 /**
- * 
+ * Classe para chamar o resultado da função textWrap.
  */
 class CallResult {
 
+  /**
+   * Variável para poder receber a instancia da classe Resolucao.
+   */
   private $textWrap;
 
-  public function __construct(TextWrapResolucao $textWrap) {
+  /**
+   * Função Construtor.
+   */
+  public function __construct(Resolucao $textWrap) {
     $this->textWrap = $textWrap;
     $values = new Values();
 
@@ -201,5 +207,5 @@ class CallResult {
 
 }
 
-$textWrap = new TextWrapResolucao();
+$textWrap = new Resolucao();
 $call = new CallResult($textWrap);
