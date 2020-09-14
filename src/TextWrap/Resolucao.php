@@ -8,10 +8,10 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 <meta charset="utf-8">
 <html>
 <head>
-   <title></title>
+   <title>Exercício Php</title>
 </head>
 <body>
-   <form name="form" method="get" action="TextWrapInterface.php">
+   <form name="form" method="get" action="Resolucao.php">
       <input type="text" placeholder="Insira qualquer texto aqui" style="width: 350px; text-align: center;" name="text"><br>
       <input type="text" placeholder="Insira um valor para o nº de caracteres por linha" style="width: 350px; text-align: center;" name="length"><br>
       <input type="submit">
@@ -111,7 +111,7 @@ class Values {
 }
 
 /**
- * Classe Resolucao que implementa a interface Resolucao.
+ * Classe TextWrapResolucao que implementa a interface Resolucao.
  *
  * Sendo assim, possível implementar a função abstrata textWrap().
  */
@@ -134,9 +134,11 @@ class TextWrapResolucao implements Resolucao {
   public function textWrap(string $text, int $length): array {
     $values = new Values();
 
-    $values->setText($_GET["text"]);
-    $values->setOriginalLength($_GET["length"]);
-    $values->setLength($values->getOriginalLength());
+    if (!empty($_GET["text"]) && !empty($_GET["length"])) {
+      $values->setText($_GET["text"]);
+      $values->setOriginalLength($_GET["length"]);
+      $values->setLength($values->getOriginalLength());
+    }
 
     $array = explode(" ", $values->getText());
     $sortedArray = "";
