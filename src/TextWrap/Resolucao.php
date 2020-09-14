@@ -2,18 +2,6 @@
 
 namespace Galoa\ExerciciosPhp\TextWrap;
 
-?>
-
-<!DOCTYPE html> <meta charset="utf-8"> <html> <head> <title>Exercício
-Php</title> </head> <body> <form name="form" method="get"
-action="Resolucao.php"> <input type="text" placeholder="Insira qualquer texto
-aqui" style="width: 350px; text-align: center;" name="text"><br> <input
-type="text" placeholder="Insira um valor para o nº de caracteres por linha"
-style="width: 350px; text-align: center;" name="length"><br> <input
-type="submit"> </form> </body> </html>
-
-<?php
-
 /**
  * Interface para implementar a função textWrap().
  */
@@ -181,5 +169,4 @@ class Resolucao implements ResolucaoInterface {
 $textWrap = new Resolucao();
 $values = new Values();
 
-echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
-printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
+$textWrap->textWrap($values->getText(), $values->getLength());
