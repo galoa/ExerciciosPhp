@@ -2,29 +2,10 @@
 
 namespace Galoa\ExerciciosPhp\TextWrap;
 
-?>
-
-<!DOCTYPE html>
-<meta charset="utf-8">
-<html>
-<head>
-   <title></title>
-</head>
-<body>
-   <form name="form" method="get" action="TextWrapInterface.php">
-      <input type="text" placeholder="Insira qualquer texto aqui" style="width: 350px; text-align: center;" name="text"><br>
-      <input type="text" placeholder="Insira um valor para o nº de caracteres por linha" style="width: 350px; text-align: center;" name="length"><br>
-      <input type="submit">
-   </form>
-</body>
-</html>
-
-<?php
-
 /**
  * Interface para implementar a função textWrap().
  */
-interface TextWrapInterface {
+interface ResolucaoInterface {
 
   /**
    * Função textWrap() que necessita um string e um int como parâmetros.
@@ -48,7 +29,7 @@ class Values {
    * @var text
    *  O texto que será utilizado como entrada.
    */
-  private $text = "";
+  private $text = "Espero passar passwordverify";
 
   /**
    * Variável.
@@ -56,7 +37,7 @@ class Values {
    * @var originalLength
    *  O valor original de quantos caracteres a linha deverá ser quebrada.
    */
-  private $originalLength = 0;
+  private $originalLength = 8;
 
   /**
    * Variável.
@@ -64,7 +45,7 @@ class Values {
    * @var length
    *  O valor atualizado de quantos caracteres faltam para a linha ser quebrada.
    */
-  private $length = 0;
+  private $length = 8;
 
   /**
    * Chama o valor da variável $text.
@@ -115,7 +96,7 @@ class Values {
  *
  * Sendo assim, possível implementar a função abstrata textWrap().
  */
-class TextWrapResolucao implements TextWrapInterface {
+class Resolucao implements ResolucaoInterface {
 
   /**
    * A partir de um número definido de caracteres por linha.
@@ -133,10 +114,6 @@ class TextWrapResolucao implements TextWrapInterface {
    */
   public function textWrap(string $text, int $length): array {
     $values = new Values();
-
-    $values->setText($_GET["text"]);
-    $values->setOriginalLength($_GET["length"]);
-    $values->setLength($values->getOriginalLength());
 
     $array = explode(" ", $values->getText());
     $sortedArray = "";
@@ -179,8 +156,6 @@ class TextWrapResolucao implements TextWrapInterface {
         }
       }
 
-      $sortedArray = $sortedArray . " ";
-      $values->setLength($values->getLength() - 1);
     }
 
     return str_split($sortedArray);
@@ -189,8 +164,7 @@ class TextWrapResolucao implements TextWrapInterface {
 
 }
 
-$values = new Values();
 $textWrap = new Resolucao();
+$values = new Values();
 
-echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
-printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
+$textWrap->textWrap($values->getText(), $values->getLength());
