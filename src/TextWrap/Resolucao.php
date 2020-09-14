@@ -114,6 +114,9 @@ class Resolucao implements ResolucaoInterface {
    */
   public function textWrap(string $text, int $length): array {
     $values = new Values();
+    $values->setText($text);
+    $values->setOriginalLength($length);
+    $values->setLength($values->getLength());
 
     $array = explode(" ", $values->getText());
     $sortedArray = "";
