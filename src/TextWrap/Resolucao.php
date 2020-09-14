@@ -41,7 +41,7 @@ class Values {
    * @var text
    *  O texto que será utilizado como entrada.
    */
-  private $text = "";
+  private $text = "Espero passar passwordverify";
 
   /**
    * Variável.
@@ -49,7 +49,7 @@ class Values {
    * @var originalLength
    *  O valor original de quantos caracteres a linha deverá ser quebrada.
    */
-  private $originalLength = 0;
+  private $originalLength = 8;
 
   /**
    * Variável.
@@ -57,7 +57,7 @@ class Values {
    * @var length
    *  O valor atualizado de quantos caracteres faltam para a linha ser quebrada.
    */
-  private $length = 0;
+  private $length = 8;
 
   /**
    * Chama o valor da variável $text.
@@ -127,12 +127,6 @@ class Resolucao implements ResolucaoInterface {
   public function textWrap(string $text, int $length): array {
     $values = new Values();
 
-    if (!empty($_GET["text"]) && !empty($_GET["length"])) {
-      $values->setText($_GET["text"]);
-      $values->setOriginalLength($_GET["length"]);
-      $values->setLength($values->getOriginalLength());
-    }
-
     $array = explode(" ", $values->getText());
     $sortedArray = "";
 
@@ -184,28 +178,8 @@ class Resolucao implements ResolucaoInterface {
 
 }
 
-/**
- * Classe para chamar o resultado da função textWrap.
- */
-class CallResult {
-
-  /**
-   * Variável para poder receber a instancia da classe Resolucao.
-   */
-  private $textWrap;
-
-  /**
-   * Função Construtor.
-   */
-  public function __construct(Resolucao $textWrap) {
-    $this->textWrap = $textWrap;
-    $values = new Values();
-
-    echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
-    printf(implode($this->textWrap->textWrap($values->getText(), $values->getLength())));
-  }
-
-}
-
 $textWrap = new Resolucao();
-$call = new CallResult($textWrap);
+$values = new Values();
+
+echo "<br/>Texto insirido com a formatação desejada:<br/><br/>";
+printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
