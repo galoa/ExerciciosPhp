@@ -44,45 +44,34 @@ class Resolucao implements ResolucaoInterface {
     $array = "";
 
     for ($i = 0; $i < count($text); $i++) {
-      if (strlen($text[$i]) <= $length) {
+      if ( mb_strlen($text[$i]) <= $length) {
         $array = $array . $text[$i];
-        $length - strlen($array[$i]);
+        $length -=  mb_strlen($text[$i]);
       }
 
-      elseif (strlen($text[$i]) > $length && strlen($text[$i]) <= $originalLength) {
+      elseif ( mb_strlen($text[$i]) > $length &&  mb_strlen($text[$i]) <= $originalLength) {
         $array = $array . "<br/>" . $text[$i];
-        $originalLength - strlen($text[$i]);
+        $length = $originalLength -  mb_strlen($text[$i]);
       }
 
-      elseif (strlen($text[$i]) > $originalLength && strlen($text[$i]) > $length) {
+      elseif ( mb_strlen($text[$i]) > $originalLength) {
         $splitText = str_split($text[$i]);
 
         for ($j = 0; $j < count($splitText); $j++) {
-          if (count($splitText) <= $length) {
+          if ($j < $length) {
             $array = $array . $splitText[$j];
-            $length - strlen($splitText[$j]);
+            $length -=  mb_strlen($splitText[$j]);
           }
 
           else {
-            $k = 1;
-
-            if ($k <= $length && $k <= count($splitText)) {
-              $array = $array . $splitText[$j];
-              $length - strlen($splitText[$j]);
-
-              $k++;
-            }
-
-            else {
-              $array = $array . "<br/>" . $splitText[$j];
-              $originalLength - strlen($splitText[$j]);
-            }
+            $array = $array . "<br/>" . $splitText[$j];
+            $length = $originalLength -  mb_strlen($splitText[$j]);
           }
         }
       }
 
       $array = $array . " ";
-      $length - 1;
+      $length--;
 
     }
 
