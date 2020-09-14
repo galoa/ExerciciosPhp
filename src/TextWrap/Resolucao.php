@@ -29,7 +29,7 @@ class Values {
    * @var text
    *  O texto que será utilizado como entrada.
    */
-  private $text = "Espero passar passwordverify";
+  private $text = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
 
   /**
    * Variável.
@@ -159,6 +159,9 @@ class Resolucao implements ResolucaoInterface {
         }
       }
 
+      $sortedArray = $sortedArray . " ";
+      $values->setLength($values->getLength() - 1);
+
     }
 
     return str_split($sortedArray);
@@ -170,4 +173,4 @@ class Resolucao implements ResolucaoInterface {
 $textWrap = new Resolucao();
 $values = new Values();
 
-$textWrap->textWrap($values->getText(), $values->getLength());
+printf(implode($textWrap->textWrap($values->getText(), $values->getLength())));
