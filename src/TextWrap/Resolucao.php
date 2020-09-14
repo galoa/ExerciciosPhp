@@ -44,28 +44,28 @@ class Resolucao implements ResolucaoInterface {
     $array = "";
 
     for ($i = 0; $i < count($text); $i++) {
-      if ( mb_strlen($text[$i]) <= $length) {
+      if (mb_strlen($text[$i]) <= $length) {
         $array = $array . $text[$i];
-        $length -=  mb_strlen($text[$i]);
+        $length -= mb_strlen($text[$i]);
       }
 
-      elseif ( mb_strlen($text[$i]) > $length &&  mb_strlen($text[$i]) <= $originalLength) {
+      elseif (mb_strlen($text[$i]) > $length &&  mb_strlen($text[$i]) <= $originalLength) {
         $array = $array . "<br/>" . $text[$i];
-        $length = $originalLength -  mb_strlen($text[$i]);
+        $length = $originalLength - mb_strlen($text[$i]);
       }
 
-      elseif ( mb_strlen($text[$i]) > $originalLength) {
+      elseif (mb_strlen($text[$i]) > $originalLength) {
         $splitText = str_split($text[$i]);
 
         for ($j = 0; $j < count($splitText); $j++) {
           if ($j < $length) {
             $array = $array . $splitText[$j];
-            $length -=  mb_strlen($splitText[$j]);
+            $length -= mb_strlen($splitText[$j]);
           }
 
           else {
             $array = $array . "<br/>" . $splitText[$j];
-            $length = $originalLength -  mb_strlen($splitText[$j]);
+            $length = $originalLength - mb_strlen($splitText[$j]);
           }
         }
       }
@@ -80,3 +80,5 @@ class Resolucao implements ResolucaoInterface {
   }
 
 }
+$res = new Resolucao();
+printf(implode($res->textWrap("Se vi mais longe foi por estar de pé sobre ombros de gigantes", 8)));
