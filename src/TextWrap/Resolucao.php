@@ -156,8 +156,6 @@ class Resolucao implements ResolucaoInterface {
         }
       }
 
-      $sortedArray = $sortedArray . " ";
-      $values->setLength($values->getLength() - 1);
     }
 
     return str_split($sortedArray);
