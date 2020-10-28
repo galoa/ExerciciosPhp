@@ -21,6 +21,24 @@ class TextWrapTest extends TestCase {
   }
 
   /**
+   * Verifica se tipo de codificação também aceita caracteres Multibyte.
+   * 
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testEncodeUTF8(){
+    $ret = $this->resolucao->textWrap($this->baseString,8);
+    $this->assertEquals("ASCII",mb_detect_encoding($ret[0]));
+    $this->assertEquals("ASCII",mb_detect_encoding($ret[1]));
+    $this->assertEquals("ASCII",mb_detect_encoding($ret[2]));
+    $this->assertEquals("ASCII",mb_detect_encoding($ret[3]));
+    $this->assertEquals("ASCII",mb_detect_encoding($ret[4]));
+    $this->assertEquals("UTF-8",mb_detect_encoding($ret[5]));
+    $this->assertEquals("ASCII",mb_detect_encoding($ret[6]));
+    $this->assertEquals("ASCII",mb_detect_encoding($ret[7]));
+    $this->assertEquals("ASCII",mb_detect_encoding($ret[8]));
+  }
+
+  /**
    * Checa o retorno para strings vazias.
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
