@@ -24,44 +24,47 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
+    $array = array();
+    $tex = $text;
+    $x = $length;
+    $y = 0;
+    while(strlen($tex) > 1)
+    {
+        if(substr($tex, $x, 1) == " ")
+        {
+            if($x >= 1)
+            {
+                if(strlen($tex) < $length)
+                {
+                    $array[] = substr(trim($tex), $y);
+                    $tex = "";
+                    break;
+                }else{
+                    $array[] = substr(trim($tex), $y, $x);
+                    $tex = substr($tex, $x);
+                    if(strlen($tex) > $length)$x = $length;
+                    else $x = strlen($tex)-1;                    
+                }
+            }
+            else{
+                if(strlen($tex) < $length)
+                {
+                    $array[] = substr(trim($tex), $y,strlen($tex));
+                    $tex = "";
+                    break;
+                }
+                else{
+                    $array[] = substr(trim($tex), $y, $length)."-";
+                    $tex = substr($tex, $length);
+                    if(strlen($tex) > $length)$x = $length;
+                    else $x = strlen($tex);
+                }
+            }
+        }
+        else{
+            $x--;
+        }
     }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
-    }
-
-    return [""];
+      return $array;
   }
-
 }
