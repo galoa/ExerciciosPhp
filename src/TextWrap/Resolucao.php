@@ -73,7 +73,6 @@ class Resolucao implements TextWrapInterface {
         }
       }
     }
-    
     return $listaSaida;
   }
 
