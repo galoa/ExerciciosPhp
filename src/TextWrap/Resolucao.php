@@ -16,10 +16,7 @@ class Resolucao implements TextWrapInterface {
   /**
    * {@inheritdoc}
    *
-   * Divide uma string em várias sub-strings com tamanho máximo passado por parâmetro.
-   *
-   * @access public
-   * @version 2.0
+   * Divide uma string em várias sub-partes agrupadas em um array.
    *
    * @param string $text
    *   O texto que será utilizado como entrada.
@@ -28,6 +25,9 @@ class Resolucao implements TextWrapInterface {
    *
    * @return array
    *   Um array de strings equivalente ao texto recebido
+   *
+   * @access public
+   * @version 2.0
    */
   public function textWrap(string $text, int $length): array {
     $espaco = ' ';
