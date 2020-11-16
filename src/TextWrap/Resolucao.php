@@ -34,29 +34,26 @@ class Resolucao implements TextWrapInterface {
     $palavrasTexto = preg_split("[ ]", $text);
     $listaSaida = [""];
     $linha = 0;
-    for( $i = 0;$i < count($palavrasTexto); $i++) {
+    for ($i = 0; $i < count($palavrasTexto); $i++) {
 
       $palavra = $palavrasTexto[$i];
-      if(mb_strlen($palavra) <= $length) {
+      if (mb_strlen($palavra) <= $length) {
 
-        if(mb_strlen($listaSaida[$linha]) == 0) {
+        if (mb_strlen($listaSaida[$linha]) == 0) {
 
           $listaSaida[$linha] .= $palavra;
         } else {
 
-          if(mb_strlen($listaSaida[$linha]) + mb_strlen($palavra) < $length) {
+          if (mb_strlen($listaSaida[$linha]) + mb_strlen($palavra) < $length) {
 
             $listaSaida[$linha] .= $espaco . $palavra;
-          }
-          else {
-
+          } else {
             $listaSaida[] = $palavra;
             $linha++;
           }
         }
       } else {
-
-        if(mb_strlen($listaSaida[$linha]) < $length){
+        if (mb_strlen($listaSaida[$linha]) < $length){
 
           $tamCorte = $length - mb_strlen($listaSaida[$linha]) - 1;
           $listaSaida[$linha] .= $espaco . substr($palavra, 0, $tamCorte);
@@ -64,13 +61,12 @@ class Resolucao implements TextWrapInterface {
         }
 
         while (mb_strlen($palavra) >= $length) {
-
           $listaSaida[] = substr($palavra, 0, $length);
           $palavra = substr($palavra, $length, mb_strlen($palavra));
           $linha++;
         }
 
-        if(mb_strlen($palavra) > 0) {
+        if (mb_strlen($palavra) > 0) {
           $listaSaida[] = $palavra;
           $linha++;
         }
