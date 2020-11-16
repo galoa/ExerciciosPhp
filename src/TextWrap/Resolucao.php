@@ -2,20 +2,28 @@
 
 namespace Galoa\ExerciciosPhp\TextWrap;
 
+/**
+ * Classe utilizada para quebra de um texto e várias linhas
+ * @method textWrap(string $text, int $length): array
+ * 
+ * @author Vitor Hugo da Costa Luz
+ * @version 2.0
+ * @access public
+ * @package TextWrap
+ */
 class Resolucao implements TextWrapInterface {
 
   /**
    * {@inheritdoc}
-   *
    * Quebra uma string em diversas strings com tamanho passado por parâmetro.
-   *
+   * @access public
    * @param string $text
    *   O texto que será utilizado como entrada.
    * @param int $length
    *   Em quantos caracteres a linha deverá ser quebrada.
-   *
    * @return array
    *   Um array de strings equivalente ao texto recebido
+   * @version 2.0
    */
   public function textWrap(string $text, int $length): array {
     $espaco = ' ';
