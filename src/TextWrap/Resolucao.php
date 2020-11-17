@@ -53,11 +53,11 @@ class Resolucao implements TextWrapInterface {
         }
       }
       else {
-        if (mb_strlen($listaSaida[$linha]) == 0)   {
+        if (mb_strlen($listaSaida[$linha]) == 0) {
           $listaSaida[$linha] .= substr($palavra, 0, $length);
           $palavra = substr($palavra, $length, mb_strlen($palavra));
         }
-        else if (mb_strlen($listaSaida[$linha]) < $length) {
+        elseif (mb_strlen($listaSaida[$linha]) < $length) {
           $tamCorte = $length - mb_strlen($listaSaida[$linha]) - 1;
           $listaSaida[$linha] .= $espaco . substr($palavra, 0, $tamCorte);
           $palavra = substr($palavra, $tamCorte, mb_strlen($palavra));
