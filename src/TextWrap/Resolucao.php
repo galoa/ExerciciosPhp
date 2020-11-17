@@ -34,13 +34,11 @@ class Resolucao implements TextWrapInterface {
     $palavrasTexto = preg_split("[ ]", $text);
     $listaSaida = [""];
     $linha = 0;
-    for ($i = 0; $i < count($palavrasTexto); $i++) {
+    for ($i = 0; $i < count($palavrasTexto) && $length > 0; $i++) {
 
       $palavra = $palavrasTexto[$i];
       if (mb_strlen($palavra) <= $length) {
-
         if (mb_strlen($listaSaida[$linha]) == 0) {
-
           $listaSaida[$linha] .= $palavra;
         }
         else {
@@ -55,7 +53,11 @@ class Resolucao implements TextWrapInterface {
         }
       }
       else {
-        if (mb_strlen($listaSaida[$linha]) < $length) {
+        if (mb_strlen($listaSaida[$linha]) == 0)   {
+          $listaSaida[$linha] .= substr($palavra, 0, $length);
+          $palavra = substr($palavra, $length, mb_strlen($palavra));
+        }
+        else if (mb_strlen($listaSaida[$linha]) < $length) {
           $tamCorte = $length - mb_strlen($listaSaida[$linha]) - 1;
           $listaSaida[$linha] .= $espaco . substr($palavra, 0, $tamCorte);
           $palavra = substr($palavra, $tamCorte, mb_strlen($palavra));
