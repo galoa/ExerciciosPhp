@@ -65,5 +65,30 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("gigantes", $ret[5]);
     $this->assertCount(6, $ret);
   }
-
+  
+  /*
+  * Testa a quebra de linha para palavras grandes
+  *
+  * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+  */
+  public function testForBigWords() {
+	$ret = $this->resolucao->textWrap($this->baseString, 4);
+    $this->assertEquals("Se", $ret[0]);
+    $this->assertEquals("vi", $ret[1]);
+    $this->assertEquals("mais", $ret[2]);
+    $this->assertEquals("long", $ret[3]);
+    $this->assertEquals("e", $ret[4]);
+    $this->assertEquals("foi", $ret[5]);
+	$this->assertEquals("por", $ret[6]);
+	$this->assertEquals("esta", $ret[7]);
+	$this->assertEquals("r de", $ret[8]);
+	$this->assertEquals("pé s", $ret[9]);
+	$this->assertEquals("obre", $ret[10]);
+	$this->assertEquals("ombr", $ret[11]);
+	$this->assertEquals("os", $ret[12]);
+	$this->assertEquals("de g", $ret[13]);
+	$this->assertEquals("igan", $ret[14]);
+	$this->assertEquals("tes", $ret[15]);
+    $this->assertCount(15, $ret);
+  }
 }
