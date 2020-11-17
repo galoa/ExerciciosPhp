@@ -73,7 +73,7 @@ class TextWrapTest extends TestCase {
   */
   public function testForBigWords() {
     $ret = $this->resolucao->textWrap($this->baseString, 20000);
-    $this->assertEquals(""Se vi mais longe foi por estar de pé sobre ombros de gigantes"", $ret[0]);
+    $this->assertEquals("Se vi mais longe foi por estar de pé sobre ombros de gigantes", $ret[0]);
     /*$this->assertEquals("mais", $ret[1]);
     $this->assertEquals("longe", $ret[2]);
     $this->assertEquals("foi", $ret[3]);
