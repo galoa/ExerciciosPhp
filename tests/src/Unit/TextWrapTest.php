@@ -72,19 +72,19 @@ class TextWrapTest extends TestCase {
   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
   */
   public function testForBigWords() {
-    $ret = $this->resolucao->textWrap($this->baseString, 20000);
-    $this->assertEquals("Se vi mais longe foi por estar de pé sobre ombros de gigantes", $ret[0]);
-    /*$this->assertEquals("mais", $ret[1]);
+    $ret = $this->resolucao->textWrap($this->baseString, 6);
+    $this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
     $this->assertEquals("longe", $ret[2]);
     $this->assertEquals("foi", $ret[3]);
     $this->assertEquals("por", $ret[4]);
     $this->assertEquals("estar", $ret[5]);
     $this->assertEquals("de pé", $ret[6]);
     $this->assertEquals("sobre", $ret[7]);
-    $this->assertEquals("ombro", $ret[8]);
-    $this->assertEquals("s de", $ret[9]);
+    $this->assertEquals("ombros", $ret[8]);
+    $this->assertEquals("de", $ret[9]);
     $this->assertEquals("gigan", $ret[10]);
-    $this->assertEquals("tes", $ret[11]);*/
+    $this->assertEquals("tes", $ret[11]);
     $this->assertCount(1, $ret);
   }
 }
