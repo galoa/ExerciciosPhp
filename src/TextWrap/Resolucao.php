@@ -17,6 +17,14 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 class Resolucao implements TextWrapInterface
 {
 
+    private array $ret;
+
+    private int $currentSubStringLength;
+
+    private string $currentSubString;
+
+    private int $maxLengthSubstring;
+
 
     /**
      * {@inheritdoc}
@@ -28,42 +36,92 @@ class Resolucao implements TextWrapInterface
     public function textWrap(string $text, int $length): array
     {
         if (strlen($text) == 0) {
-            return [''];
+            $this->ret = [''];
+        } else if (strlen($text) <= $length) {
+            $this->ret = [$text];
+        } else {
+            $this->startToSplitString($text, $length);
         }
 
-        if (strlen($text) <= $length) {
-            return [$text];
-        }
 
-        return $this->splitString($text, $length);
+
+
+        return $this->ret;
 
     }//end textWrap()
 
 
-    private function splitString(string $text, int $length): array
+    private function initialState(int $length)
     {
-        $stringItem = '';
-        $stringLength = 0;
-        $ret = [];
+        $this->currentSubString = '';
+        $this->currentSubStringLength = 0;
+        $this->maxLengthSubstring = $length;
+        $this->ret = [];
 
+    }//end initialState()
+
+
+    private function startToSplitString(string $text, int $length)
+    {
+        $this->initialState($length);
+
+        $this->spliting($text);
+
+    }//end splitString()
+
+
+    private function spliting($text)
+    {
         $textLength = strlen($text);
 
         for ($i = 0; $i < $textLength; $i++) {
-            if ($stringLength < $length) {
-                $stringItem .= $text[$i];
-                $stringLength++;
-            } else {
-                array_push($ret, $stringItem);
-                $stringLength = 0;
-                $stringItem = '';
-            }
+            $this->decideToSplit($text[$i]);
         }
 
 
+//
 
-        return $ret;
+        $this->addSubstring();
+    }
 
-    }//end splitString()
+    private function decideToSplit($char)
+    {
+        if ($char == ' ') {
+            $this->addSubstring();
+        }
+
+        if ($this->currentSubStringLength < $this->maxLengthSubstring) {
+            $this->addCharToSubString($char);
+        } else {
+
+            $this->addSubstring();
+        }
+
+    }//end decideToSplit()
+
+
+    private function addSubstring()
+    {
+        array_push($this->ret, $this->currentSubString);
+        $this->resetSubstring();
+
+    }//end addSubstring()
+
+
+    private function resetSubstring()
+    {
+        $this->currentSubStringLength = 0;
+        $this->currentSubString = '';
+
+    }//end resetSubstring()
+
+
+    private function addCharToSubString($char)
+    {
+        $this->currentSubString .= $char;
+        $this->currentSubStringLength++;
+
+    }//end addCharToSubString()
 
 
 }//end class

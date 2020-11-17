@@ -46,7 +46,7 @@ class TextWrapTest extends TestCase
 
         $ret = $this->resolucao->textWrap($this->baseString, $length);
 
-        $this->verifyLengthCondition($ret, $length);
+        $this->verifyOutputString($ret, $length);
 
 
     }
@@ -64,7 +64,7 @@ class TextWrapTest extends TestCase
 
         $ret = $this->resolucao->textWrap($randomString, $randomLengths);
 
-        $this->verifyLengthCondition($ret, $randomLengths);
+        $this->verifyOutputString($ret, $randomLengths);
 
     }
 
@@ -72,10 +72,11 @@ class TextWrapTest extends TestCase
     {
 
 
-        $ret = $this->resolucao->textWrap( $this->baseString, 2021);
-        $this->assertCount(1, $ret,"must have only element");
-        $this->assertNotEmpty( $ret[0]);
+        $ret = $this->resolucao->textWrap($this->baseString, 2021);
+        $this->assertCount(1, $ret, "must have only element");
+        $this->assertNotEmpty($ret[0]);
     }
+
 
     private function generateRandomString(int $length): string
     {
@@ -92,13 +93,29 @@ class TextWrapTest extends TestCase
         return $randomString;
     }
 
-    private function verifyLengthCondition(array $ret, int $length)
+    private function verifyOutputString(array $ret, int $length)
     {
         foreach ($ret as $string_item) {
+
+            $this->assertTheNumberOfSpaces($string_item);
 
             $this->assertTrue(strlen($string_item) <= $length, " length condition fail ${string_item}");
 
         }
+    }
+
+
+    private function assertTheNumberOfSpaces(string $subString)
+    {
+        $numberOfSpaces = 0;
+        $lengthOfString = strlen($subString);
+        for ($i = 0; $i < $lengthOfString; $i++) {
+            if ($subString[$i] == ' ') {
+                $numberOfSpaces++;
+            }
+        }
+
+        $this->assertTrue($numberOfSpaces < 2, "number of space in substring must be one");
     }
 
 
