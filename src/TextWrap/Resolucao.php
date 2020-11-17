@@ -25,6 +25,14 @@ class Resolucao implements TextWrapInterface
 
     private int $maxLengthSubstring;
 
+    private int $lastSpaceIndex;
+
+    private string $encoding = 'UTF-8';
+
+    private int $textLength;
+
+    private int $beginIndex;
+
 
     /**
      * {@inheritdoc}
@@ -43,85 +51,111 @@ class Resolucao implements TextWrapInterface
             $this->startToSplitString($text, $length);
         }
 
-
-
-
         return $this->ret;
 
     }//end textWrap()
 
 
-    private function initialState(int $length)
+    private function initialState(string &$text, int $length)
     {
-        $this->currentSubString = '';
-        $this->currentSubStringLength = 0;
+        $this->beginIndex         = 0;
+        $this->lastSpaceIndex     = 0;
         $this->maxLengthSubstring = $length;
-        $this->ret = [];
+        $this->ret                = [];
+        $this->textLength         = mb_strlen($text, $this->encoding);
 
     }//end initialState()
 
 
     private function startToSplitString(string $text, int $length)
     {
-        $this->initialState($length);
+        $this->initialState($text, $length);
 
         $this->spliting($text);
 
-    }//end splitString()
+    }//end startToSplitString()
 
 
-    private function spliting($text)
+    private function spliting(string &$text)
     {
-        $textLength = strlen($text);
-
-        for ($i = 0; $i < $textLength; $i++) {
-            $this->decideToSplit($text[$i]);
-        }
-
-
-//
-
-        $this->addSubstring();
-    }
-
-    private function decideToSplit($char)
-    {
-        if ($char == ' ') {
-            $this->addSubstring();
+        for ($i = 0; $i < $this->textLength; $i++) {
+            $currentChar = $this->getChar($text, $i);
+            $this->updateCurrentSubstring($text, $i);
+            $this->updateLastSpaceIndex($i, $currentChar);
+            $i = $this->updateIndex($i, $text);
         }
 
         if ($this->currentSubStringLength < $this->maxLengthSubstring) {
-            $this->addCharToSubString($char);
-        } else {
-
-            $this->addSubstring();
+            array_push($this->ret, $this->currentSubString);
         }
 
-    }//end decideToSplit()
+    }//end spliting()
 
 
-    private function addSubstring()
+    private function getChar(string &$text, int $index)
     {
+        if ($index < $this->textLength) {
+            return mb_substr($text, $index, 1, $this->encoding);
+        }
+
+        return null;
+
+    }//end getChar()
+
+
+    private function updateCurrentSubstring(string &$text, int $index)
+    {
+        $this->currentSubStringLength = ($index - $this->beginIndex + 1);
+        $this->currentSubString       = mb_substr($text, $this->beginIndex, $this->currentSubStringLength);
+
+    }//end updateCurrentSubstring()
+
+
+    private function updateLastSpaceIndex(int $index, string $char)
+    {
+        if ($char == ' ') {
+            $this->lastSpaceIndex = $index;
+        }
+
+    }//end updateLastSpaceIndex()
+
+
+    private function updateIndex(int $currentIndex, string &$text): int
+    {
+        if ($this->currentSubStringLength < $this->maxLengthSubstring) {
+            return $currentIndex;
+        }
+
+        $nexIndex = ($currentIndex + 1);
+
+        $nextChar = $this->getChar($text, $nexIndex);
+
+        if ($nextChar) {
+            $this->updateLastSpaceIndex($nexIndex, $nextChar);
+        }
+
+        if ($this->beginIndex <= $this->lastSpaceIndex) {
+            $this->updateCurrentSubstring($text, ($this->lastSpaceIndex - 1));
+
+            $indexAfterSpace = ($this->lastSpaceIndex + 1);
+            if ($indexAfterSpace < $this->textLength) {
+                $currentIndex = $indexAfterSpace;
+            }
+        }
+
         array_push($this->ret, $this->currentSubString);
-        $this->resetSubstring();
 
-    }//end addSubstring()
+        $this->beginIndex = $currentIndex;
+
+        return $currentIndex;
+
+    }//end updateIndex()
 
 
-    private function resetSubstring()
+    private function getNotBrokenWord()
     {
-        $this->currentSubStringLength = 0;
-        $this->currentSubString = '';
 
-    }//end resetSubstring()
-
-
-    private function addCharToSubString($char)
-    {
-        $this->currentSubString .= $char;
-        $this->currentSubStringLength++;
-
-    }//end addCharToSubString()
+    }//end getNotBrokenWord()
 
 
 }//end class
