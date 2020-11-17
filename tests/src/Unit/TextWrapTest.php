@@ -60,14 +60,21 @@ class TextWrapTest extends TestCase
     {
         $randomString = $this->generateRandomString(120);
 
-        echo $randomString;
-
         $randomLengths = rand(0, 120);
 
         $ret = $this->resolucao->textWrap($randomString, $randomLengths);
 
         $this->verifyLengthCondition($ret, $randomLengths);
 
+    }
+
+    public function testForWhenSubStringLengthIsBiggerThanTextLength()
+    {
+
+
+        $ret = $this->resolucao->textWrap( $this->baseString, 2021);
+        $this->assertCount(1, $ret,"must have only element");
+        $this->assertNotEmpty( $ret[0]);
     }
 
     private function generateRandomString(int $length): string

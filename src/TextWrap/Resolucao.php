@@ -31,6 +31,10 @@ class Resolucao implements TextWrapInterface
             return [''];
         }
 
+        if (strlen($text) <= $length) {
+            return [$text];
+        }
+
         return $this->splitString($text, $length);
 
     }//end textWrap()
@@ -43,8 +47,6 @@ class Resolucao implements TextWrapInterface
         $ret = [];
 
         $textLength = strlen($text);
-
-
 
         for ($i = 0; $i < $textLength; $i++) {
             if ($stringLength < $length) {
