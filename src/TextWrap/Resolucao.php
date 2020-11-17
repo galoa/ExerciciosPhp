@@ -27,25 +27,41 @@ class Resolucao implements TextWrapInterface
      */
     public function textWrap(string $text, int $length): array
     {
-        if (strlen($text) === 0) {
+        if (strlen($text) == 0) {
             return [''];
         }
 
-        return [
-            'mais',
-            'Se vi',
-            'longe',
-            'foi por',
-            'estar',
-            'de',
-            'pé',
-            'sobre',
-            'ombros',
-            'de',
-            'gigantes',
-        ];
+        return $this->splitString($text, $length);
 
     }//end textWrap()
+
+
+    private function splitString(string $text, int $length): array
+    {
+        $stringItem = '';
+        $stringLength = 0;
+        $ret = [];
+
+        $textLength = strlen($text);
+
+
+
+        for ($i = 0; $i < $textLength; $i++) {
+            if ($stringLength < $length) {
+                $stringItem .= $text[$i];
+                $stringLength++;
+            } else {
+                array_push($ret, $stringItem);
+                $stringLength = 0;
+                $stringItem = '';
+            }
+        }
+
+
+
+        return $ret;
+
+    }//end splitString()
 
 
 }//end class

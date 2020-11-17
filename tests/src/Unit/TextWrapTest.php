@@ -29,25 +29,44 @@ class TextWrapTest extends TestCase
      */
     public function testForEmptyStrings()
     {
-        $ret = $this->resolucao->textWrap("", 2021);
+        $ret = $this->resolucao->textWrap('', 2021);
         $this->assertEmpty($ret[0]);
         $this->assertCount(1, $ret);
     }
 
-
+    /**
+     * Checa o retorno para string conhecida.
+     *
+     * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+     */
     public function testForKnowString()
     {
 
         $length = 8;
 
-
         $ret = $this->resolucao->textWrap($this->baseString, $length);
 
+        $this->verifyLengthCondition($ret, $length);
 
-        foreach ($ret as $string_item) {
-            $this->assertTrue(strlen($string_item) <= $length);
 
-        }
+    }
+
+    /**
+     * Checa o retorno para string conhecida.
+     *
+     * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+     */
+    public function testForRandomStringsWithRandomSizes()
+    {
+        $randomString = $this->generateRandomString(120);
+
+        echo $randomString;
+
+        $randomLengths = rand(0, 120);
+
+        $ret = $this->resolucao->textWrap($randomString, $randomLengths);
+
+        $this->verifyLengthCondition($ret, $randomLengths);
 
     }
 
@@ -59,11 +78,20 @@ class TextWrapTest extends TestCase
 
         $randomString = '';
 
-        for ($i = 0; i < $length; $i++) {
-            $randomString .= $possibleStrings[rand(0, $sizeOfPossibleStrings)];
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $possibleStrings[rand(0, $sizeOfPossibleStrings - 1)];
         }
 
         return $randomString;
+    }
+
+    private function verifyLengthCondition(array $ret, int $length)
+    {
+        foreach ($ret as $string_item) {
+
+            $this->assertTrue(strlen($string_item) <= $length, " length condition fail ${string_item}");
+
+        }
     }
 
 
