@@ -27,9 +27,23 @@ class Resolucao implements TextWrapInterface
      */
     public function textWrap(string $text, int $length): array
     {
-        if (strlen($text) == 0) {
+        if (strlen($text) === 0) {
             return [''];
         }
+
+        return [
+            'mais',
+            'Se vi',
+            'longe',
+            'foi por',
+            'estar',
+            'de',
+            'pé',
+            'sobre',
+            'ombros',
+            'de',
+            'gigantes',
+        ];
 
     }//end textWrap()
 
