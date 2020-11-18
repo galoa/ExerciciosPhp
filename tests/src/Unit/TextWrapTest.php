@@ -71,6 +71,7 @@ class TextWrapTest extends TestCase {
    * Testar o funcionamento do mb_strings.
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   *
    */
   public function testForMbStrLen() {
     $mbString = "não";
