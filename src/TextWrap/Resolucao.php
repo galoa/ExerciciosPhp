@@ -20,7 +20,7 @@ class Resolucao implements TextWrapInterface {
    *
    * @var ret
    */
-  private $ret;
+  private $splitedText;
 
   /**
    * Mds...
@@ -106,7 +106,7 @@ class Resolucao implements TextWrapInterface {
   /**
    * Ele espera um comentário por função...
    */
-  private function startToSplitString(string $text, int $length) {
+  private function startToSplitString(string &$text, int $length) {
     $this->initialState($text, $length);
 
     $this->spliting($text);

@@ -50,8 +50,6 @@ class TextWrapTest extends TestCase {
   }
 
   /**
-   * Checa o retorno para string conhecida.
-   *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForRandomStringsWithRandomSizes() {
@@ -64,8 +62,9 @@ class TextWrapTest extends TestCase {
     $this->verifyOutputString($ret, $randomLengths);
 
   }
-
-  //
+  /**
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
   public function testForWhenSubStringLengthIsBiggerThanTextLength() {
 
 
@@ -75,7 +74,6 @@ class TextWrapTest extends TestCase {
   }
 
   /**
-   * Testa a quebra de linha para palavras curtas.
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
@@ -94,8 +92,6 @@ class TextWrapTest extends TestCase {
   }
 
   /**
-   * Testa a quebra de linha para palavras curtas 2.
-   *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForSmallWords2() {
@@ -137,8 +133,6 @@ class TextWrapTest extends TestCase {
 
 
   /**
-   * Testar o funcionamento do mb_strings.
-   *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForMbStrLen() {
@@ -148,8 +142,6 @@ class TextWrapTest extends TestCase {
   }
 
   /**
-   * Testar o funcionamento do mb_strings.
-   *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForMbSubStr() {
