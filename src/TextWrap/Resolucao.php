@@ -77,44 +77,19 @@ class Resolucao implements TextWrapInterface {
    * Ele espera um comentário por função...
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
+    if (strlen($text) == 0) {
+      $this->splitedText = [''];
     }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
+    else {
+      if (strlen($text) <= $length) {
+        $this->splitedText = [$text];
+      }
+      else {
+        $this->startToSplitString($text, $length);
+      }
     }
 
-    return [""];
+    return $this->splitedText;
   }
 
   /**
@@ -124,7 +99,7 @@ class Resolucao implements TextWrapInterface {
     $this->beginIndex = 0;
     $this->lastSpaceIndex = 0;
     $this->maxLengthSubstring = $length;
-    $this->ret = [];
+    $this->splitedText = [];
     $this->textLength = mb_strlen($text, $this->encoding);
 
   }
@@ -149,7 +124,7 @@ class Resolucao implements TextWrapInterface {
     }
 
     if ($this->currentSubStringLength < $this->maxLengthSubstring) {
-      array_push($this->ret, $this->currentSubString);
+      array_push($this->splitedText, $this->currentSubString);
     }
   }
 
@@ -162,6 +137,64 @@ class Resolucao implements TextWrapInterface {
     }
 
     return NULL;
+
+  }
+
+  /**
+   * Atualia a string que será inserida no vetor de strings $splitedText.
+   */
+  private function updateCurrentSubstring(string &$text, int $index) {
+    $this->currentSubStringLength = ($index - $this->beginIndex + 1);
+    $this->currentSubString = mb_substr($text, $this->beginIndex, $this->currentSubStringLength);
+
+  }
+
+  /**
+   * Atualiza o ponteiro que aponto para o ultimo espaço do texto.
+   */
+  private function updateLastSpaceIndex(int $index, string &$text) {
+    $currentChar = $this->getChar($text, $index);
+    if ($currentChar != NULL and $currentChar == ' ') {
+      $this->lastSpaceIndex = $index;
+    }
+
+  }
+
+  /**
+   * Separa a texto nas strings e retorna o próximo endereço.
+   */
+  private function split(int $currentIndex, string &$text): int {
+    $this->updateCurrentSubstring($text, $currentIndex);
+
+    if ($this->currentSubStringLength < $this->maxLengthSubstring) {
+      return $currentIndex;
+    }
+
+    $this->updateLastSpaceIndexWithNextChar($currentIndex, $text);
+
+    if ($this->beginIndex <= $this->lastSpaceIndex) {
+      $this->updateCurrentSubstring($text, ($this->lastSpaceIndex - 1));
+
+      $indexAfterSpace = ($this->lastSpaceIndex + 1);
+      if ($indexAfterSpace < $this->textLength) {
+        $currentIndex = $indexAfterSpace;
+      }
+    }
+
+    array_push($this->splitedText, $this->currentSubString);
+
+    $this->beginIndex = $currentIndex;
+
+    return $currentIndex;
+
+  }
+
+  /**
+   * Dado um index atual do texto, retorna o próximo endereço.
+   */
+  private function updateLastSpaceIndexWithNextChar(int $currentIndex, string &$text) {
+    $nexIndex = ($currentIndex + 1);
+    $this->updateLastSpaceIndex($nexIndex, $text);
 
   }
 
