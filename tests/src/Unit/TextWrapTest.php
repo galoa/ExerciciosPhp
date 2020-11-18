@@ -106,49 +106,9 @@ class TextWrapTest extends TestCase {
   }
 
 
-  private function generateRandomString(int $length): string {
-    $possibleStrings = 'abcdefghijlmnopkstuvxz 123456789';
-
-    $sizeOfPossibleStrings = strlen($possibleStrings);
-
-    $randomString = '';
-
-    for ($i = 0; $i < $length; $i++) {
-      $randomString .= $possibleStrings[rand(0, $sizeOfPossibleStrings - 1)];
-    }
-
-    return $randomString;
-  }
-
-  private function verifyOutputString(array $ret, int $length) {
 
 
-    foreach ($ret as $string_item) {
 
 
-      $this->assertTrue(mb_strlen($string_item, $this->encode) <= $length, " length condition fail ${string_item}");
-
-    }
-  }
-
-
-  /**
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForMbStrLen() {
-    $mbString = "não";
-    $length = mb_strlen($mbString, $this->encode);
-    $this->assertTrue($length == 3);
-  }
-
-  /**
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForMbSubStr() {
-    $mbString = "meu pé";
-    $startIndex = 4;
-    $length = 2;
-    $this->assertTrue(mb_substr($mbString, $startIndex, $length) == "pé");
-  }
 
 }
