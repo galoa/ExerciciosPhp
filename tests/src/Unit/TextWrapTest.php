@@ -68,6 +68,48 @@ class TextWrapTest extends TestCase {
   }
 
   /**
+   * Checa o retorno para string conhecida.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForKnowString() {
+
+    $length = 8;
+
+    $ret = $this->resolucao->textWrap($this->baseString, $length);
+
+    $this->verifyOutputString($ret, $length);
+
+
+  }
+
+  /**
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForRandomStringsWithRandomSizes() {
+    $randomString = $this->generateRandomString(120);
+
+    $randomLengths = rand(0, 120);
+
+    $ret = $this->resolucao->textWrap($randomString, $randomLengths);
+
+    $this->verifyOutputString($ret, $randomLengths);
+
+  }
+
+  /**
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForWhenSubStringLengthIsBiggerThanTextLength() {
+
+
+    $ret = $this->resolucao->textWrap($this->baseString, 2021);
+    $this->assertCount(1, $ret, "must have only element");
+    $this->assertNotEmpty($ret[0]);
+  }
+
+  /**
    * Testar o funcionamento do mb_strings.
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
@@ -90,5 +132,30 @@ class TextWrapTest extends TestCase {
     $length = 2;
     $this->assertTrue(mb_substr($mbString, $startIndex, $length) == "pé");
   }
+
+
+  private function generateRandomString(int $length): string {
+    $possibleStrings = 'abcdefghijlmnopkstuvxz 123456789';
+
+    $sizeOfPossibleStrings = strlen($possibleStrings);
+
+    $randomString = '';
+
+    for ($i = 0; $i < $length; $i++) {
+      $randomString .= $possibleStrings[rand(0, $sizeOfPossibleStrings - 1)];
+    }
+
+    return $randomString;
+  }
+
+  private function verifyOutputString(array $ret, int $length) {
+
+    foreach ($ret as $string_item) {
+
+      $this->assertTrue(mb_strlen($string_item, $this->encode) <= $length, " length condition fail ${string_item}");
+
+    }
+  }
+
 
 }
