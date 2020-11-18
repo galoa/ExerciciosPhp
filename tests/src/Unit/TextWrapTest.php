@@ -114,9 +114,12 @@ class TextWrapTest extends TestCase {
    *
    */
   public function testForMbStrLen() {
-    $mbString = "não";
-    $length = mb_strlen($mbString, $this->encode);
-    $this->assertTrue($length == 3);
+    $tudobem="olá tudo bem ?";
+    $nao = "não";
+    $lengthNao = mb_strlen($nao, $this->encode);
+    $lengthTudoBem =mb_strlen($tudobem, $this->encode);
+    $this->assertTrue($lengthNao == 3);
+    $this->assertTrue($lengthTudoBem == 14);
   }
 
   /**
@@ -129,6 +132,7 @@ class TextWrapTest extends TestCase {
     $startIndex = 4;
     $length = 2;
     $this->assertTrue(mb_substr($mbString, $startIndex, $length) == "pé");
+    $this->assertTrue(mb_substr($mbString, 0, 3) == "meu");
   }
 
 
