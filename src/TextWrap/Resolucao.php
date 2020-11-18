@@ -77,19 +77,29 @@ class Resolucao implements TextWrapInterface {
    * Ele espera um comentário por função...
    */
   public function textWrap(string $text, int $length): array {
-    if (strlen($text) == 0) {
-      $this->splitedText = [''];
+
+    $this->textLength = mb_strlen($text, $this->encoding);
+
+    if ($this->needToSplit($text, $length)) {
+      $this->startToSplitString($text, $length);
     }
-    else {
-      if (strlen($text) <= $length) {
-        $this->splitedText = [$text];
-      }
-      else {
-        $this->startToSplitString($text, $length);
-      }
+    return $this->splitedText;
+  }
+
+  /**
+   * Verifica a necesidade de separar a string.
+   */
+  private function needToSplit(string &$text, int &$length) {
+    if ($this->textLength == 0) {
+      $this->splitedText = [''];
+      return FALSE;
     }
 
-    return $this->splitedText;
+    if ($this->textLength <= $length) {
+      $this->splitedText = [$text];
+      return FALSE;
+    }
+    return TRUE;
   }
 
   /**
@@ -100,8 +110,6 @@ class Resolucao implements TextWrapInterface {
     $this->lastSpaceIndex = 0;
     $this->maxLengthSubstring = $length;
     $this->splitedText = [];
-    $this->textLength = mb_strlen($text, $this->encoding);
-
   }
 
   /**
