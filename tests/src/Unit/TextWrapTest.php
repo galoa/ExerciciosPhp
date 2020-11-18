@@ -57,7 +57,7 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("gigantes", $ret[8]);
     $this->assertCount(9, $ret);
 
-    $this->verifyOutputString($ret, $length);
+    $this->subStringsMustBeSmallerTheLength($ret, $length);
   }
 
   /**
@@ -77,7 +77,7 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("gigantes", $ret[5]);
     $this->assertCount(6, $ret);
 
-    $this->verifyOutputString($ret, $length);
+    $this->subStringsMustBeSmallerTheLength($ret, $length);
   }
 
   /**
@@ -91,7 +91,7 @@ class TextWrapTest extends TestCase {
 
     $ret = $this->resolucao->textWrap($randomString, $randomLengths);
 
-    $this->verifyOutputString($ret, $randomLengths);
+    $this->subStringsMustBeSmallerTheLength($ret, $randomLengths);
 
 
   }
@@ -146,7 +146,7 @@ class TextWrapTest extends TestCase {
     return $randomString;
   }
 
-  private function verifyOutputString(array $ret, int $length) {
+  private function subStringsMustBeSmallerTheLength(array $ret, int $length) {
 
     foreach ($ret as $string_item) {
 
