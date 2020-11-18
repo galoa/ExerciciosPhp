@@ -16,12 +16,65 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  */
 class Resolucao implements TextWrapInterface {
 
+
   /**
-   * {@inheritdoc}
+   * Array de strings que irá ser retornado pelo textWrap.
    *
-   * Apague o conteúdo do método abaixo e escreva sua própria implementação,
-   * nós colocamos esse mock para poder rodar a análise de cobertura dos
-   * testes unitários.
+   * @var ret
+   */
+  private $splitedText;
+
+  /**
+   * Tamanho atual de uma string que está contida no texto de entrada.
+   *
+   * @var currentSubStringLength
+   */
+  private $currentSubStringLength;
+
+  /**
+   * Parte da string do texto inserido.
+   *
+   * @var currentSubString
+   */
+  private $currentSubString;
+
+  /**
+   * Tamanho máxima que uma string pertencente ao arrya de strings pode conter.
+   *
+   * @var maxLengthSubstring
+   */
+  private $maxLengthSubstring;
+
+  /**
+   * O tipo de encoder utilizado para o split.
+   *
+   * @var encoding
+   */
+  private $encoding = 'UTF-8';
+
+  /**
+   * O tamanho do texto considerando que um char pode ter multiplos bytes.
+   *
+   * @var textLength
+   */
+  private $textLength;
+
+  /**
+   * Aponta para o começo da substring.
+   *
+   * @var beginIndex
+   */
+  private $beginIndex;
+
+  /**
+   * Aponta para o endereço do ultimo espaço do texto.
+   *
+   * @var lastSpaceIndex
+   */
+  private $lastSpaceIndex;
+
+  /**
+   * Ele espera um comentário por função...
    */
   public function textWrap(string $text, int $length): array {
     if ($length === 8) {
