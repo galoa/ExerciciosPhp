@@ -117,4 +117,26 @@ class Resolucao implements TextWrapInterface {
     return [""];
   }
 
+  /**
+   * Inicializa as varáveis que seram utilizadas no split.
+   */
+  private function initialState(string &$text, int $length) {
+    $this->beginIndex = 0;
+    $this->lastSpaceIndex = 0;
+    $this->maxLengthSubstring = $length;
+    $this->ret = [];
+    $this->textLength = mb_strlen($text, $this->encoding);
+
+  }
+
+  /**
+   * Comoça o split do texto...
+   */
+  private function startToSplitString(string &$text, int $length) {
+    $this->initialState($text, $length);
+
+    $this->spliting($text);
+
+  }
+
 }
