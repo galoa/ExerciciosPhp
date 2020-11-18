@@ -12,10 +12,15 @@ use PHPUnit\Framework\TestCase;
  */
 class TextWrapTest extends TestCase {
 
-  /**
-   * Test Setup.
-   */
-  public function setUp() {
+  private $resolucao;
+
+  private $baseString;
+
+  private $encode;
+
+  public function __construct($name = NULL, array $data = [], $dataName = '') {
+    parent::__construct($name, $data, $dataName);
+
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
     $this->encode = "UTF-8";
@@ -37,7 +42,7 @@ class TextWrapTest extends TestCase {
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
-  public function testForSmallWords() {
+  public function testForBaseStringWithLength8() {
     $ret = $this->resolucao->textWrap($this->baseString, 8);
     $this->assertEquals("Se vi", $ret[0]);
     $this->assertEquals("mais", $ret[1]);
@@ -56,7 +61,7 @@ class TextWrapTest extends TestCase {
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
-  public function testForSmallWords2() {
+  public function testForBaseStringWithLength12() {
     $ret = $this->resolucao->textWrap($this->baseString, 12);
     $this->assertEquals("Se vi mais", $ret[0]);
     $this->assertEquals("longe foi", $ret[1]);

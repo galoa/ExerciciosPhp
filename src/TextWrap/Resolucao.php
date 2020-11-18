@@ -74,7 +74,7 @@ class Resolucao implements TextWrapInterface {
   private $lastSpaceIndex;
 
   /**
-   * Ele espera um comentário por função...
+   * Retorna um array de strings limitados pelo tamanho $length.
    */
   public function textWrap(string $text, int $length): array {
 
