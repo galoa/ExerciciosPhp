@@ -31,37 +31,7 @@ class TextWrapTest extends TestCase {
     $this->assertEmpty($ret[0]);
     $this->assertCount(1, $ret);
   }
-  //
-
-  /**
-   * Checa o retorno para string conhecida.
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForKnowString() {
-
-    $length = 8;
-
-    $ret = $this->resolucao->textWrap($this->baseString, $length);
-
-    $this->verifyOutputString($ret, $length);
-
-
-  }
-
-  /**
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForRandomStringsWithRandomSizes() {
-    $randomString = $this->generateRandomString(120);
-
-    $randomLengths = rand(0, 120);
-
-    $ret = $this->resolucao->textWrap($randomString, $randomLengths);
-
-    $this->verifyOutputString($ret, $randomLengths);
-
-  }
+  
   /**
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
@@ -104,11 +74,6 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("gigantes", $ret[5]);
     $this->assertCount(6, $ret);
   }
-
-
-
-
-
 
 
 }
