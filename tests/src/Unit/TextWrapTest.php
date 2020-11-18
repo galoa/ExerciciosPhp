@@ -18,7 +18,6 @@ class TextWrapTest extends TestCase {
   public function setUp() {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
-    $this->encode = "UTF-8";
   }
 
   /**
@@ -30,49 +29,6 @@ class TextWrapTest extends TestCase {
     $ret = $this->resolucao->textWrap("", 2021);
     $this->assertEmpty($ret[0]);
     $this->assertCount(1, $ret);
-  }
-  //
-
-  /**
-   * Checa o retorno para string conhecida.
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForKnowString() {
-
-    $length = 8;
-
-    $ret = $this->resolucao->textWrap($this->baseString, $length);
-
-    $this->verifyOutputString($ret, $length);
-
-
-  }
-
-  /**
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForRandomStringsWithRandomSizes() {
-    $randomString = $this->generateRandomString(120);
-
-    $randomLengths = rand(0, 120);
-
-    $ret = $this->resolucao->textWrap($randomString, $randomLengths);
-
-    $this->verifyOutputString($ret, $randomLengths);
-
-  }
-
-  /**
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForWhenSubStringLengthIsBiggerThanTextLength() {
-
-
-    $ret = $this->resolucao->textWrap($this->baseString, 2021);
-    $this->assertCount(1, $ret, "must have only element");
-    $this->assertNotEmpty($ret[0]);
   }
 
   /**
@@ -95,7 +51,7 @@ class TextWrapTest extends TestCase {
   }
 
   /**
-   * Testa a quebra de linha para palavras curtas 2.
+   * Testa a quebra de linha para palavras curtas.
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
@@ -108,54 +64,6 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("ombros de", $ret[4]);
     $this->assertEquals("gigantes", $ret[5]);
     $this->assertCount(6, $ret);
-  }
-
-
-  private function generateRandomString(int $length): string {
-    $possibleStrings = 'abcdefghijlmnopkstuvxz 123456789';
-
-    $sizeOfPossibleStrings = strlen($possibleStrings);
-
-    $randomString = '';
-
-    for ($i = 0; $i < $length; $i++) {
-      $randomString .= $possibleStrings[rand(0, $sizeOfPossibleStrings - 1)];
-    }
-
-    return $randomString;
-  }
-
-  private function verifyOutputString(array $ret, int $length) {
-
-    foreach ($ret as $string_item) {
-
-      $this->assertTrue(mb_strlen($string_item, $this->encode) <= $length, " length condition fail ${string_item}");
-
-    }
-  }
-
-
-  /**
-   * Testar o funcionamento do mb_strings.
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForMbStrLen() {
-    $mbString = "não";
-    $length = mb_strlen($mbString, $this->encode);
-    $this->assertTrue($length == 3);
-  }
-
-  /**
-   * Testar o funcionamento do mb_strings.
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForMbSubStr() {
-    $mbString = "meu pé";
-    $startIndex = 4;
-    $length = 2;
-    $this->assertTrue(mb_substr($mbString, $startIndex, $length) == "pé");
   }
 
 }
