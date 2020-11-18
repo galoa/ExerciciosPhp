@@ -27,7 +27,7 @@ class TextWrapTest extends TestCase {
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForEmptyStrings() {
-    $ret = $this->resolucao->textWrap('', 2021);
+    $ret = $this->resolucao->textWrap("", 2021);
     $this->assertEmpty($ret[0]);
     $this->assertCount(1, $ret);
   }
@@ -143,7 +143,8 @@ class TextWrapTest extends TestCase {
    */
   public function testForMbStrLen() {
     $mbString = "não";
-    $this->assertTrue(mb_strlen($mbString, $this->encode) == 3,);
+    $length = mb_strlen($mbString, $this->encode);
+    $this->assertTrue($length == 3);
   }
 
   /**

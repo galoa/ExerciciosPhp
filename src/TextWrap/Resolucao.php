@@ -20,56 +20,56 @@ class Resolucao implements TextWrapInterface {
    *
    * @var ret
    */
-  private array $ret;
+  private $ret;
 
   /**
    * Mds...
    *
    * @var currentSubStringLength
    */
-  private int $currentSubStringLength;
+  private $currentSubStringLength;
 
   /**
    * Deus me dibre disso.
    *
    * @var currentSubString
    */
-  private string $currentSubString;
+  private $currentSubString;
 
   /**
    * Deus me dibre disso.
    *
    * @var maxLengthSubstring
    */
-  private int $maxLengthSubstring;
+  private $maxLengthSubstring;
 
   /**
    * Deus me dibre disso.
    *
    * @var lastSpaceIndex
    */
-  private int $lastSpaceIndex;
+  private $lastSpaceIndex;
 
   /**
    * Deus me dibre disso.
    *
    * @var encoding
    */
-  private string $encoding = 'UTF-8';
+  private $encoding = 'UTF-8';
 
   /**
    * Deus me dibre disso.
    *
    * @var textLength
    */
-  private int $textLength;
+  private $textLength;
 
   /**
    * Deus me dibre disso.
    *
    * @var beginIndex
    */
-  private int $beginIndex;
+  private $beginIndex;
 
   /**
    * Ele espera um comentário por função...
