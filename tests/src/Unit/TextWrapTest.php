@@ -43,7 +43,9 @@ class TextWrapTest extends TestCase {
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForBaseStringWithLength8() {
-    $ret = $this->resolucao->textWrap($this->baseString, 8);
+    $length = 8;
+
+    $ret = $this->resolucao->textWrap($this->baseString, $length);
     $this->assertEquals("Se vi", $ret[0]);
     $this->assertEquals("mais", $ret[1]);
     $this->assertEquals("longe", $ret[2]);
@@ -54,6 +56,8 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("de", $ret[7]);
     $this->assertEquals("gigantes", $ret[8]);
     $this->assertCount(9, $ret);
+
+    $this->verifyOutputString($ret, $length);
   }
 
   /**
@@ -62,7 +66,9 @@ class TextWrapTest extends TestCase {
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForBaseStringWithLength12() {
-    $ret = $this->resolucao->textWrap($this->baseString, 12);
+    $length = 12;
+
+    $ret = $this->resolucao->textWrap($this->baseString, $length);
     $this->assertEquals("Se vi mais", $ret[0]);
     $this->assertEquals("longe foi", $ret[1]);
     $this->assertEquals("por estar de", $ret[2]);
@@ -70,22 +76,8 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("ombros de", $ret[4]);
     $this->assertEquals("gigantes", $ret[5]);
     $this->assertCount(6, $ret);
-  }
-
-  /**
-   * Checa o retorno para string conhecida.
-   *
-   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
-   */
-  public function testForKnowString() {
-
-    $length = 8;
-
-    $ret = $this->resolucao->textWrap($this->baseString, $length);
 
     $this->verifyOutputString($ret, $length);
-
-
   }
 
   /**
@@ -100,6 +92,7 @@ class TextWrapTest extends TestCase {
     $ret = $this->resolucao->textWrap($randomString, $randomLengths);
 
     $this->verifyOutputString($ret, $randomLengths);
+
 
   }
 
