@@ -18,6 +18,7 @@ class TextWrapTest extends TestCase {
   public function setUp() {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+    $this->encode = "UTF-8";
   }
 
   /**
@@ -64,6 +65,29 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("ombros de", $ret[4]);
     $this->assertEquals("gigantes", $ret[5]);
     $this->assertCount(6, $ret);
+  }
+
+  /**
+   * Testar o funcionamento do mb_strings.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForMbStrLen() {
+    $mbString = "não";
+    $length = mb_strlen($mbString, $this->encode);
+    $this->assertTrue($length == 3);
+  }
+
+  /**
+   * Testar o funcionamento do mb_strings.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForMbSubStr() {
+    $mbString = "meu pé";
+    $startIndex = 4;
+    $length = 2;
+    $this->assertTrue(mb_substr($mbString, $startIndex, $length) == "pé");
   }
 
 }
