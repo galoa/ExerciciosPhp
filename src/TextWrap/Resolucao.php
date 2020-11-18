@@ -139,4 +139,30 @@ class Resolucao implements TextWrapInterface {
 
   }
 
+  /**
+   * Processo da separação do texto em um array de strings.
+   */
+  private function spliting(string &$text) {
+    for ($i = 0; $i < $this->textLength; $i++) {
+      $this->updateLastSpaceIndex($i, $text);
+      $i = $this->split($i, $text);
+    }
+
+    if ($this->currentSubStringLength < $this->maxLengthSubstring) {
+      array_push($this->ret, $this->currentSubString);
+    }
+  }
+
+  /**
+   * Recupera um char de multiplos bytes.
+   */
+  private function getChar(string &$text, int $index) {
+    if ($index < $this->textLength) {
+      return mb_substr($text, $index, 1, $this->encoding);
+    }
+
+    return NULL;
+
+  }
+
 }
