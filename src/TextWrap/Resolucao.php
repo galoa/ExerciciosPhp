@@ -119,7 +119,7 @@ class Resolucao implements TextWrapInterface {
   private function spliting(string &$text) {
     for ($i = 0; $i < $this->textLength; $i++) {
       $this->updateLastSpaceIndex($i, $text);
-      $i = $this->updateIndex($i, $text);
+      $i = $this->split($i, $text);
     }
 
     if ($this->currentSubStringLength < $this->maxLengthSubstring) {
