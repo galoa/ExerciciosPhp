@@ -92,7 +92,7 @@ class Resolucao implements TextWrapInterface {
   }
 
   /**
-   * Inicializa as varáveis que seram utilizadas no split
+   * Inicializa as varáveis que seram utilizadas no split.
    */
   private function initialState(string &$text, int $length) {
     $this->beginIndex = 0;
@@ -114,12 +114,10 @@ class Resolucao implements TextWrapInterface {
   }
 
   /**
-   * Processo da separação do texto em um array de strings
+   * Processo da separação do texto em um array de strings.
    */
   private function spliting(string &$text) {
     for ($i = 0; $i < $this->textLength; $i++) {
-
-
       $this->updateLastSpaceIndex($i, $text);
       $i = $this->updateIndex($i, $text);
     }
@@ -127,11 +125,10 @@ class Resolucao implements TextWrapInterface {
     if ($this->currentSubStringLength < $this->maxLengthSubstring) {
       array_push($this->ret, $this->currentSubString);
     }
-
   }
 
   /**
-   * Recupera um char de multiplos bytes
+   * Recupera um char de multiplos bytes.
    */
   private function getChar(string &$text, int $index) {
     if ($index < $this->textLength) {
@@ -143,7 +140,7 @@ class Resolucao implements TextWrapInterface {
   }
 
   /**
-   * Atualia a string que será inserida no vetor de strings $splitedText
+   * Atualia a string que será inserida no vetor de strings $splitedText.
    */
   private function updateCurrentSubstring(string &$text, int $index) {
     $this->currentSubStringLength = ($index - $this->beginIndex + 1);
@@ -152,7 +149,7 @@ class Resolucao implements TextWrapInterface {
   }
 
   /**
-   * Atualiza o ponteiro que aponto para o ultimo espaço do texto
+   * Atualiza o ponteiro que aponto para o ultimo espaço do texto.
    */
   private function updateLastSpaceIndex(int $index, string &$text) {
     $currentChar = $this->getChar($text, $index);
@@ -163,9 +160,9 @@ class Resolucao implements TextWrapInterface {
   }
 
   /**
-   * Dado um index atual do texto, retorna o próximo endereço
+   * Separa a texto nas strings e retorna o próximo endereço.
    */
-  private function updateIndex(int $currentIndex, string &$text): int {
+  private function split(int $currentIndex, string &$text): int {
     $this->updateCurrentSubstring($text, $currentIndex);
 
     if ($this->currentSubStringLength < $this->maxLengthSubstring) {
@@ -191,6 +188,9 @@ class Resolucao implements TextWrapInterface {
 
   }
 
+  /**
+   * Dado um index atual do texto, retorna o próximo endereço.
+   */
   private function updateLastSpaceIndexWithNextChar(int $currentIndex, string &$text) {
     $nexIndex = ($currentIndex + 1);
     $this->updateLastSpaceIndex($nexIndex, $text);
