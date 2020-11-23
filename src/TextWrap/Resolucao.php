@@ -70,7 +70,6 @@ class Resolucao implements TextWrapInterface {
         $index += 1;
       }
       if (empty(end($arr))) {
-        echo "last index is empty";
         array_pop($arr);
       }
       return $arr;
