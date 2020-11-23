@@ -32,7 +32,7 @@ class Resolucao implements TextWrapInterface {
     if (empty($text)) {
       $arr[0] = "";
       return $arr;
-    } 
+    }
     else {
       for ($x = 0; $x + $counter < count($wordArr); $x += 1) {
         $x += $counter;
