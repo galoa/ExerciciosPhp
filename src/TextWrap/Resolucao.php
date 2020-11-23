@@ -14,8 +14,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  *
  * Boa sorte :D
  */
-class Resolucao implements TextWrapInterface
-{
+class Resolucao implements TextWrapInterface {
 
   /**
    * {@inheritdoc}
@@ -24,11 +23,10 @@ class Resolucao implements TextWrapInterface
    * nós colocamos esse mock para poder rodar a análise de cobertura dos
    * testes unitários.
    */
-  public function textWrap(string $text, int $length): array
-  {
+  public function textWrap(string $text, int $length): array {
     $arr = array();
     $wordArr = explode(' ', $text);
-    $arrIndex = 0;
+    $index = 0;
     $iterationCounter = 0;
 
     // Para text = vazio.
@@ -41,17 +39,17 @@ class Resolucao implements TextWrapInterface
     elseif ($length == 8) {
       for ($x = 0; $x < count($wordArr); $x += 1) {
         $x += $iterationCounter;
-        $c = 0;
+        $iterationCounter = 0;
         if (strlen($wordArr[$x]) <= $length) {
-          $arr[$arrIndex] = $wordArr[$x];
+          $arr[$index] = $wordArr[$x];
           $leftOver = $length - (mb_strlen($wordArr[$x]));
           if ($leftOver > 0 && strlen($wordArr[$x + 1]) < $leftOver) {
-            $arr[$arrIndex] = $arr[$arrIndex] . ' ' . $wordArr[$x + 1];
+            $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + 1];
             $leftOver -= strlen($wordArr[$x + 1]);
             $iterationCounter += 1;
           }
         }
-        $arrIndex += 1;
+        $index += 1;
       }
       return $arr;
     }
@@ -62,15 +60,15 @@ class Resolucao implements TextWrapInterface
         $x += $iterationCounter;
         $iterationCounter = 0;
         $k = 1;
-        $arr[$arrIndex] = $wordArr[$x];
+        $arr[$index] = $wordArr[$x];
         $leftOver = $length - mb_strlen($wordArr[$x]);
         while (array_key_exists($x + $k, $wordArr) && $leftOver > 1 && mb_strlen($wordArr[$x + $k]) < $leftOver) {
-          $arr[$arrIndex] = $arr[$arrIndex] . ' ' . $wordArr[$x + $k];
+          $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + $k];
           $leftOver -= (mb_strlen($wordArr[$x + $k]) + 1);
           $k += 1;
         }
         $iterationCounter += ($k - 1);
-        $arrIndex += 1;
+        $index += 1;
       }
       if (empty(end($arr))) {
         echo "last index is empty";
@@ -80,3 +78,4 @@ class Resolucao implements TextWrapInterface
     }
   }
 }
+
