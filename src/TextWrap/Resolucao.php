@@ -25,56 +25,38 @@ class Resolucao implements TextWrapInterface {
    */
   public function textWrap(string $text, int $length): array {
     $wordArr = explode(' ', $text);
+    $counter = 0;
     $index = 0;
-    $iterationCounter = 0;
+    $iterationCounter = 1;
 
-    // Para text = vazio.
     if (empty($text)) {
-      $arr[0] = "";
-      return $arr;
-    }
-
-    // Para length = 8.
-    elseif ($length == 8) {
-      for ($x = 0; $x < count($wordArr); $x += 1) {
-        $x += $iterationCounter;
-        $iterationCounter = 0;
-        if (strlen($wordArr[$x]) <= $length) {
-          $arr[$index] = $wordArr[$x];
-          $leftOver = $length - (mb_strlen($wordArr[$x]));
-          if ($leftOver > 0 && strlen($wordArr[$x + 1]) < $leftOver) {
-            $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + 1];
-            $leftOver -= strlen($wordArr[$x + 1]);
-            $iterationCounter += 1;
-          }
+        $arr = array();
+        return $arr;
+    } 
+    
+    else {
+        for ($x = 0; $x + $counter < count($wordArr); $x += 1) {
+            $x += $counter;
+            $counter = 0;
+            $iterationCounter = 1;
+            if ($wordArr[$x] <= $length) {
+                $arr[$index] = $wordArr[$x];
+                $leftOver = $length - mb_strlen($wordArr[$x]);
+                while (array_key_exists($x + $iterationCounter, $wordArr) && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1) {
+                    $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + $iterationCounter];
+                    $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
+                    $iterationCounter += 1;
+                }
+                $counter += ($iterationCounter - 1);
+                $index += 1;
+            }
+            if (empty(end($arr))) {
+                array_pop($arr);
+            }
         }
-        $index += 1;
-      }
-      return $arr;
-    }
-
-    // Para length = 12.
-    elseif ($length == 12) {
-      for ($x = 0; $x < count($wordArr); $x += 1) {
-        $x += $iterationCounter;
-        $iterationCounter = 0;
-        $k = 1;
-        $arr[$index] = $wordArr[$x];
-        $leftOver = $length - mb_strlen($wordArr[$x]);
-        while (array_key_exists($x + $k, $wordArr) && $leftOver > 1 && mb_strlen($wordArr[$x + $k]) < $leftOver) {
-          $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + $k];
-          $leftOver -= (mb_strlen($wordArr[$x + $k]) + 1);
-          $k += 1;
-        }
-        $iterationCounter += ($k - 1);
-        $index += 1;
-      }
-      if (empty(end($arr))) {
-        array_pop($arr);
-      }
-      return $arr;
+        return $arr;
     }
 
   }
-
+  
 }
