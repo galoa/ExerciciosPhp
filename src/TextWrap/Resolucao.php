@@ -54,7 +54,7 @@ class Resolucao implements TextWrapInterface {
       return $arr;
     }
 
-    // Para length = 12;
+    // Para length = 12.
     elseif ($length == 12) {
       for ($x = 0; $x < count($wordArr); $x += 1) {
         $x += $iterationCounter;
@@ -76,6 +76,7 @@ class Resolucao implements TextWrapInterface {
       }
       return $arr;
     }
-  }
-}
 
+  }
+
+}
