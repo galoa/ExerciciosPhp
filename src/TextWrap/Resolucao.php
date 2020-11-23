@@ -14,7 +14,8 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  *
  * Boa sorte :D
  */
-class Resolucao implements TextWrapInterface {
+class Resolucao implements TextWrapInterface
+{
 
   /**
    * {@inheritdoc}
@@ -30,33 +31,31 @@ class Resolucao implements TextWrapInterface {
     $iterationCounter = 1;
 
     if (empty($text)) {
-        $arr = array();
-        return $arr;
-    } 
-    
-    else {
-        for ($x = 0; $x + $counter < count($wordArr); $x += 1) {
-            $x += $counter;
-            $counter = 0;
-            $iterationCounter = 1;
-            if ($wordArr[$x] <= $length) {
-                $arr[$index] = $wordArr[$x];
-                $leftOver = $length - mb_strlen($wordArr[$x]);
-                while (array_key_exists($x + $iterationCounter, $wordArr) && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1) {
-                    $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + $iterationCounter];
-                    $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
-                    $iterationCounter += 1;
-                }
-                $counter += ($iterationCounter - 1);
-                $index += 1;
-            }
-            if (empty(end($arr))) {
-                array_pop($arr);
-            }
+      $arr[0] = array();
+      return $arr;
+    } else {
+      for ($x = 0; $x + $counter < count($wordArr); $x += 1) {
+        $x += $counter;
+        $counter = 0;
+        $iterationCounter = 1;
+        if ($wordArr[$x] <= $length) {
+          $arr[$index] = $wordArr[$x];
+          $leftOver = $length - mb_strlen($wordArr[$x]);
+          while (array_key_exists($x + $iterationCounter, $wordArr) && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1) {
+            $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + $iterationCounter];
+            $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
+            $iterationCounter += 1;
+          }
+          $counter += ($iterationCounter - 1);
+          $index += 1;
         }
-        return $arr;
+        if (empty(end($arr))) {
+          array_pop($arr);
+        }
+      }
+      return $arr;
     }
 
   }
-  
+
 }
