@@ -14,8 +14,7 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  *
  * Boa sorte :D
  */
-class Resolucao implements TextWrapInterface
-{
+class Resolucao implements TextWrapInterface {
 
   /**
    * {@inheritdoc}
@@ -31,9 +30,10 @@ class Resolucao implements TextWrapInterface
     $iterationCounter = 1;
 
     if (empty($text)) {
-      $arr[0] = array();
+      $arr[0] = "";
       return $arr;
-    } else {
+    } 
+    else {
       for ($x = 0; $x + $counter < count($wordArr); $x += 1) {
         $x += $counter;
         $counter = 0;
