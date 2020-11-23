@@ -30,7 +30,7 @@ class Resolucao implements TextWrapInterface {
 
     // Para text = vazio.
     if (empty($text)) {
-      $arr = array();
+      $arr[0] = "";
       return $arr;
     }
 
