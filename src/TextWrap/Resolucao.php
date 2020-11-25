@@ -51,9 +51,11 @@ class Resolucao implements TextWrapInterface {
              * Caso seja é adicionado uma posição no limite,
              * pois um caracter especial ocupa duas posições na string.
              */
-            if (preg_match('/^[ç´`~^]+/', $text[$upIndex + $j])) {
+            $special = FALSE;
+            if (preg_match('/^[ç´`~^ªº]+/', $text[$upIndex + $j])) {
               $j++;
               $limit++;
+              $special = TRUE;
             }
 
           }
@@ -68,7 +70,7 @@ class Resolucao implements TextWrapInterface {
 
           }
 
-          elseif ($j <= $limit) {
+          if ($j <= $limit && $special) {
             $downIndex = $upIndex + $j + 1;
           }
         }
