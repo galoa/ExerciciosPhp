@@ -105,12 +105,7 @@ class Resolucao implements TextWrapInterface {
             $sum++;
           }
 
-          if ($sum != 0) {
-            $upIndex = $downIndex + $sum;
-          }
-          else {
-            $upIndex = $downIndex;
-          }
+          $upIndex = $downIndex + $sum;
         }
 
         else {
