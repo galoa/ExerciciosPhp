@@ -103,6 +103,29 @@ class TextWrapTest extends TestCase {
   }
   
   /**
+   * Checa o retorno para o caso em que a palavra é maior
+   * que o tamanho máximo da substring.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForBigWord2() {
+    $ret = $this->resolucao->textWrap($this->baseString, 5);
+    $this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
+    $this->assertEquals("longe", $ret[2]);
+    $this->assertEquals("foi", $ret[3]);
+    $this->assertEquals("por", $ret[4]);
+    $this->assertEquals("estar", $ret[5]);
+    $this->assertEquals("de pé", $ret[6]);
+    $this->assertEquals("sobre", $ret[7]);
+    $this->assertEquals("ombro", $ret[8]);
+    $this->assertEquals("s de", $ret[9]);
+    $this->assertEquals("gigan", $ret[10]);
+    $this->assertEquals("tes", $ret[11]);
+    $this->assertCount(12, $ret);
+  }
+  
+  /**
    * Checa o retorno para o caso em que há mais de um espaço
    * no fim de uma substring.
    *
