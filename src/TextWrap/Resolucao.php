@@ -44,7 +44,7 @@ class Resolucao implements TextWrapInterface {
 
           }
 
-          elseif ($upIndex + $j <= $limit) {
+          elseif ($j <= $limit) {
             $downIndex = $upIndex + $j + 1;
           }
         }
