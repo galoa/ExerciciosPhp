@@ -67,12 +67,23 @@ class TextWrapTest extends TestCase {
   }
 
   /**
-   * Checa o retorno para tamanho de substring 0.
+   * Checa o retorno para tamanho de substring zero.
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
   public function testForZeroLength() {
     $ret = $this->resolucao->textWrap($this->baseString, 0);
+    $this->assertEmpty($ret[0]);
+    $this->assertCount(1, $ret);
+  }
+   
+  /**
+   * Checa o retorno para tamanho de substring negativo.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForNegativeLength() {
+    $ret = $this->resolucao->textWrap($this->baseString, -100);
     $this->assertEmpty($ret[0]);
     $this->assertCount(1, $ret);
   }
