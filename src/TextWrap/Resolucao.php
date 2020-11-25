@@ -3,62 +3,118 @@
 namespace Galoa\ExerciciosPhp\TextWrap;
 
 /**
- * Implemente sua resolução nessa classe.
+ * Classe responsável por gerar um array de substrings.
  *
- * Depois disso:
- * - Crie um PR no github com seu código
- * - Veja o resultado da correção automática do seu código
- * - Commit até os testes passarem
- * - Passou tudo, melhore a cobertura dos testes
- * - Ficou satisfeito, envie seu exercício para a gente! <3
- *
- * Boa sorte :D
+ * @author Maria Luiza Fernandes
+ * @access public
+ * @package TextWrap
  */
 class Resolucao implements TextWrapInterface {
 
   /**
-   * {@inheritdoc}
+   * {@inheritDoc}
    *
-   * Apague o conteúdo do método abaixo e escreva sua própria implementação,
-   * nós colocamos esse mock para poder rodar a análise de cobertura dos
-   * testes unitários.
+   * Função responsável por retornar um array de substrings.
+   *
+   * @param string $text
+   *   Contém o conteúdo a ser dividido.
+   * @param int $length
+   *   Contém o tamanho máximo de cada substring.
+   *
+   * @return array
+   *   Array contendo as substrings.
+   * @access public
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
+    $words = [];
+    $currentPosition = 0;
+
+    /*
+     * Verifica se a string a ser dividida não é vazia.
+     * Verifica se o tamanho máximo de cada substring é maior que zero.
+     */
+    if ($length > 0 && strlen($text) > 0) {
+      /*
+       * Percorre a string a ser dividida.
+       */
+      for ($upIndex = 0; $upIndex < strlen($text);) {
+        $downIndex = $upIndex + $length;
+
+        /*
+         * Percorre a string da posição atual até o limite definido.
+         */
+        $limit = $length;
+        for ($j = 0; $j < $limit; $j++) {
+          if ($upIndex + $j < strlen($text)) {
+            /*
+             * Verifica se o caracter atual é especial.
+             * Caso seja é adicionado uma posição no limite,
+             * pois um caracter especial ocupa duas posições na string.
+             */
+            $special = FALSE;
+            if (preg_match('/^[ç´`~^ªº]+/', $text[$upIndex + $j])) {
+              $j++;
+              $limit++;
+              $special = TRUE;
+            }
+
+          }
+
+          /*
+           * Atualiza $downIndex que marca a posição final da substring atual.
+           */
+          if ($upIndex + $j < strlen($text) - 1) {
+            if ($text[$upIndex + $j + 1] == ' ') {
+              $downIndex = $upIndex + $j + 1;
+            }
+
+          }
+
+          if ($j <= $limit && $special) {
+            $downIndex = $upIndex + $j + 1;
+          }
+        }
+
+        /*
+         * Cria uma string com os caracteres contidos entre
+         * o limite inferior $upIndex e o limite superior $downIndex.
+         */
+        $newWord = "";
+        for ($j = 0; $upIndex + $j < $downIndex; $j++) {
+          if ($upIndex + $j < strlen($text)) {
+            $newWord[$j] = $text[$upIndex + $j];
+          }
+        }
+
+        /*
+         * Adiciona a substring no array de retorno.
+         */
+        $words[$currentPosition] = $newWord;
+        $currentPosition++;
+
+        /*
+         * Atualiza o indíce de limite inferior para o próximo caracter.
+         */
+        if ($downIndex < strlen($text)) {
+          /*
+           * Percorre os espaços entre substrings.
+           * De maneira que a próxima substring não comece com espaço.
+           */
+          $sum = 0;
+          $aux = $downIndex;
+          while ($text[$aux] == ' ') {
+            $aux++;
+            $sum++;
+          }
+
+          $upIndex = $downIndex + $sum;
+        }
+
+        else {
+          $upIndex = strlen($text);
+        }
+      }
+      return $words;
     }
 
     return [""];

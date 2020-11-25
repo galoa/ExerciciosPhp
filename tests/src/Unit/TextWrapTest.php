@@ -66,4 +66,76 @@ class TextWrapTest extends TestCase {
     $this->assertCount(6, $ret);
   }
 
+  /**
+   * Checa o retorno para tamanho de substring zero.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForZeroLength() {
+    $ret = $this->resolucao->textWrap($this->baseString, 0);
+    $this->assertEmpty($ret[0]);
+    $this->assertCount(1, $ret);
+  }
+   
+  /**
+   * Checa o retorno para tamanho de substring negativo.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForNegativeLength() {
+    $ret = $this->resolucao->textWrap($this->baseString, -100);
+    $this->assertEmpty($ret[0]);
+    $this->assertCount(1, $ret);
+  }
+  
+  /**
+   * Checa o retorno para o caso em que a palavra é maior
+   * que o tamanho máximo da substring.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForBigWord() {
+    $ret = $this->resolucao->textWrap("gigante", 3);
+    $this->assertEquals("gig", $ret[0]);
+    $this->assertEquals("ant", $ret[1]);
+    $this->assertEquals("e", $ret[2]);
+    $this->assertCount(3, $ret);
+  }
+  
+  /**
+   * Checa o retorno para o caso em que a palavra é maior
+   * que o tamanho máximo da substring.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForBigWord2() {
+    $ret = $this->resolucao->textWrap($this->baseString, 5);
+    $this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
+    $this->assertEquals("longe", $ret[2]);
+    $this->assertEquals("foi", $ret[3]);
+    $this->assertEquals("por", $ret[4]);
+    $this->assertEquals("estar", $ret[5]);
+    $this->assertEquals("de pé", $ret[6]);
+    $this->assertEquals("sobre", $ret[7]);
+    $this->assertEquals("ombro", $ret[8]);
+    $this->assertEquals("s de", $ret[9]);
+    $this->assertEquals("gigan", $ret[10]);
+    $this->assertEquals("tes", $ret[11]);
+    $this->assertCount(12, $ret);
+  }
+  
+  /**
+   * Checa o retorno para o caso em que há mais de um espaço
+   * no fim de uma substring.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForSpaces() {
+    $ret = $this->resolucao->textWrap("Estar   de pé", 5);
+    $this->assertEquals("Estar", $ret[0]);
+    $this->assertEquals("de pé", $ret[1]);
+    $this->assertCount(2, $ret);
+  }
+
 }
