@@ -75,4 +75,4 @@ class Resolucao implements TextWrapInterface {
 }
   }
 
-}
+
