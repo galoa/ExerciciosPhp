@@ -24,44 +24,54 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
-    }
+    $wordArr = explode(' ', $text);
+    $counter = 0;
+    $index = 0;
+    $iterationCounter = 1;
 
-    return [""];
+    if (empty($text)) {
+      $arr[0] = "";
+      return $arr;
+    }
+    else {
+      for ($x = 0; $x + $counter < count($wordArr); $x += 1) {
+        $x += $counter;
+        $counter = 0;
+        $iterationCounter = 1;
+        if (mb_strlen($wordArr[$x]) <= $length) {
+          $arr[$index] = $wordArr[$x];
+          $leftOver = $length - mb_strlen($wordArr[$x]);
+          while (array_key_exists($x + $iterationCounter, $wordArr)
+                && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1
+                ) {
+            $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + $iterationCounter];
+            $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
+            $iterationCounter += 1;
+          }
+          $counter += ($iterationCounter - 1);
+          $index += 1;
+        }
+        else {
+          $newArr = mb_str_split($wordArr[$x], $length);
+          for ($z = 0; $z < count($newArr); $z += 1) {
+            $arr[$index + $z] = $newArr[$z];
+            $leftOver = $length - mb_strlen($newArr[$z]);
+            while (array_key_exists($x + $iterationCounter, $wordArr)
+                    && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1) {
+              $arr[$index + $z] = $arr[$index + $z] . ' ' . $wordArr[$x + $iterationCounter];
+              $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
+              $iterationCounter += 1;
+            }
+          }
+          $counter += ($iterationCounter - 1);
+          $index += $z;
+        }
+      }
+    }
+    if (empty(end($arr))) {
+      array_pop($arr);
+    }
+    return $arr;
   }
 
 }
