@@ -41,14 +41,13 @@ class Resolucao implements TextWrapInterface {
         if (mb_strlen($wordArr[$x]) <= $length) {
           $arr[$index] = $wordArr[$x];
           $leftOver = $length - mb_strlen($wordArr[$x]);
-            while (
-                array_key_exists($x + $iterationCounter, $wordArr)
-                  && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1
+          while (array_key_exists($x + $iterationCounter, $wordArr)
+                && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1
                 ) {
             $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + $iterationCounter];
             $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
             $iterationCounter += 1;
-        }
+          }
           $counter += ($iterationCounter - 1);
           $index += 1;
         }
