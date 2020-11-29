@@ -42,35 +42,35 @@ class Resolucao implements TextWrapInterface {
           $arr[$index] = $wordArr[$x];
           $leftOver = $length - mb_strlen($wordArr[$x]);
             while (
-                  array_key_exists($x + $iterationCounter, $wordArr)
+                array_key_exists($x + $iterationCounter, $wordArr)
                   && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1
                 ) {
             $arr[$index] = $arr[$index] . ' ' . $wordArr[$x + $iterationCounter];
             $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
             $iterationCounter += 1;
-          }
+        }
           $counter += ($iterationCounter - 1);
           $index += 1;
-        } 
+        }
         else {
           $newArr = mb_str_split($wordArr[$x], $length);
-            for ($z = 0; $z < count($newArr); $z += 1) {
-              $arr[$index + $z] = $newArr[$z];
-              $leftOver = $length - mb_strlen($newArr[$z]);
-              while (array_key_exists($x + $iterationCounter, $wordArr)
+          for ($z = 0; $z < count($newArr); $z += 1) {
+            $arr[$index + $z] = $newArr[$z];
+            $leftOver = $length - mb_strlen($newArr[$z]);
+            while (array_key_exists($x + $iterationCounter, $wordArr)
                     && mb_strlen($wordArr[$x + $iterationCounter]) < $leftOver && $leftOver > 1) {
-                  $arr[$index + $z] = $arr[$index + $z] . ' ' . $wordArr[$x + $iterationCounter];
-                  $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
-                  $iterationCounter+=1;
-                  }
-              }
-              $counter += ($iterationCounter - 1);
-              $index += $z;
+              $arr[$index + $z] = $arr[$index + $z] . ' ' . $wordArr[$x + $iterationCounter];
+              $leftOver -= (mb_strlen($wordArr[$x + $iterationCounter]) + 1);
+              $iterationCounter += 1;
+            }
           }
+          $counter += ($iterationCounter - 1);
+          $index += $z;
+        }
       }
-  }
+    }
     if (empty(end($arr))) {
-        array_pop($arr);
+      array_pop($arr);
     }
     return $arr;
   }
