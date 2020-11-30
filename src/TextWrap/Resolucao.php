@@ -37,6 +37,9 @@ class Resolucao implements TextWrapInterface {
           // Usando > ao invés >= de para caber o espaço.
           $line = mb_strlen($line, 'UTF-8') == 0 ? $word : $line . " " . $word;
         }
+        elseif (mb_strlen($line) == 0 && mb_strlen($word) == $length) {
+          $line = $word;
+        }
         else {
           $lines[] = $line;
           // Limpa ao mesmo tempo que adiciona a palavra.
@@ -52,9 +55,7 @@ class Resolucao implements TextWrapInterface {
         $lines[] = $line;
         $line = "";
         for ($i = 0; $i < mb_strlen($word, 'UTF-8'); $i++) {
-          // Usando < ao invés de <= para dar espaço
-          // ao ultimo caractere no else, se não perderia a letra.
-          if ($counter < $length) {
+          if ($counter < $length && mb_strlen($line) < $length) {
             $line = $line . $word[$i];
             $counter++;
           }
