@@ -93,7 +93,12 @@ class TextWrapTest extends TestCase {
     $this->assertCount(17, $ret);
   }
 
-  public function testForBigWords2(){
+  /**
+   * Testa a quebra de linha para apenas 2 caracteres por linha.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForBigWords2() {
     $ret = $this->resolucao->textWrap($this->baseString, 2);
     $this->assertEquals("Se", $ret[0]);
     $this->assertEquals("vi", $ret[1]);
