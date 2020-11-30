@@ -66,4 +66,64 @@ class TextWrapTest extends TestCase {
     $this->assertCount(6, $ret);
   }
 
+  /**
+   * Testa a quebra de linha para poucos caracteres por linha.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForBigWords() {
+    $ret = $this->resolucao->textWrap($this->baseString, 4);
+    $this->assertEquals("Se", $ret[0]);
+    $this->assertEquals("vi", $ret[1]);
+    $this->assertEquals("mais", $ret[2]);
+    $this->assertEquals("long", $ret[3]);
+    $this->assertEquals("e", $ret[4]);
+    $this->assertEquals("foi", $ret[5]);
+    $this->assertEquals("por", $ret[6]);
+    $this->assertEquals("esta", $ret[7]);
+    $this->assertEquals("r de", $ret[8]);
+    $this->assertEquals("pé", $ret[9]);
+    $this->assertEquals("sobr", $ret[10]);
+    $this->assertEquals("e", $ret[11]);
+    $this->assertEquals("ombr", $ret[12]);
+    $this->assertEquals("os", $ret[13]);
+    $this->assertEquals("de", $ret[14]);
+    $this->assertEquals("giga", $ret[15]);
+    $this->assertEquals("ntes", $ret[16]);
+    $this->assertCount(17, $ret);
+  }
+
+  public function testForBigWords2(){
+    $ret = $this->resolucao->textWrap($this->baseString, 2);
+    $this->assertEquals("Se", $ret[0]);
+    $this->assertEquals("vi", $ret[1]);
+    $this->assertEquals("ma", $ret[2]);
+    $this->assertEquals("is", $ret[3]);
+    $this->assertEquals("lo", $ret[4]);
+    $this->assertEquals("ng", $ret[5]);
+    $this->assertEquals("e", $ret[6]);
+    $this->assertEquals("fo", $ret[7]);
+    $this->assertEquals("i", $ret[8]);
+    $this->assertEquals("po", $ret[9]);
+    $this->assertEquals("r", $ret[10]);
+    $this->assertEquals("es", $ret[11]);
+    $this->assertEquals("ta", $ret[12]);
+    $this->assertEquals("r", $ret[13]);
+    $this->assertEquals("de", $ret[14]);
+    $this->assertEquals("pé", $ret[15]);
+    $this->assertEquals("so", $ret[16]);
+    $this->assertEquals("br", $ret[17]);
+    $this->assertEquals("e", $ret[18]);
+    $this->assertEquals("om", $ret[19]);
+    $this->assertEquals("br", $ret[20]);
+    $this->assertEquals("os", $ret[21]);
+    $this->assertEquals("de", $ret[22]);
+    $this->assertEquals("gi", $ret[23]);
+    $this->assertEquals("ga", $ret[24]);
+    $this->assertEquals("nt", $ret[25]);
+    $this->assertEquals("es", $ret[26]);
+    $this->assertCount(27, $ret);
+
+  }
+
 }
