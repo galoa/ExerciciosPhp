@@ -35,30 +35,33 @@ class Resolucao implements TextWrapInterface {
               $length - mb_strlen($line, 'UTF-8') == mb_strlen($word, 'UTF-8') + 1
           ) {
           // Usando > ao invés >= de para caber o espaço.
-          $line = mb_strlen($line, 'UTF-8') == 0 ? $line . $word : $line . " " . $word;
+          $line = mb_strlen($line, 'UTF-8') == 0 ? $word : $line . " " . $word;
         }
         else {
           $lines[] = $line;
           // Limpa ao mesmo tempo que adiciona a palavra.
-          // A palavra nunca será maior que a.
-          $line = $word;
+          // A palavra nunca será maior que a
           // linha, por isso não é necessario uma nova verificação.
+          $line = $word;
         }
       }
       else {
         $counter = 0;
+        // Se ela é maior, ela nao pode ser cortada na
+        // linha atual, entao ficará em uma nova linha.
+        $lines[] = $line;
+        $line = "";
         for ($i = 0; $i < mb_strlen($word, 'UTF-8'); $i++) {
           // Usando < ao invés de <= para dar espaço
           // ao ultimo caractere no else, se não perderia a letra.
           if ($counter < $length) {
-            $line += $word[$i];
+            $line = $line . $word[$i];
             $counter++;
           }
           else {
             $counter = 0;
-            $line += $word[$i];
             $lines[] = $line;
-            $line = "";
+            $line = $word[$i];
           }
         }
       }
