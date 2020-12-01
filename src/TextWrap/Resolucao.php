@@ -16,52 +16,35 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  */
 class Resolucao implements TextWrapInterface {
 
-  /**
-   * {@inheritdoc}
-   *
-   * Apague o conteúdo do método abaixo e escreva sua própria implementação,
-   * nós colocamos esse mock para poder rodar a análise de cobertura dos
-   * testes unitários.
-   */
-  public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
-    }
 
-    return [""];
-  }
-
+	public function textWrap(string $text, int $length): array {
+		$n = strlen($text);
+		$contador = 0;
+		$palavras = '';
+		$ans = array();
+		for($i = 0;$i < $n; $i++) {
+			$palavras .= $text[$i];
+			$contador++;
+			if($text[$i] == ' ') {
+				$espaco = $i;
+				if($contador == $length){
+					array_push($ans, $palavras);
+					$contador = 0;
+					$palavras = '';
+				}
+				if($contador > $length){
+					for($j = $contador; $j >= $espaco; $j--){
+						substr($palavras, 0, $remove;);
+						if($j == $espaco){
+							array_push($ans, $palavras);
+							$contador = 0;
+							$palavras = '';
+						}
+					}
+				}
+			}
+		}
+		return $ans;
+	}  
 }
+
