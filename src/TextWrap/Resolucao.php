@@ -42,11 +42,20 @@ class Resolucao implements TextWrapInterface
           array_push($resultado, $linha);
           $linha = $palavra;
           break;
-        case (strlen($linha . $palavra) + 1 <= $length):
+        case (strlen($linha . $palavra) + 1 < $length):
           if (strlen($linha) < 1) {
             $linha = $palavra;
           } else {
             $linha = $linha . " " . $palavra;
+          }
+          break;
+          case (strlen($linha . $palavra) + 1 == $length):
+          if (strlen($linha) < 1) {
+            $linha = $palavra;
+          } else {
+            $linha = $linha . " " . $palavra;
+            array_push($resultado, $linha);
+            $linha = "";
           }
           break;
         case (strlen($linha . $palavra) + 1 > $length):
