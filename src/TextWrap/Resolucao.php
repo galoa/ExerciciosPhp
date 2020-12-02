@@ -26,7 +26,7 @@ class Resolucao implements TextWrapInterface
    */
   public function textWrap(string $text, int $length): array
   {
-    if(strlen($text)<1){
+    if(mb_strlen($text)<1){
       return [];
     }
     $inputArray = explode(" ", $text);
@@ -34,23 +34,23 @@ class Resolucao implements TextWrapInterface
     $resultado = [];
     foreach ($inputArray as $palavra) {
       switch (true) {
-        case (strlen($palavra) > $length):
+        case (mb_strlen($palavra) > $length):
           array_push($resultado, substr($palavra, 0, $length - 1));
-          array_push($resultado, substr($palavra, $length - 1, strlen($palavra) - 1));
+          array_push($resultado, substr($palavra, $length - 1, mb_strlen($palavra) - 1));
           break;
-        case (strlen($linha . $palavra) > $length):
+        case (mb_strlen($linha . $palavra) > $length):
           array_push($resultado, $linha);
           $linha = $palavra;
           break;
-        case (strlen($linha . $palavra) + 1 < $length):
-          if (strlen($linha) < 1) {
+        case (mb_strlen($linha . $palavra) + 1 < $length):
+          if (mb_strlen($linha) < 1) {
             $linha = $palavra;
           } else {
             $linha = $linha . " " . $palavra;
           }
           break;
-          case (strlen($linha . $palavra) + 1 == $length):
-          if (strlen($linha) < 1) {
+          case (mb_strlen($linha . $palavra) + 1 == $length):
+          if (mb_strlen($linha) < 1) {
             $linha = $palavra;
           } else {
             $linha = $linha . " " . $palavra;
@@ -58,7 +58,7 @@ class Resolucao implements TextWrapInterface
             $linha = "";
           }
           break;
-        case (strlen($linha . $palavra) + 1 > $length):
+        case (mb_strlen($linha . $palavra) + 1 > $length):
           array_push($resultado, $linha);
           $linha = $palavra;
           break;
