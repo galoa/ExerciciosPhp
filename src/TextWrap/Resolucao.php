@@ -14,77 +14,74 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  *
  * Boa sorte :D
  */
-class Resolucao implements TextWrapInterface
-{
+class Resolucao implements TextWrapInterface {
 
-    /**
-     * {@inheritdoc}
-     *
-     * Apague o conteúdo do método abaixo e escreva sua própria implementação,
-     * nós colocamos esse mock para poder rodar a análise de cobertura dos
-     * testes unitários.
-     */
-    public function textWrap(string $text, int $length): array
-    {
-        if(mb_strlen($text)<1) {
-            return [null];
-        }
-        $inputArray = explode(" ", $text);
-        $linha = "";
-        $resultado = [];
-        foreach ($inputArray as $index=>$palavra) {
-            switch (true) {
-            case (mb_strlen($palavra) > $length):
-                array_push($resultado, substr($palavra, 0, $length - 1));
-                array_push($resultado, substr($palavra, $length - 1, mb_strlen($palavra) - 1));
-                break;
-            case (mb_strlen($linha . $palavra) > $length):
-                array_push($resultado, $linha);
-                $linha = $palavra;
-                if($index == count($inputArray)-1) {
-                    array_push($resultado, $linha);
-                }
-                break;
-            case (mb_strlen($linha . $palavra) + 1 < $length):
-                if (mb_strlen($linha) < 1) {
-                    $linha = $palavra;
-                } else {
-                    $linha = $linha . " " . $palavra;
-                    if($index == count($inputArray)-1) {
-                        array_push($resultado, $linha);
-                    }
-                }
-                break;
-            case (mb_strlen($linha . $palavra) + 1 == $length):
-                if (mb_strlen($linha) < 1) {
-                    $linha = $palavra;
-
-                    if($index == count($inputArray)-1) {
-                        array_push($resultado, $linha);
-                    }
-
-                } else {
-                    $linha = $linha . " " . $palavra;
-                    array_push($resultado, $linha);
-                    $linha = "";
-                }
-                break;
-            case (mb_strlen($linha . $palavra) + 1 > $length):
-                array_push($resultado, $linha);
-                $linha = $palavra;
-                if($index == count($inputArray)-1) {
-                    array_push($resultado, $linha);
-                }
-                break;
-
-            default:
-                $linha = $palavra;
-                if($index == count($inputArray)-1) {
-                      array_push($resultado, $linha);
-                }
-                break;
-            }
-        }
-        return $resultado;
+  /**
+   * {@inheritdoc}
+   *
+   * Apague o conteúdo do método abaixo e escreva sua própria implementação,
+   * nós colocamos esse mock para poder rodar a análise de cobertura dos
+   * testes unitários.
+   */
+  public function textWrap(string $text, int $length): array {
+    if (mb_strlen($text) < 1) {
+      return [null];
     }
+    $inputArray = explode(" ", $text);
+    $linha = "";
+    $resultado = [];
+    foreach ($inputArray as $index => $palavra) {
+      switch (true) {
+        case (mb_strlen($palavra) > $length):
+          array_push($resultado, substr($palavra, 0, $length - 1));
+          array_push($resultado, substr($palavra, $length - 1, mb_strlen($palavra) - 1));
+          break;
+        case (mb_strlen($linha . $palavra) > $length):
+          array_push($resultado, $linha);
+          $linha = $palavra;
+          if ($index == count($inputArray) - 1) {
+            array_push($resultado, $linha);
+          }
+          break;
+        case (mb_strlen($linha . $palavra) + 1 < $length):
+          if (mb_strlen($linha) < 1) {
+            $linha = $palavra;
+          } else {
+            $linha = $linha . " " . $palavra;
+            if ($index == count($inputArray) - 1) {
+              array_push($resultado, $linha);
+            }
+          }
+          break;
+        case (mb_strlen($linha . $palavra) + 1 == $length):
+          if (mb_strlen($linha) < 1) {
+            $linha = $palavra;
+
+            if ($index == count($inputArray) - 1) {
+              array_push($resultado, $linha);
+            }
+          } else {
+            $linha = $linha . " " . $palavra;
+            array_push($resultado, $linha);
+            $linha = "";
+          }
+          break;
+        case (mb_strlen($linha . $palavra) + 1 > $length):
+          array_push($resultado, $linha);
+          $linha = $palavra;
+          if ($index == count($inputArray) - 1) {
+            array_push($resultado, $linha);
+          }
+          break;
+
+        default:
+          $linha = $palavra;
+          if ($index == count($inputArray) - 1) {
+            array_push($resultado, $linha);
+          }
+          break;
+      }
+    }
+    return $resultado;
+  }
 }
