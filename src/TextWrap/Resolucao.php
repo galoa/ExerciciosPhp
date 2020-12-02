@@ -92,5 +92,5 @@ class Resolucao implements TextWrapInterface {
     }
     return $resultado;
   }
-  
+
 }
