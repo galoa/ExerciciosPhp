@@ -32,7 +32,7 @@ class Resolucao implements TextWrapInterface
     $inputArray = explode(" ", $text);
     $linha = "";
     $resultado = [];
-    foreach ($inputArray as $palavra) {
+    foreach ($inputArray as $index=>$palavra) {
       switch (true) {
         case (mb_strlen($palavra) > $length):
           array_push($resultado, substr($palavra, 0, $length - 1));
@@ -41,17 +41,28 @@ class Resolucao implements TextWrapInterface
         case (mb_strlen($linha . $palavra) > $length):
           array_push($resultado, $linha);
           $linha = $palavra;
+          if($index == count($inputArray)-1){
+            array_push($resultado, $linha);
+          }
           break;
         case (mb_strlen($linha . $palavra) + 1 < $length):
           if (mb_strlen($linha) < 1) {
             $linha = $palavra;
           } else {
             $linha = $linha . " " . $palavra;
+            if($index == count($inputArray)-1){
+              array_push($resultado, $linha);
+            }
           }
           break;
           case (mb_strlen($linha . $palavra) + 1 == $length):
           if (mb_strlen($linha) < 1) {
             $linha = $palavra;
+
+            if($index == count($inputArray)-1){
+              array_push($resultado, $linha);
+            }
+
           } else {
             $linha = $linha . " " . $palavra;
             array_push($resultado, $linha);
@@ -61,10 +72,16 @@ class Resolucao implements TextWrapInterface
         case (mb_strlen($linha . $palavra) + 1 > $length):
           array_push($resultado, $linha);
           $linha = $palavra;
+          if($index == count($inputArray)-1){
+            array_push($resultado, $linha);
+          }
           break;
 
         default:
         $linha = $palavra;
+        if($index == count($inputArray)-1){
+          array_push($resultado, $linha);
+        }
         break;
       }
     }
