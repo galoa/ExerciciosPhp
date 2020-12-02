@@ -62,6 +62,10 @@ class Resolucao implements TextWrapInterface
           array_push($resultado, $linha);
           $linha = $palavra;
           break;
+
+        default:
+        $linha = $palavra;
+        break;
       }
     }
     return $resultado;
