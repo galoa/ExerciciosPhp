@@ -52,7 +52,7 @@ class Resolucao implements TextWrapInterface
         case (strlen($linha . $palavra) + 1 == $length):
           $linha = $linha . " " . $palavra;
           array_push($linha);
-          $linha = ""
+          $linha = "";
         break;
         case (strlen($linha . $palavra) + 1 > $length):
           array_push($resultado, $linha);
