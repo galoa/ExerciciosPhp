@@ -25,17 +25,18 @@ class Resolucao implements TextWrapInterface {
    */
   public function textWrap(string $text, int $length): array {
     if (mb_strlen($text) < 1) {
-      return [null];
+      return [NULL];
     }
     $inputArray = explode(" ", $text);
     $linha = "";
     $resultado = [];
     foreach ($inputArray as $index => $palavra) {
-      switch (true) {
+      switch (TRUE) {
         case (mb_strlen($palavra) > $length):
           array_push($resultado, substr($palavra, 0, $length - 1));
           array_push($resultado, substr($palavra, $length - 1, mb_strlen($palavra) - 1));
           break;
+
         case (mb_strlen($linha . $palavra) > $length):
           array_push($resultado, $linha);
           $linha = $palavra;
@@ -43,16 +44,19 @@ class Resolucao implements TextWrapInterface {
             array_push($resultado, $linha);
           }
           break;
+
         case (mb_strlen($linha . $palavra) + 1 < $length):
           if (mb_strlen($linha) < 1) {
             $linha = $palavra;
-          } else {
+          }
+          else {
             $linha = $linha . " " . $palavra;
             if ($index == count($inputArray) - 1) {
               array_push($resultado, $linha);
             }
           }
           break;
+
         case (mb_strlen($linha . $palavra) + 1 == $length):
           if (mb_strlen($linha) < 1) {
             $linha = $palavra;
@@ -60,12 +64,14 @@ class Resolucao implements TextWrapInterface {
             if ($index == count($inputArray) - 1) {
               array_push($resultado, $linha);
             }
-          } else {
+          }
+          else {
             $linha = $linha . " " . $palavra;
             array_push($resultado, $linha);
             $linha = "";
           }
           break;
+
         case (mb_strlen($linha . $palavra) + 1 > $length):
           array_push($resultado, $linha);
           $linha = $palavra;
@@ -78,10 +84,13 @@ class Resolucao implements TextWrapInterface {
           $linha = $palavra;
           if ($index == count($inputArray) - 1) {
             array_push($resultado, $linha);
+
           }
           break;
+
       }
     }
     return $resultado;
   }
+  
 }
