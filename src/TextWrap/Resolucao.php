@@ -14,7 +14,8 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  *
  * Boa sorte :D
  */
-class Resolucao implements TextWrapInterface {
+class Resolucao implements TextWrapInterface
+{
 
   /**
    * {@inheritdoc}
@@ -23,30 +24,37 @@ class Resolucao implements TextWrapInterface {
    * nós colocamos esse mock para poder rodar a análise de cobertura dos
    * testes unitários.
    */
-  public function textWrap(string $text, int $length): array {
+  public function textWrap(string $text, int $length): array
+  {
+    if(strlen($text)<1){
+      return [];
+    }
     $inputArray = explode(" ", $text);
     $linha = "";
     $resultado = [];
-    foreach($inputArray as $palavra){
-      switch(true) {
-        case(strlen($palavra)>$length):
-          array_push($resultado, substr($palavra, 0, $length-1));
-          array_push($resultado, substr($palavra, $length-1 , strlen($palavra)-1 ));
-        break;
-        case(strlen($linha . $palavra)>$length):
+    foreach ($inputArray as $palavra) {
+      switch (true) {
+        case (strlen($palavra) > $length):
+          array_push($resultado, substr($palavra, 0, $length - 1));
+          array_push($resultado, substr($palavra, $length - 1, strlen($palavra) - 1));
+          break;
+        case (strlen($linha . $palavra) > $length):
           array_push($resultado, $linha);
           $linha = "";
-        break;
-        case(strlen($linha . $palavra) + 1 <= $length):
-          if(strlen($linha)<1){
-            $linha = $linha . $palavra;
-          }else {
+          break;
+        case (strlen($linha . $palavra) + 1 <= $length):
+          if (strlen($linha) < 1) {
+            $linha = $palavra;
+          } else {
             $linha = $linha . " " . $palavra;
           }
-        break;
+          break;
+        case (strlen($linha . $palavra) + 1 > $length){
+          array_push($resultado, $linha);
+          $linha = $palavra;
+        }
       }
     }
     return $resultado;
   }
-
 }
