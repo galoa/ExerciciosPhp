@@ -27,7 +27,7 @@ class Resolucao implements TextWrapInterface
   public function textWrap(string $text, int $length): array
   {
     if(mb_strlen($text)<1){
-      return [];
+      return [null];
     }
     $inputArray = explode(" ", $text);
     $linha = "";
