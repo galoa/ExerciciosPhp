@@ -24,44 +24,24 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
+    $inputArray = explode(" ", $text);
+    $linha = "";
+    $resultado = [];
+    foreach($inputArray as $palavra){
+      switch(true) {
+        case(strlen($palavra)>$length):
+          array_push($resultado, substr($palavra, 0, $length-1));
+          array_push($resultado, substr($palavra, $length-1 , strlen($palavra)-1 ));
+        break;
+        case(strlen($linha . $palavra)>$length):
+          array_push($resultado, $linha);
+          $linha = "";
+        break;
+        case(strlen($linha . $palavra) + 1 <= $length):
+          $linha = $linha . " " . $palavra;
+        break;
+      }
     }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
-    }
-
-    return [""];
   }
 
 }
