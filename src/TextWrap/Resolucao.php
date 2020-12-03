@@ -24,6 +24,7 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
+
     if (mb_strlen($text) < 1) {
       return [NULL];
     }
@@ -65,12 +66,24 @@ class Resolucao implements TextWrapInterface {
       }
       else {
         if (mb_strlen($linha . " " . $inputArray[$i]) < $length) {
-          $linha = $linha . " " . $inputArray[$i];
+          if (mb_strlen($linha) < 1) {
+            $linha = $inputArray[$i];
+          }
+          else {
+            $linha = $linha . " " . $inputArray[$i];
+          }
         }
         elseif (mb_strlen($linha . " " . $inputArray[$i]) == $length) {
-          $linha = $linha . " " . $inputArray[$i];
-          array_push($resultado, $linha);
-          $linha = "";
+          if (mb_strlen($linha) < 1) {
+            $linha = $inputArray[$i];
+            array_push($resultado, $linha);
+            $linha = "";
+          }
+          else {
+            $linha = $linha . " " . $inputArray[$i];
+            array_push($resultado, $linha);
+            $linha = "";
+          }
         }
         elseif (mb_strlen($linha . " " . $inputArray[$i]) > $length) {
           array_push($resultado, $linha);
@@ -78,6 +91,7 @@ class Resolucao implements TextWrapInterface {
         }
       }
     }
+
     return $resultado;
   }
 
