@@ -52,12 +52,12 @@ class Resolucao implements TextWrapInterface {
         case (mb_strlen($palavra) > $length):
           /* Adiciona ao resultado uma substring com o tamanho máximo,
           retirada da string. */
-          array_push($resultado, substr($palavra, 0, $length));
+          array_push($resultado, substr($palavra, 0, $length-1));
           // E adiciona à variável temporária $linha o restante.
-          $linha = substr($palavra, $length - 1);
+          $linha = substr($palavra, $length);
           while (mb_strlen($linha) > $length) {
-            array_push($resultado, substr($linha, 0, $length));
-            $linha = substr($linha, $length - 1);
+            array_push($resultado, substr($linha, 0, $length-1));
+            $linha = substr($linha, $length);
           }
           // Se for a última string do array adiciona a linha ao resultado.
           if ($index == count($inputArray) - 1) {
