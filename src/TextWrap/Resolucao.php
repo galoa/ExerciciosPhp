@@ -50,7 +50,8 @@ class Resolucao implements TextWrapInterface {
         O número de caracteres da palavra é maior que o tamanho máximo.
          */
         case (mb_strlen($palavra) > $length):
-          // Adiciona ao resultado uma substring com o tamanho máximo, retirada da string.
+          /* Adiciona ao resultado uma substring com o tamanho máximo,
+          retirada da string. */
           array_push($resultado, substr($palavra, 0, $length - 1));
           // E adiciona à variável temporária $linha o restante.
           $linha = substr($palavra, $length - 1, mb_strlen($palavra) - 1);
@@ -70,7 +71,8 @@ class Resolucao implements TextWrapInterface {
           array_push($resultado, $linha);
           // A palavra é armazenada na variável auxiliar.
           $linha = $palavra;
-          // Verifica se é a última linha e, se for, adiciona linha ao resultado.
+          /* Verifica se é a última linha e, se for,
+          adiciona linha ao resultado. */
           if ($index == count($inputArray) - 1) {
             array_push($resultado, $linha);
           }
@@ -86,10 +88,12 @@ class Resolucao implements TextWrapInterface {
           if (mb_strlen($linha) < 1) {
             $linha = $palavra;
           }
-          // Se não, a variável auxiliar guarda o que havia nela concatenado com um espaço e a palavra.
+          /* Se não, a variável auxiliar guarda o que havia nela concatenado
+          com um espaço e a palavra. */
           else {
             $linha = $linha . " " . $palavra;
-            // Se for a última string, adiciona ao resultado a variável auxiliar.
+            /* Se for a última string, adiciona ao
+            resultado a variável auxiliar. */
             if ($index == count($inputArray) - 1) {
               array_push($resultado, $linha);
             }
@@ -106,7 +110,8 @@ class Resolucao implements TextWrapInterface {
         case (mb_strlen($linha . $palavra) + 1 == $length):
           if (mb_strlen($linha) < 1) {
             $linha = $palavra;
-            // Se for a última string, adiciona ao resultado a variável auxiliar.
+            /* Se for a última string, adiciona ao resultado
+            a variável auxiliar. */
             if ($index == count($inputArray) - 1) {
               array_push($resultado, $linha);
             }
