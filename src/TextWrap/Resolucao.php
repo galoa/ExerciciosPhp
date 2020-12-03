@@ -60,6 +60,7 @@ class Resolucao implements TextWrapInterface {
               array_push($resultado, substr($linha, 0, $length));
               $linha = substr($linha, $length);
             } while (mb_strlen($linha) > $length);
+            array_push($resultado,$linha);
           }
           // Se for a última string do array adiciona a linha ao resultado.
           if ($index == count($inputArray) - 1) {
@@ -67,7 +68,7 @@ class Resolucao implements TextWrapInterface {
           }
           break;
 
-        /* Segunda alterantiva:
+        /* Segunda alternativa:
         O número de caracteres da palavra é igual ao tamanho máximo.
          */
         case (mb_strlen($palavra) == $length):
