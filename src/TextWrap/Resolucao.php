@@ -24,61 +24,49 @@ class Resolucao implements TextWrapInterface {
    * testes unitários.
    */
   public function textWrap(string $text, int $length): array {
-    /*
-    Verifica se o input está vazio e retorna uma array
-    com um elemento null caso esteja.
-     */
     if (mb_strlen($text) < 1) {
       return [NULL];
     }
     /*
     Transforma o input em uma array de strings.
-    A variável linha é para ser usada como variável temporária/auxiliar.
      */
     $inputArray = explode(" ", $text);
-    $temp = "";
     $linha = "";
     $resultado = [];
-    /*
-    Percorre o array pegando tanto o index quanto a string em si.
-    Nessa abordagem eu uso o index apenas para verificar se é a última palavra.
-     */
-    for ($i = 0; $i < $length; $i++) {
-      $temp = "" . $inputArray[$i];
-      while (mb_strlen($temp) > $length) {
-        array_push($resultado, substr($temp, 0, $length));
-        $temp = substr($temp, $length);
-      }
+    $aux = "";
 
-      if (mb_strlen($temp) > 0 && $temp != $inputArray[$i]) {
-        $linha = "" . $temp;
-      }
-
-      switch (TRUE) {
-        case (mb_strlen($linha) == $length):
-          array_push($resultado, $linha);
-          break;
-
-        case ((mb_strlen($linha . $inputArray[$i]) + 1) < $length):
-          $linha = $linha . " " . $inputArray[$i];
-          break;
-
-        case ((mb_strlen($linha . $inputArray[$i]) + 1) == $length):
-          if (mb_strlen($linha) < 1) {
-            array_push($resultado, $inputArray[$i]);
+    for ($i = 0; $i < count($inputArray); $i++) {
+      /* Essa sessão inteira é pra dar split
+      nas palavras quando são menores que
+      o tamanho máximo, mas sem usar str_split. */
+      if (mb_strlen($inputArray[$i]) > $length) {
+        $contador = 0;
+        for ($x = 0; $x <= mb_strlen($inputArray[$i]); $x++) {
+          if ($contador < $length) {
+            $aux = $aux . substr($inputArray[$i], $x, 1);
+            $contador++;
+            if ($x >= mb_strlen($inputArray[$i])) {
+              array_push($resultado, $aux);
+              $aux = "";
+            }
           }
           else {
-            array_push($resultado, $linha . " " . $inputArray[$i]);
+            array_push($resultado, $aux);
+            $aux = "";
+            $aux = $aux . substr($inputArray[$i], $x, 1);
+            $contador = 1;
           }
-          break;
-
-        case ((mb_strlen($linha . $inputArray[$i]) + 1) > $length):
-          array_push($resultado, $linha);
-          $linha = $inputArray;
-          break;
+        }
+      }
+      // Aqui termina o str_split alternativo.
+      elseif (mb_strlen($inputArray[$i] . $inputArray[$i + 1]) + 1 <= $length) {
+        array_push($resultado, $inputArray[$i] . " " . $inputArray[$i + 1]);
+        $i++;
+      }
+      elseif (mb_strlen($inputArray[$i] . $inputArray[$i + 1]) + 1 > $length) {
+        array_push($resultado, $inputArray[$i]);
       }
     }
-
     return $resultado;
   }
 
