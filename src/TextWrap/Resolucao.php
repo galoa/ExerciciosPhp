@@ -50,7 +50,7 @@ class Resolucao implements TextWrapInterface {
         $temp = substr($temp, $length);
       }
 
-      if (mb_strlen($temp && $temp != $inputArray[$i]) > 0) {
+      if (mb_strlen($temp) > 0 && $temp != $inputArray[$i]) {
         $linha = $temp;
       }
 
