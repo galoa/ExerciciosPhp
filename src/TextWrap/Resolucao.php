@@ -62,6 +62,16 @@ class Resolucao implements TextWrapInterface {
           break;
 
         /* Segunda alterantiva:
+        O número de caracteres da palavra é igual ao tamanho máximo.
+         */
+        case (mb_strlen($palavra) == $length):
+          /* Adiciona diretamente nesse caso, e zera a
+          variável auxiliar */
+          array_push($resultado, $palavra);
+          $linha = "";
+          break;
+
+        /* Terceira alterantiva:
         O número de caracteres da variável auxiliar $linha mais a palavra
         é maior que o tamanho máximo, já que uso a variável auxiliar pra guardar
         o que sobrou da linha anterior.
@@ -79,7 +89,7 @@ class Resolucao implements TextWrapInterface {
           break;
 
         /*
-        Terceira alternativa:
+        Quarta alternativa:
         O número de caracteres da variável auxiliar mais a palavra
         somados com 1 (pra representar o espaço) é menor que o tamanho máximo.
          */
@@ -101,7 +111,7 @@ class Resolucao implements TextWrapInterface {
           break;
 
         /*
-        Quarta alternativa:
+        Quinta alternativa:
         O número de caracteres da variável auxiliar mais a palavra
         somados com 1 é igual ao tamanho máximo.
         fiz dessa forma para poder esvaziar variável auxiliar
@@ -128,7 +138,7 @@ class Resolucao implements TextWrapInterface {
           break;
 
         /*
-        Quarta alternativa:
+        Sexta alternativa:
         o número de caracteres da variável auxiliar mais um (espaço)
         é maior que o tamanho máximo.
          */
@@ -148,7 +158,9 @@ class Resolucao implements TextWrapInterface {
 
       }
     }
+
     return $resultado;
+
   }
 
 }
