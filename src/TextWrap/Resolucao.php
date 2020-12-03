@@ -67,8 +67,13 @@ class Resolucao implements TextWrapInterface {
         case (mb_strlen($palavra) == $length):
           /* Adiciona diretamente nesse caso, e zera a
           variável auxiliar */
-          array_push($resultado, $palavra);
-          $linha = "";
+          if(mb_strlen($linha) <1){
+            array_push($resultado, $palavra);
+            $linha = "";
+          } else {
+            array_push($resultado, $linha);
+            array_push($resultado, $palavra);
+          }
           break;
 
         /* Terceira alterantiva:
