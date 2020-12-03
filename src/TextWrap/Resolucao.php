@@ -67,7 +67,7 @@ class Resolucao implements TextWrapInterface {
             $linha = "";
           }
           else {
-            if (!($inputArray[$index] == $linha){
+            if (!($inputArray[$index] == $linha)){
               array_push($resultado, $linha);
             }
           }
