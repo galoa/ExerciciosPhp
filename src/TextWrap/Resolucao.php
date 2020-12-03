@@ -49,7 +49,7 @@ class Resolucao implements TextWrapInterface {
         Primeira alternativa:
         O número de caracteres da palavra é maior que o tamanho máximo.
          */
-        case (mb_strlen($palavra) > $length):
+        case (mb_strlen($palavra) >= $length):
           /* Adiciona ao resultado uma substring com o tamanho máximo,
           retirada da string. */
           array_push($resultado, substr($palavra, 0, $length - 1));
