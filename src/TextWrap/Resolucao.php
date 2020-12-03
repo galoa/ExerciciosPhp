@@ -55,9 +55,11 @@ class Resolucao implements TextWrapInterface {
           array_push($resultado, substr($palavra, 0, $length));
           // E adiciona à variável temporária $linha o restante.
           $linha = substr($palavra, $length);
-          while (mb_strlen($linha) > $length) {
-            array_push($resultado, substr($linha, 0, $length));
-            $linha = substr($linha, $length);
+          if (mb_strlen($linha) > $length) {
+            do {
+              array_push($resultado, substr($linha, 0, $length));
+              $linha = substr($linha, $length);
+            } while (mb_strlen($linha) > $length);
           }
           // Se for a última string do array adiciona a linha ao resultado.
           if ($index == count($inputArray) - 1) {
