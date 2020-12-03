@@ -60,6 +60,7 @@ class Resolucao implements TextWrapInterface {
               array_push($resultado, substr($linha, 0, $length));
               $linha = substr($linha, $length);
             } while (mb_strlen($linha) > $length);
+            array_push($resultado, $linha);
           }
           elseif (mb_strlen($linha) == $length) {
             array_push($resultado, $linha);
