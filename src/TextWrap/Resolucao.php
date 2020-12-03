@@ -31,11 +31,12 @@ class Resolucao implements TextWrapInterface {
     Transforma o input em uma array de strings.
      */
     $inputArray = explode(" ", $text);
+    array_push($inputArray, "");
     $linha = "";
     $resultado = [];
     $aux = "";
 
-    for ($i = 0; $i < count($inputArray); $i++) {
+    for ($i = 0; $i < count($inputArray) - 1; $i++) {
       /* Essa sessão inteira é pra dar split
       nas palavras quando são menores que
       o tamanho máximo, mas sem usar str_split. */
@@ -59,12 +60,18 @@ class Resolucao implements TextWrapInterface {
         }
       }
       // Aqui termina o str_split alternativo.
-      elseif (mb_strlen($inputArray[$i] . $inputArray[$i + 1]) + 1 <= $length) {
-        array_push($resultado, $inputArray[$i] . " " . $inputArray[$i + 1]);
-        $i++;
-      }
-      elseif (mb_strlen($inputArray[$i] . $inputArray[$i + 1]) + 1 > $length) {
+      elseif ($i >= count($inputArray)) {
         array_push($resultado, $inputArray[$i]);
+      }
+      else {
+
+        if (mb_strlen($inputArray[$i] . $inputArray[$i + 1]) + 1 <= $length) {
+          array_push($resultado, $inputArray[$i] . " " . $inputArray[$i + 1]);
+          $i++;
+        }
+        elseif (mb_strlen($inputArray[$i] . $inputArray[$i + 1]) + 1 > $length) {
+          array_push($resultado, $inputArray[$i]);
+        }
       }
     }
     return $resultado;
