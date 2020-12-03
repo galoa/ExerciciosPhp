@@ -44,14 +44,14 @@ class Resolucao implements TextWrapInterface {
     Nessa abordagem eu uso o index apenas para verificar se é a última palavra.
      */
     for ($i = 0; $i < $length; $i++) {
-      $temp = $inputArray[$i];
+      $temp = $inputArray[$i] . "";
       while (mb_strlen($temp) > $length) {
         array_push($resultado, substr($temp, 0, $length));
         $temp = substr($temp, $length);
       }
 
       if (mb_strlen($temp) > 0 && $temp != $inputArray[$i]) {
-        $linha = $temp;
+        $linha = $temp . "";
       }
 
       switch (TRUE) {
