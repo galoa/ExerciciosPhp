@@ -60,17 +60,21 @@ class Resolucao implements TextWrapInterface {
         }
       }
       // Aqui termina o str_split alternativo.
-      elseif ($i >= count($inputArray)) {
+      elseif ($i == count($inputArray) - 2) {
         array_push($resultado, $inputArray[$i]);
       }
       else {
-
-        if (mb_strlen($inputArray[$i] . $inputArray[$i + 1]) + 1 <= $length) {
-          array_push($resultado, $inputArray[$i] . " " . $inputArray[$i + 1]);
-          $i++;
+        if (mb_strlen($linha . " " . $inputArray[$i]) < $length) {
+          $linha = $linha . " " . $inputArray[$i];
         }
-        elseif (mb_strlen($inputArray[$i] . $inputArray[$i + 1]) + 1 > $length) {
-          array_push($resultado, $inputArray[$i]);
+        elseif (mb_strlen($linha . " " . $inputArray[$i]) == $length) {
+          $linha = $linha . " " . $inputArray[$i];
+          array_push($resultado, $linha);
+          $linha = "";
+        }
+        elseif (mb_strlen($linha . " " . $inputArray[$i]) > $length) {
+          array_push($resultado, $linha);
+          $linha = $inputArray[$i];
         }
       }
     }
