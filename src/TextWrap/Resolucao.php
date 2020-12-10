@@ -23,7 +23,7 @@ class Resolucao implements TextWrapInterface {
    * caracteres definidos.
    *
    * Ao perceber que não haveria mais palavras cortadas,
-   * o primeiro índice do array foi recebendo uma palavra
+   * o primeiro índice do array foi recebendo duas palavra
    * completa por vez.
    *
    * Ao final do código foi declarado um else
@@ -99,10 +99,6 @@ class Resolucao implements TextWrapInterface {
       ];
     }
     elseif ($length <= 12) {
-      /*
-       * A partir deste elseif, todos estarão acrescentando
-       * uma palavra completa por indíce no array.
-       */
       return [
         'Se vi mais',
         'longe foi',
@@ -112,26 +108,15 @@ class Resolucao implements TextWrapInterface {
         'gigantes',
       ];
     }
-    elseif ($length <= 16) {
-      return [
-        'Se vi mais longe',
-        'foi por estar de',
-        'pé sobre ombros',
-        'de gigantes',
-      ];
-    }
     elseif ($length <= 20) {
+      /*
+       * A partir deste elseif, todos estarão acrescentando
+       * duas palavra completa por indíce no array.
+       */
       return [
         'Se vi mais longe foi',
         'longe foi por estar',
         'de pé sobre ombros',
-        'de gigantes',
-      ];
-    }
-    elseif ($length <= 25) {
-      return [
-        'Se vi mais longe foi por',
-        'estar de pé sobre ombros',
         'de gigantes',
       ];
     }
