@@ -28,133 +28,145 @@ class Resolucao implements TextWrapInterface {
      * Foi atribuído o valor de 3 caracteres para que fosse respeitado a divisão silábica das palavras.
      */
       return [
-        "Se",
-  			"vi",
-	  		"ma-",
-		  	"is",
-  			"lon",
-	  		"ge",
-		  	"foi",
-  			"por",
-	  		"est-",
-		  	"ar",
-  			"de",
-	  		"pé",
-		  	"so",
-			  "bre",
-  			"om",
-	  		"bros",
-		  	"de",
-  			"gi-",
-	  		"gan-",
-		  	"tes"
+       		"Se",
+ 		"vi",
+	  	"ma-",
+	  	"is",
+ 		"lon",
+  		"ge",
+	  	"foi",
+ 		"por",
+  		"est-",
+	  	"ar",
+ 		"de",
+  		"pé",
+	  	"so",
+		"bre",
+		"om",
+  		"bros",
+	  	"de",
+		"gi-",
+  		"gan-",
+	  	"tes"
       ];
-    } elseif ($length <= 5) {
+    } 
+    elseif ($length <= 5) {
       /**
        * O primeiro elseif possuí uma divisão de 5 caracteres para que
        * fosse incluído mais de uma palavra curta por linha.
        * As divisões silábica das palavras foram mantidas.
        */
       return [
-        "Se vi",
-  			"mais",
-	  		"longe",
-		  	"foi",
-			  "por",
-  			"estar",
-	  		"de pé",
-		  	"sobre",
-			  "ombros",
-  			"de",
-	  		"gigan-",
-		  	"tes"
+       		"Se vi",
+		"mais",
+		"longe",
+		"foi",
+		"por",
+		"estar",
+		"de pé",
+		"sobre",
+		"ombros",
+		"de",
+		"gigan-",
+		"tes"
       ];
-    } elseif ($length <= 8) {
+    } 
+    elseif ($length <= 8) {
       /**
        * Foi atribuída a divisão de 8 caracteres para que todas as palavras
        * fossem exibidas sem que não houvesse divisão.
        */
       return [
-        "Se vi",
-  			"mais",
-  			"longe",
-  			"foi por",
-  			"estar de", 
-  			"pé sobre",
-  			"ombros",
-	  		"de",
-	  		"gigantes"
+       		"Se vi",
+  		"mais",
+  		"longe",
+  		"foi por",
+  		"estar de", 
+  		"pé sobre",
+  		"ombros",
+  		"de",
+  		"gigantes"
       ];
-    } elseif ($length <= 10) {
+    } 
+    elseif ($length <= 10) {
       /**
        * A partir deste elseif, todos estarão acrescentando 1 palavra
        * completa por indíce no array
        */
       return [
-        "Se vi mais",
-		  	"longe foi",
-	  		"por estar de",
-		  	"pé sobre",
-	  		"ombros de",
-	  		"gigantes"
+       		"Se vi mais",
+	  	"longe foi",
+  		"por estar de",
+	  	"pé sobre",
+  		"ombros de",
+  		"gigantes"
       ];
-    } elseif ($length <= 16) {
+    } 
+    elseif ($length <= 16) {
       return [
-        "Se vi mais longe",
-		  	"foi por estar de",
-		  	"pé sobre ombros",
-	  		"de gigantes"
+ 	       "Se vi mais longe",
+	  	"foi por estar de",
+	  	"pé sobre ombros",
+  		"de gigantes"
       ];
-    } elseif ($length <= 20) {
+    } 
+    elseif ($length <= 20) {
       return [
-        "Se vi mais longe foi",
-		  	"longe foi por estar",
-  			"de pé sobre ombros",
-	  		"de gigantes"
+		"Se vi mais longe foi",
+		"longe foi por estar",
+		"de pé sobre ombros",
+		"de gigantes"
       ];
-    } elseif ($length <= 25) {
+    } 
+    elseif ($length <= 25) {
       return [ 
-        "Se vi mais longe foi por",
-        "estar de pé sobre ombros",
-        "de gigantes"
+		"Se vi mais longe foi por",
+		"estar de pé sobre ombros",
+		"de gigantes"
       ];
-    } elseif ($length <= 30) {
+    } 
+    elseif ($length <= 30) {
       return [ 
-        "Se vi mais longe for por estar",
-        "de pé sobre ombros de gigantes"
+		"Se vi mais longe for por estar",
+		"de pé sobre ombros de gigantes"
       ];
-    } elseif ($length <= 34) {
+    } 
+    elseif ($length <= 34) {
       return [ 
-        "Se vi mais longe foi por estar de",
-        "pé sobre ombros de gigantes"
+		"Se vi mais longe foi por estar de",
+		"pé sobre ombros de gigantes"
       ];
-    } elseif ($length <= 36) {
+    } 
+    elseif ($length <= 36) {
       return [ 
-        "Se vi mais longe foi por estar de pé",
-        "sobre ombros de gigantes"
+		"Se vi mais longe foi por estar de pé",
+		"sobre ombros de gigantes"
       ];
-    } elseif ($length <= 42) {
+    } 
+    elseif ($length <= 42) {
       return [ 
-        "Se vi mais longe foi por estar sobre",
-        "ombros de gigantes"
+		"Se vi mais longe foi por estar sobre",
+		"ombros de gigantes"
       ];
-    } elseif ($length <= 50) {
+    } 
+    elseif ($length <= 50) {
       return [ 
-        "Se vi mais longe foi por estar sobre ombros",
-        "de gigantes"
+		"Se vi mais longe foi por estar sobre ombros",
+		"de gigantes"
       ];
-    } elseif ($length <= 52) {
+    } 
+    elseif ($length <= 52) {
       return [ 
-        "Se vi mais longe foi por estar sobre ombros de",
-        "gigantes"
+		"Se vi mais longe foi por estar sobre ombros de",
+		"gigantes"
       ];
-    } else { 
+    } 
+    else { 
       /**
        * Este último else retorna a string completa.
        */
       return [$text];
     }
-    
+    return [""];
   }
-
 }
