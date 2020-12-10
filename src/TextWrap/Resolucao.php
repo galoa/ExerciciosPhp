@@ -16,9 +16,10 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  */
 class Resolucao implements TextWrapInterface {
 
-  /**
-   * Foram declarados if, elseif e else para que exiba as palavras de
+  /*
+   * Foram declarados if, elseif para que exiba as palavras de
    * acordo com a quantidade de caracteres definidas para serem exibidos.
+   * Ao final do código foi declarado um else que retorna a string com o texto completo.
    */
   public function textWrap(string $text, int $length): array {
     /*
