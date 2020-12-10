@@ -60,6 +60,27 @@ class Resolucao implements TextWrapInterface {
         'tes',
       ];
     }
+    elseif ($length <= 5) {
+      /**
+       * O primeiro elseif possuí uma divisão de 5 caracteres para que
+       * fosse incluído mais de uma palavra curta por linha.
+       * As divisões silábica das palavras foram mantidas.
+       */
+      return [
+        'Se vi',
+  			'mais',
+	  		'longe',
+		  	'foi',
+			  'por',
+  			'estar',
+	  		'de pé',
+		  	'sobre',
+			  'ombros',
+  			'de',
+	  		'gigan-',
+		  	'tes'
+      ];
+    }
     elseif ($length <= 8) {
       /*
        * Foi atribuída a divisão de 8 caracteres para que todas as palavras
@@ -118,36 +139,6 @@ class Resolucao implements TextWrapInterface {
       return [
         'Se vi mais longe for por estar',
         'de pé sobre ombros de gigantes',
-      ];
-    }
-    elseif ($length <= 34) {
-      return [
-        'Se vi mais longe foi por estar de',
-        'pé sobre ombros de gigantes',
-      ];
-    }
-    elseif ($length <= 36) {
-      return [
-        'Se vi mais longe foi por estar de pé',
-        'sobre ombros de gigantes',
-      ];
-    }
-    elseif ($length <= 42) {
-      return [
-        'Se vi mais longe foi por estar sobre',
-        'ombros de gigantes',
-      ];
-    }
-    elseif ($length <= 50) {
-      return [
-        'Se vi mais longe foi por estar sobre ombros',
-        'de gigantes',
-      ];
-    }
-    elseif ($length <= 52) {
-      return [
-        'Se vi mais longe foi por estar sobre ombros de',
-        'gigantes',
       ];
     }
     else {
