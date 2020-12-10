@@ -16,18 +16,20 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  */
 class Resolucao implements TextWrapInterface {
 
+  /**
+   * Foram declarados if, elseif para que exiba as palavras de
+   * acordo com a quantidade de caracteres definidas
+   * para serem exibidos.
+   *
+   * Ao perceber que não haveria mais palavras cortadas,
+   * o primeiro índice do array foi recebendo uma palavra
+   * completa por vez.
+   *
+   * Ao final do código foi declarado um else
+   * que retorna a string com o texto completo.
+   */
   public function textWrap(string $text, int $length): array {
-    /*
-     * Foram declarados if, elseif para que exiba as palavras de
-     * acordo com a quantidade de caracteres definidas para serem exibidos.
-     *
-     * Ao perceber que não haveria mais palavras cortadas,
-     * o primeiro índice do array foi recebendo uma palavra completa
-     * por vez.
-     *
-     * Ao final do código foi declarado um else
-     * que retorna a string com o texto completo.
-     */
+    
     if ($length <= 3) {
       /*
        * O primeiro if possuí a quantidade de 3 caracteres a ser exibido.
