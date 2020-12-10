@@ -98,7 +98,7 @@ class Resolucao implements TextWrapInterface {
         "gigantes",
       ];
     }
-    elseif ($length <= 10) {
+    elseif ($length <= 12) {
       /*
        * A partir deste elseif, todos estarão acrescentando
        * uma palavra completa por indíce no array.
