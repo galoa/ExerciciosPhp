@@ -17,7 +17,6 @@ namespace Galoa\ExerciciosPhp\TextWrap;
 class Resolucao implements TextWrapInterface {
 
   /**
-   * {@inheritdoc}
    * Foram declarados if, elseis e else para que exiba as
    * palavras de acordo com a quantidade de caracteres
    * desejadas a serem exibidos.
@@ -53,11 +52,11 @@ class Resolucao implements TextWrapInterface {
       ];
     }
     elseif ($length <= 5) {
-      /**
-       * O primeiro elseif possuí uma divisão de 5 caracteres para que
-       * fosse incluído mais de uma palavra curta por linha.
-       * As divisões silábica das palavras foram mantidas.
-       */
+    /**
+     * O primeiro elseif possuí uma divisão de 5 caracteres para que
+     * fosse incluído mais de uma palavra curta por linha.
+     * As divisões silábica das palavras foram mantidas.
+     */
       return [
         "Se vi",
         "mais",
@@ -74,10 +73,10 @@ class Resolucao implements TextWrapInterface {
       ];
     }
     elseif ($length <= 8) {
-      /**
-       * Foi atribuída a divisão de 8 caracteres para que todas as palavras
-       * fossem exibidas sem que não houvesse divisão.
-       */
+    /**
+     * Foi atribuída a divisão de 8 caracteres para que todas as palavras
+     * fossem exibidas sem que não houvesse divisão.
+     */
       return [
         "Se vi",
         "mais",
@@ -91,10 +90,10 @@ class Resolucao implements TextWrapInterface {
       ];
     }
     elseif ($length <= 10) {
-      /**
-       * A partir deste elseif, todos estarão acrescentando 1 palavra
-       * completa por indíce no array
-       */
+    /**
+     * A partir deste elseif, todos estarão acrescentando 1 palavra
+     * completa por indíce no array
+     */
       return [
         "Se vi mais",
         "longe foi",
@@ -164,12 +163,9 @@ class Resolucao implements TextWrapInterface {
       ];
     }
     else {
-      /**
-       * Este último else retorna a string completa.
-       */
+    // Este último else retorna a string completa.
       return [$text];
     }
-
-    return [""];
   }
+
 }
